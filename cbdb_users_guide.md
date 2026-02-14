@@ -1,15 +1,25 @@
-# The China Biographical Database User’s Guide
+# CBDB User Guide (AI-Friendly Version)
 
-Michael A. Fuller
-Revised Version .
-July , 
-© China Biographical Database Project: Harvard University, Academia Sinica, Peking University
+This document is a reformatted version of the 2024 China Biographical Database (CBDB) User Guide. It describes the relational structure of the database, its entities, and the rules used for data processing (like Index Year calculation).
 
-
+## Core Entities Overview
+1. **People** (`BIOG_MAIN`): Basic biographical data.
+2. **Kinship** (`KIN_DATA`): Relationships between people.
+3. **Non-kinship Associations** (`ASSOC_DATA`): Social, political, and literary connections.
+4. **Status** (`STATUS_DATA`): Social distinctions.
+5. **Modes of Entry** (`ENTRY_DATA`): How people entered government or other careers.
+6. **Postings** (`POSTING_DATA`, `POSTED_TO_OFFICE_DATA`): Official positions held.
+7. **Places** (`ADDR_CODES`): Administrative geography.
 
 ---
 
-i
+# The China Biographical Database User’s Guide
+
+Michael A. Fuller
+Revised Version 3.6
+July 26, 2024
+© China Biographical Database Project: Harvard University, Academia Sinica, Peking University
+
 Preface to the User’s Guide
 Peter K. Bol
 The China Biographical Database, as a relational database, can generate biographical
@@ -37,8 +47,8 @@ and to the modes in which they distinguished themselves from others. In contrast
 the narrative of a life, CBDB sees people as entities deﬁned by webs of relationships
 that can be quantiﬁed and analyzed.
 Temporal scope. Over ninety percent of CBDB data pertains to the period from the
-Tang dynasty (-) into the early th c. As of this writing ,  it had data on
-about , ﬁgures with well over , more in preparation; further data on
+Tang dynasty (618-907) into the early 20th c. As of this writing 1, 2019 it had data on
+about 472,000 ﬁgures with well over 100,000 more in preparation; further data on
 ﬁgures already in the database are frequently added. Tables and trees of place names
 and oﬃcial titles will need to be expanded as we incorporate ﬁgures from earlier
 periods.
@@ -48,12 +58,6 @@ a person from Meishan”) found in the historical sources it references. It rela
 assertions, including contradictory assertions when they appear, rather than judging
 their reliability. However, it does not treat all sources as equal.
 
-
-
----
-
-The CBDB User’s Guide
-ii
 Principal sources. CBDB began with research conducted by the late Robert Hartwell
 focused on the middle period of China’s history. Since then, it has been
 comprehensively incorporating data from published indices, such as Wang Deyi’s
@@ -88,19 +92,13 @@ examples to ensure that the margin of error will not undermine conﬁdence in th
 conclusions that are drawn. The discrepancies between the sources and the original
 CBDB data were signiﬁcant, and considerable time was spent correcting the received
 data; with the adoption of computational techniques the discrepancies appear to be less
-than one percent. To put this in perspective: an argument based on  examples of
+than one percent. To put this in perspective: an argument based on 1000 examples of
 which ten are faulty is better than a ﬁnding based on ten examples of which one is
 erroneous.
 A database is not a dictionary. CBDB can be used as a guide to biographical factoids
 about an individual, and it can provide more data about some aspects of a person’s
 connections than would be found in a biographical dictionary. However, the standard
 
-
-
----
-
-The CBDB User’s Guide
-iii
 for a dictionary is complete accuracy in all aspects, whereas the expectation for a
 database is that the cases discovered will be useful because they are extensive in range
 and number.
@@ -111,7 +109,7 @@ the Institute for Quantitative Social Sciences which provides administrative sup
 is guided by a steering committee that includes scholars and collaborators from across
 the globe. Michael A. Fuller, the author of this User’s has designed all iterations of the
 database.
-Since  CBDB has been supported by grants from Harvard University Faculty of
+Since 2005 CBDB has been supported by grants from Harvard University Faculty of
 Arts and Science and the Harvard University Asia Center, the Institute of History and
 Philology at Academia Sinica, the Center for Research on Ancient Chinese History at
 Peking University, the National Endowment for the Humanities, the Tang Research
@@ -129,34 +127,25 @@ installation procedures for diﬀerent operating systems. Please also consult Ap
 of the User’s Guide for a summary of the most recent changes to the database and to
 the user interface.
 
-
-
----
-
-The CBDB User’s Guide
-iv
 Table of Contents
 i
 Preface
-
+1
 Introduction
-
-Chapter 1: Relational Databases
+
 A.
 Relational Database and the Organization of Complex Data
 B.
 Rules for Structuring Data in a Relational Database
 C.
 Relational Databases and the Interactions of Complex Data
-
-Chapter 2: The Structure of CBDB
+
 A.
 An Overview of the Entities in the Database
 B.
 Details of Entities
 Summary of Tables in CBDB
-
-Chapter 3: CBDB Tools for Analysis
+
 A.
 The Navigation Pane
 B.
@@ -181,23 +170,16 @@ K.
 Query Texts and Roles
 L.
 Looking up Data on a Group of Individuals
-
-Chapter 4: Advanced Query Techniques
+
 A.
 Kinship Networks for Jinshi-degree Holders in Putian
 B.
 Using the Access Query Designer
-
+124
 Appendices
 A.
 Installing the MS Access Files
 
-
-
----
-
-The CBDB User’s Guide
-v
 B.
 Updating the Visual Basic Environment
 C.
@@ -207,11 +189,6 @@ Kinship Simpliﬁcation Table
 D.
 Change Log for CBDB
 
-
-
----
-
-i
 Introduction
 The China Biographical Database (CBDB) is a relational database of biographical
 information for China before the early twentieth century. Through the wide range of
@@ -230,7 +207,7 @@ individuals in the universe are then juxtaposed and combined, and are
 examined for signiﬁcant variables. They are tested both for internal
 correlations and for correlations with other forms of behaviour or action. (L.
 Stone, 'Prosopography', in F. Gilbert and S. Graubard eds., Historical Studies
-Today (New York, )
+Today (New York, 1972)
 CBDB also supports a second approach to analyzing the lives of large numbers of
 people. Social network analysis (SNA) has been a tool for studying group structure in
 the social sciences for many decades. Scholars, however, also have applied its
@@ -250,14 +227,8 @@ might be applied to the problem, but HSNA contains the essential
 perspectives that cannot only advance the debate, but also help historians to
 meet Tilly's challenge to connect the lives of ordinary people to large-scale
 change in meaningful ways. (Charles Wetherell, “Historical Social Network
-Analysis,” International Review of Social History  [], Supplement)
+Analysis,” International Review of Social History 43 [1998], Supplement)
 
-
-
----
-
-The CBDB User’s Guide
-
 In large measure, historians have used SNA approaches on small sample populations
 where the relations among all the member of the group are known, but CBDB hopes
 to provide data on relations among individuals in very large populations where the
@@ -282,14 +253,8 @@ into three parts: general information about relational databases, the structure 
 in particular (the types of data it contains), and the interface for looking at the data in
 CBDB.
 
-
-
----
-
-
-Chapter . Relational Databases
 A. Relational Database and the Organization of Complex Data
-The social historian Robert Hartwell (-), who was concerned with the
+The social historian Robert Hartwell (1932-1996), who was concerned with the
 kinship and social networks of Song Dynasty oﬃcials, ﬁrst conceived of using a
 relational database to study collective biographies, and CBDB evolved out of his initial
 model.
@@ -299,13 +264,13 @@ between people, their kinship groups, their social networks, the oﬃces they he
 the places with which they were associated. This is a long list, and the interactions
 between all of these elements grow complex and diﬃcult to track. Hartwell realized
 that he could think of the interactions he saw in biographical data as relations between
-() people, () places, () a bureaucratic system, () kinship structures and ()
+(1) people, (2) places, (3) a bureaucratic system, (4) kinship structures and (5)
 contemporary modes of social association. He built a relational database precisely to
 capture biographical data as the relations between these ﬁve “things.” In the current
 version of CBDB that grew out of Hartwell’s model, we have added three more aspects
-of social experience through which individuals deﬁned themselves: () social
-institutions like temples, academies, etc., () cultural systems for attaining social
-distinction, and () the vast webs of textual production.
+of social experience through which individuals deﬁned themselves: (6) social
+institutions like temples, academies, etc., (7) cultural systems for attaining social
+distinction, and (8) the vast webs of textual production.
 This structuring of relationships between entities, categories of “things” in the
 world, is what a relational database does: it allows one to capture multiform relations
 between complex objects that interact with one another. That is, PLACE is an entity,
@@ -316,47 +281,35 @@ interactions we care to record between people and places: where they were born,
 where they moved, where they were buried, and so on. We have the abstract model of
 relations between entities:
 
-{image omitted}
+## People
 
-People
-
-{image omitted}
-
-Places
-
-{image omitted}
+## Places
 
 Places in People’s Lives
 
-
-
----
-
-Chapter : Relational Databases
-
 This abstract model, when transformed into a relational database, becomes a series of
 tables ﬁlled with data divided into ﬁelds:
 PEOPLE
 ID
 Name
 Dates
-
+1
 Lü Benzhong
 呂本中
--
-
-
-An Dun 安惇 -
-
-
+1084-
+1145
+2
+An Dun 安惇 1042-
+1101
+3
 Chao Buzhi
 晁補之
--
-
-
-Chen Jian()
+1053-
+1110
+4
+Chen Jian(5)
 陳薦
-ﬂ. 
+ﬂ. 1069
 PEOPLE-PLACES
 Person
 ID
@@ -364,65 +317,59 @@ Place
 ID
 Relation
 Type ID
-
-
-
-
-
-
-
-
-
+1
+1
+1
+1
+3
+2
+1
+2
+3
 PEOPLE-PLACE
 TYPES
 Relation
 Type ID
 Relation
 Type
-
+1
 Basic
 Aﬃliation
-
+2
 Moved to
-
+3
 Ancestral addr
 PLACES
 IDPlace Name
-
+1
 Jinhua 金華
-
+2
 Shouzhou 壽州
-
+3
 Kaifeng 開封
 Note that with this arrangement of tables, there is no limit to the number of people, the
 number of places, or the number of types of relations between people and places.
 From this example of how people and place relate to one another, we see that in
 relational databases there are three basic types of tables:
-. Tables that describe the basic “entities.” (The yellow tables “People” and “Places”
+1. Tables that describe the basic “entities.” (The yellow tables “People” and “Places”
 above) In CBDB, these include people, places, kinship term, bureaucratic structures, and so
 on. The ﬁelds in these tables capture the attributes of these entities that we want to know
 about. For people, this would include their names, birth and death dates, gender, and the like.
 For places (“addresses” in CBDB parlance) it would include names, the administrative levels
 (county, prefecture, etc.), when they were created, and so on.
-. Tables that describe relations between basic entities. (The blue “People-Places”
+2. Tables that describe relations between basic entities. (The blue “People-Places”
 table) In CBDB, these translate the relations between people and their social, physical, and
 cultural environment into a structured format. Theﬁelds in these tables capture the features
 of the relations that are considered important in describing the relationship. For instance,
 when a person receives a posting to serve in a bureaucratic oﬃce, in addition to the basic
-information of who the person was and what the oﬃce was, we also would like to know ()
-where the post was, () if the person in fact served, and () when he served. Other types of
+information of who the person was and what the oﬃce was, we also would like to know (1)
+where the post was, (2) if the person in fact served, and (3) when he served. Other types of
 entities, however, also have important and often complex relations with one another. For
 PLACES, for example, it would include its superior or subordinate units, and the period of
 validity of those relations. For OFFICES, a key relationship is where the oﬃce ﬁts into the
 administrative hierarchy at any particular time.
 
-
-
----
-
-Chapter : Relational Databases
-
-. Tables that describe the types of relations between entities. (The pink “People-Place
+3. Tables that describe the types of relations between entities. (The pink “People-Place
 types” table.) Sometimes, there can be many ways for two “things” to interact in the world,
 and we need to be able to be more speciﬁc in recording the details of the interaction. In the
 example above, people can have many diﬀerent ways of being related to a place: it might be the
@@ -431,7 +378,7 @@ where they were buried. We can group these relations into categories to give the
 B. Rules for Structuring Data in a Relational Database
 In databases, we try to record any particular datum only once. In the example above,
 the name Lü Benzhong 呂本中appears in only one record in CBDB, in his basic entry in the
-table for PEOPLE entities (the table is called BIOG_MAIN). All other records that record
+table for PEOPLE entities (the table is called `BIOG_MAIN`). All other records that record
 information about Lü Benzhong refer to him by his ID number. Thus, if, for example, I
 mistakenly entered the name Hong Shi for 洪适 (properly romanized as Hong Kuo) because I
 thought that the second character was the simpliﬁed form of shi適, I would need to ﬁx the
@@ -443,7 +390,7 @@ In the example of a person’s relationship to places discussed above, we encoun
 fact that a person can move to many diﬀerent places. This is called a “one-to-many”
 relationship. If one were to try to represent this relationship through a simple table with rows
 and columns, we either could create a number of columns in the basic biographical table
-(“Moved to ”, “Moved to ”, and so on), or we could add all entries into a single cell. If we
+(“Moved to 1”, “Moved to 2”, and so on), or we could add all entries into a single cell. If we
 create several columns for “Moved to,” we cannot be sure that we will not encounter an
 individual who moved so many times that it exceeds the number of columns we created.
 Moreover, every single record in the biographical table would have all of the “Moved to” cells,
@@ -464,12 +411,6 @@ These three rules—normalize data, create new tables for one-to-many relations,
 treat many-to-many like one-to-many—are important if you wish to add new data types to
 CBDB.
 
-
-
----
-
-Chapter : Relational Databases
-
 C. Relational Databases and the Interactions of Complex Data
 CBDB models the interactions between people and the entities—the “things”—that shape
 their social world. Some of these entities are easily understood in their “thingness:” places are
@@ -495,48 +436,24 @@ or nephews of medical oﬃcers, and did the families of medical oﬃcers marry t
 one another?” What about men who held mid-level military ranks: were those who moved
 into civil posts likely to marry daughters of men who held civil posts?
 
-{image omitted}
-
 People
-
-{image omitted}
 
 Places
 
-{image omitted}
-
-Kinship
-
-{image omitted}
+## Kinship
 
 Oﬃce
 
-{image omitted}
-
 People-Kinship
-
-{image omitted}
 
 People-Oﬃce
 
-{image omitted}
-
 People-Places
-
-{image omitted}
 
 Social Relations
 
-{image omitted}
-
 People-Social Relations
 
-
-
----
-
-Chapter : Relational Databases
-
 Querying the Relationship between OFFICE and KINSHIP
 We can ask many, many questions about the relation of OFFICE and KINSHIP. Were there
 diﬀerent patterns of marriage within rank for high civil oﬃcials and lower-ranking oﬃcials?
@@ -549,84 +466,42 @@ Querying the Relationship of PLACE and SOCIAL RELATIONS
 Finally, we can look at the interaction of multiple factors like the role of PLACE in the
 relationship between KINSHIP and OFFICE:
 
-{image omitted}
-
 People
-
-{image omitted}
 
 Places
 
-{image omitted}
-
 Kinship
-
-{image omitted}
 
 Oﬃce
 
-{image omitted}
-
 People-Kinship
-
-{image omitted}
 
 People-Oﬃce
 
-{image omitted}
-
 People-Places
-
-{image omitted}
 
 Social Relations
 
-{image omitted}
-
 People-Social Relations
-
-{image omitted}
 
 People
 
-{image omitted}
-
 Places
-
-{image omitted}
 
 Kinship
 
-{image omitted}
-
 Oﬃce
-
-{image omitted}
 
 People-Kinship
 
-{image omitted}
-
 People-Oﬃce
-
-{image omitted}
 
 People-Places
 
-{image omitted}
-
 Social Relations
-
-{image omitted}
 
 People-Social Relations
 
-
-
----
-
-Chapter : Relational Databases
-
 Querying the Role of PLACE in KINSHIP-OFFICE Relations
 Were oﬃcials from Fujian more likely to develop local kinship networks than were oﬃcial
 from Zhejiang? Did patterns diﬀer depending on the rank, and did the patterns change over
@@ -635,48 +510,24 @@ In a relational database, the only real constraint on asking questions about the
 interactions of the entities in CBDB is how well one understands the database and the
 structure of the data in it.
 
-{image omitted}
-
 People
-
-{image omitted}
 
 Places
 
-{image omitted}
-
 Kinship
-
-{image omitted}
 
 Oﬃce
 
-{image omitted}
-
 People-Kinship
-
-{image omitted}
 
 People-Oﬃce
 
-{image omitted}
-
 People-Places
-
-{image omitted}
 
 Social Relations
 
-{image omitted}
-
 People-Social Relations
 
-
-
----
-
-
-Chapter . The Structure of CBDB
 A. An Overview of the Entities in the Database
 Database design uses tables to give concrete form to more abstract objects which we simply call
 “entities.” Since the goal of a database is to capture the relational information about entities, it
@@ -684,46 +535,40 @@ remains useful to keep the abstract objects separate from the tables that repres
 relations. That way, one can more easily ask the question of how the tables need to change to
 better stand in for the entities they represent.
 The central entity that deﬁnes biography in the database is, of course:
-.
+1.
 People
 But since a relational database tracks the ways in which people form relations with other people,
 with their society (their political, social, economic and cultural institutions), and with the
 physical world, we also need entities with which people interact. First, relationships with
 people (these entities will be discussed in greater detail later):
-.
+2.
 Kinship
-.
+3.
 Social (Non-kin) Associations
 Next, with political and socio-cultural institutions and activities:
-.
+4.
 Status (modes of social distinction such fame for calligraphy or serving as a monk)
-.
+5.
 Modes of Entry into Government or other careers (e.g., passing the civil-service
 examinations, nepotism or the yin protection privilege)
-.
+6.
 Postings to oﬃce (e.g., a magistrate or general)
-.
+7.
 Social Institution in which people collectively participated (from Buddhist temples
 and Confucian academies to the repair of city walls and bridges)
 There also are texts that people produced and through which we know about people:
-.
+8.
 Texts (including primary texts, secondary texts, and paleographic data). These include
 data sources from which CBDB draws its information (primary sources, secondary
 scholarly compilations, and digital resources).
 Then, there are structured aspects of the world with which people interacted that must be
 included in CBDB. The two aspects on which we have focused are administrative geography
 and bureaucratic structure:
-.
+9.
 Administrative Geographic Hierarchy (deﬁned in political terms as superior and
 subordinate administrative units)
 
-
-
----
-
-Chapter : The Structure of CBDB
-
-.
+10.
 Bureaucratic Organization (the changes in bureaucracy and reporting
 responsibilities over time)
 B. Details of Entities
@@ -743,7 +588,7 @@ Western dates from the reign period information for birth, death, years of activ
 other date given in the traditional Chinese nianhao designation, but it will preserve the
 vagueness in the nianhao coding.
 b. Ethnicity and Tribe Aﬃliation
-CDBD tracks ethnicity, like Han, Uighur, Tibetan, etc. We have over  codes at
+CDBD tracks ethnicity, like Han, Uighur, Tibetan, etc. We have over 465 codes at
 present. These codes are in the table ETHICITY_TRIBE_CODES, which organizes
 ethnicity and tribe designations by group and subgroup and includes variant forms for
 ethnicity names.
@@ -753,131 +598,113 @@ in deﬁning one’s social status. From the Song Dynasty onward people did make
 descent from a particular clan from a particular place (like the Cui clan of Boling) but
 they carried little social or political weight. The combination of place name and clan
 name deﬁned a choronym. The codes for these choronyms are in the table
-CHORONYM_CODES.
+`CHORONYM_CODES`.
 c. Index Year
 For computational purposes, CBDB needs a single year value to locate a person in
 time. The index year is an artiﬁcial value used in analyses. In earlier versions of the
 
-
-
----
-
-Chapter : The Structure of CBDB
-
-database, index year was based on when the person would have turned  sui.
-However, starting with the  dataset, the index year has been based on the known
+database, index year was based on when the person would have turned 60 sui.
+However, starting with the 2021 dataset, the index year has been based on the known
 or projected year of birth. The rules for calculating the value are complex and based
 on the following assumptions:
-A:
-that a man received a Jinshi (進士) degree at age , the Juren (舉人) degree at
-, and the Xuicai/licentiate (秀才/生員) degree at 
-A:
-that a wife was  years younger than her husband
-A:
-the the first child was born when the father is at age  and a mother at age 
-(per assumption A)
-A:
-that male children were born  years apart
-A:
-that a man died at age  and a woman at age 
+A1:
+that a man received a Jinshi (進士) degree at age 30, the Juren (舉人) degree at
+27, and the Xuicai/licentiate (秀才/生員) degree at 21
+A2:
+that a wife was 3 years younger than her husband
+A3:
+the the first child was born when the father is at age 30 and a mother at age 27
+(per assumption A2)
+A4:
+that male children were born 2 years apart
+A5:
+that a man died at age 63 and a woman at age 55
 Rules Based on a Person’s Birth/Death Dates
-Rule : Ego's index year = ego’s birth year
-Rule : If we know ego’s death year and age at death, then: ego’s index year =
+### Rule 1 Ego's index year = ego’s birth year
+### Rule 2 If we know ego’s death year and age at death, then: ego’s index year =
 ego’s death year – age at death
-Rule :
-If we know just the ego’s death year then: (per A) ego’s index year =
-ego’s death year –  (for men), ego’s death year –  (for women)
-Rule W: Ego’s index year = husband’s birth year + (Note: If the woman was a
-concubine/second wife, then rule W precedes rule W.)
+### Rule 3
+If we know just the ego’s death year then: (per A5) ego’s index year =
+ego’s death year – 63 (for men), ego’s death year – 55 (for women)
+### Rule 4W Ego’s index year = husband’s birth year +3 (Note: If the woman was a
+concubine/second wife, then rule 9W precedes rule 4W.)
 Rules Based on Degree Dates
-Rule : Ego’s index year = the year he obtained the Jinshi (進士) - 
-Rule W: Ego’s index year = the year her husband obtained the Jinshi (進士) -
-+ = husband’s Jinshi year - 
-Rule : Ego’s index year = the year he obtained the Juren (舉人) - 
-Rule W: Ego’s index year = the year her husband obtained the Juren (舉人) -
-+ = husband’s Juren year - 
-Rule : Ego’s index year = the year he obtained the Xuicai (秀才/生員) - 
-Rule W: Ego’s index year = the year her husband obtained the Xuicai (秀才/生員
-年) - + = husband’s Xuicai year - 
+### Rule 5 Ego’s index year = the year he obtained the Jinshi (進士) - 30
+### Rule 5W Ego’s index year = the year her husband obtained the Jinshi (進士) -
+30+3 = husband’s Jinshi year - 27
+### Rule 6 Ego’s index year = the year he obtained the Juren (舉人) - 27
+### Rule 6W Ego’s index year = the year her husband obtained the Juren (舉人) -
+27+3 = husband’s Juren year - 24
+### Rule 7 Ego’s index year = the year he obtained the Xuicai (秀才/生員) - 21
+### Rule 7W Ego’s index year = the year her husband obtained the Xuicai (秀才/生員
+年) - 21+3 = husband’s Xuicai year - 18
 Rules based on Birth Years of Kin
-Rule : If we know the birth year of ego’s father, then ego’s index year is decided
-per assumption A: ego's birth year was  years later than father's birth
-(Ego’s index year = father’s birth year + )
-Rule : If we know the birth year of a male’s oldest child, then ego’s index year
-is decided per A: ego's birth year was  years earlier than the birth year
-(Male’s index year = oldest child’s birth year – )
-Rule W: If we know the birth year of a female’s oldest child, then ego's index
-year is decided per A: ego's birth year was  years earlier than the birth
+### Rule 8 If we know the birth year of ego’s father, then ego’s index year is decided
+per assumption A3: ego's birth year was 30 years later than father's birth
+(Ego’s index year = father’s birth year + 30)
+### Rule 9 If we know the birth year of a male’s oldest child, then ego’s index year
+is decided per A3: ego's birth year was 30 years earlier than the birth year
+(Male’s index year = oldest child’s birth year – 30)
+### Rule 9W If we know the birth year of a female’s oldest child, then ego's index
+year is decided per A3: ego's birth year was 27 years earlier than the birth
 
-
-
----
-
-Chapter : The Structure of CBDB
-
 year of her oldest child. (Female’s index year = oldest child’s birth year -
-)
-Rule : If we know the birth year of ego’s older brother, then ego’s index year
-is decided per A: ego’s birth year was  years later than older brother’s
-birth year. (Ego’s index year = older brother’s birth year+)
-Rule : If we know the birth year of ego’s younger brother, then ego’s index
-year is decided per A: ego’s birth year was  years earlier than younger
-brother’s birth year. (Ego's index year = younger brother’s birth year-)
-Rule : If we know the birth year of a male’s oldest son-in-law, then ego’s
-index year is decided per A & A: ego’s birth year was  years earlier
+27)
+### Rule 10 If we know the birth year of ego’s older brother, then ego’s index year
+is decided per A4: ego’s birth year was 2 years later than older brother’s
+birth year. (Ego’s index year = older brother’s birth year+2)
+### Rule 11 If we know the birth year of ego’s younger brother, then ego’s index
+year is decided per A4: ego’s birth year was 2 years earlier than younger
+brother’s birth year. (Ego's index year = younger brother’s birth year-2)
+### Rule 12 If we know the birth year of a male’s oldest son-in-law, then ego’s
+index year is decided per A3 & A4: ego’s birth year was 30 years earlier
 than the birth year of his oldest daughter, and his oldest son-in-law was
- years older than oldest daughter. (Male’s index year = birth year of
-oldest son-in-law+- = birth year of oldest son-in-law -)
-Rule W: If we know the birth year of a female’s oldest son-in-law, then ego’s
-index year is decided per A & A: female’s birth year was  years
+3 years older than oldest daughter. (Male’s index year = birth year of
+oldest son-in-law+3-30 = birth year of oldest son-in-law -27)
+### Rule 12W If we know the birth year of a female’s oldest son-in-law, then ego’s
+index year is decided per A3 & A4: female’s birth year was 27 years
 earlier than the birth year of her oldest daughter, and her son-in-law was
- years older than her oldest daughter. (Female’s index year = birth year
-of oldest son-in-law+- = birth year of oldest son-in-law - )
-Rule : If we know the birth year of ego’s grandfather, then ego’s index year is
-decided per assumption A: ego's birth year was  years later than
+3 years older than her oldest daughter. (Female’s index year = birth year
+of oldest son-in-law+3-27 = birth year of oldest son-in-law - 24)
+### Rule 13 If we know the birth year of ego’s grandfather, then ego’s index year is
+decided per assumption A3: ego's birth year was 60 years later than
 grandfather’s birth year. (Ego's index year = grandfather’s birth year +
-)
+60)
 Rules Based on the Index Years of Kin
 (Note: CBDB iteratively uses the derived index years for these values.)
-Rule : If we know the index year of ego’s father, then we use father’s index
-year to decide ego’s index year per A. (Ego’s index year = father’s index
-year + )
-Rule : If we know the index year of a male’s oldest child, then we use that
-year to decide ego’s index year per A. (Ego’s index year = index year of
-oldest child - )
-Rule W: If we know the index year of a female’s oldest child, then we use that
-year to decide ego’s index year per A. (Female’s index year = index
-year of oldest child - )
-Rule : If we know the index year of ego’s older brother, then we use that year
-to decide ego’s index year per A. (Ego’s index year = index year of older
-brother + )
-Rule : If we know the index year of ego’s younger brother, then we use that
-year to decide ego’s index year per A. (Ego’s index year = index year of
-younger brother - )
-Rule : If we know the index year of a male’s oldest son-in-law, then we use
-that year to decide ego’s index year per A & A: ego’s birth year was 
+### Rule 14 If we know the index year of ego’s father, then we use father’s index
+year to decide ego’s index year per A3. (Ego’s index year = father’s index
+year + 30)
+### Rule 15 If we know the index year of a male’s oldest child, then we use that
+year to decide ego’s index year per A3. (Ego’s index year = index year of
+oldest child - 30)
+### Rule 15W If we know the index year of a female’s oldest child, then we use that
+year to decide ego’s index year per A3. (Female’s index year = index
+year of oldest child - 27)
+### Rule 16 If we know the index year of ego’s older brother, then we use that year
+to decide ego’s index year per A4. (Ego’s index year = index year of older
+brother + 2)
+### Rule 17 If we know the index year of ego’s younger brother, then we use that
+year to decide ego’s index year per A4. (Ego’s index year = index year of
+younger brother - 2)
+### Rule 18 If we know the index year of a male’s oldest son-in-law, then we use
+that year to decide ego’s index year per A3 & A4: ego’s birth year was 30
 years earlier than the birth year of his oldest daughter, and his oldest
-son-in-law was  years older than oldest daughter. (Ego’s index year =
+son-in-law was 3 years older than oldest daughter. (Ego’s index year =
 
-
-
----
-
-Chapter : The Structure of CBDB
-
-index year of oldest son-in-law + - = index year of oldest son-in-
-law - )
-Rule W: If we know the index year of a female’s oldest son-in-law, then we use
-that year to decide her index year per A & A: female’s birth year was
- years earlier than the birth year of her oldest daughter, and her son-
-in-law was  years older than her oldest daughter. (Ego’s index year =
-index year of oldest son-in-law + - = index year of oldest son-in-
-law - )
-Rule : If we know the index year of ego’s grandfather, then we use
-grandfather’s index year to decide ego’s index year per A. (Ego’s index
-year = grandfather’s index year + )
-The CBDB table that records this basic biographical information is BIOG_MAIN.
-BIOG_MAIN assigns each person a unique ID.
+index year of oldest son-in-law +3 -30 = index year of oldest son-in-
+law - 27)
+### Rule 18W If we know the index year of a female’s oldest son-in-law, then we use
+that year to decide her index year per A3 & A4: female’s birth year was
+27 years earlier than the birth year of her oldest daughter, and her son-
+in-law was 3 years older than her oldest daughter. (Ego’s index year =
+index year of oldest son-in-law +3 -27 = index year of oldest son-in-
+law - 24)
+### Rule 19 If we know the index year of ego’s grandfather, then we use
+grandfather’s index year to decide ego’s index year per A3. (Ego’s index
+year = grandfather’s index year + 60)
+The CBDB table that records this basic biographical information is `BIOG_MAIN`.
+`BIOG_MAIN` assigns each person a unique ID.
 d. Floruit years
 CBDB gives two years: the earliest and the latest. Often when there is no data for
 index year or for birth and death dates, texts nonetheless provide datable references to
@@ -892,7 +719,7 @@ kinship relation
 This relationship is structured as: “Person A has Person B (the kin) as his/her Kinship
 Relation.” E.g. {Wang Anshi, Wang Anli, B-} means Wang Anshi has Wang Anli as a
 younger brother.
-The building-block relations for Kinship are the  basic categories:
+The building-block relations for Kinship are the 10 basic categories:
 e
 Ego (the person whose kinship is being explored)
 F
@@ -908,12 +735,6 @@ Son
 D
 Daughter
 
-
-
----
-
-Chapter : The Structure of CBDB
-
 H
 Husband
 W
@@ -944,9 +765,9 @@ Promised husband or wife (marriage not completed at time of
 record)
 y
 Youngest (e.g., Sy is the youngest known son)
-, , …
-Numbers distinguish sequence (e.g., S, S for ﬁrst and second
-sons; W, W for the ﬁrst and the successor wives)
+1, 2, 3…
+Numbers distinguish sequence (e.g., S1, S2 for ﬁrst and second
+sons; W1, W2 for the ﬁrst and the successor wives)
 n
 precise generation unknown
 G-#, G+#
@@ -975,24 +796,18 @@ Kin related via father's sisters or mother's siblings, of the same
 generation, younger (-) or elder (+).
 A
 Aﬃne/Aﬃnal kin, kin by marriage
-The codes for the types of relationships are in the table KINSHIP_CODES. Although
+The codes for the types of relationships are in the table `KINSHIP_CODES`. Although
 CBDB records all the many variations of kinship, searches for kinship networks in CBDB
 use an important set of four metrics for kinship distance to simplify the vast proliferation
-of terms. Each code KINSHIP_CODES table has values for
+of terms. Each code `KINSHIP_CODES` table has values for
 
-
-
----
-
-Chapter : The Structure of CBDB
-
-up, i.e., ancestor generation: father = , grandfather = , and so on
-down, i.e., descendent generation: son = , grandson = , etc.
-collateral relation: brother = , brother’s wife’s sister” =....
-marriage relation: wife = , wife’s father’s wife = , and so on.
+up, i.e., ancestor generation: father = 1, grandfather = 2, and so on
+down, i.e., descendent generation: son = 1, grandson = 2, etc.
+collateral relation: brother = 1, brother’s wife’s sister” =2....
+marriage relation: wife = 1, wife’s father’s wife = 2, and so on.
 Thus brothers, step-brothers, bastard brothers, and adopted brothers all have set of values
-{up = ; down = ; collateral = ; marriage = }. The data recording the kinship relations
-between people is stored in the table KIN_DATA.
+{up = 0; down = 0; collateral = 1; marriage = 0}. The data recording the kinship relations
+between people is stored in the table `KIN_DATA`.
 3. Non-kinship Associations
 a. Simple Non-kinship Associations
 These have a three-part structure: person + association + associate. The major challenge
@@ -1004,7 +819,7 @@ of” A} also should be so. In fact, the current version of the program automati
 generates this second entry. Thus, ASSOCIATIONS as an entity has an internal structure:
 Association type
 Paired Association type
-Association Categories/subcategories ( levels at present)
+Association Categories/subcategories (3 levels at present)
 When editors for CBDB create a new category of association, they must also create its
 converse. Mutual associations, of course, are their own converse: {A “is friend of” B} is
 the same as {B “is friend of” A}. In most associations, however, the two people play
@@ -1016,56 +831,44 @@ In some important cases, associations form through the mediation of institutions
 CBDB captures these types of relations by adding additional data to associations. For
 example, we might know of a relation between X and Y because X asked Y to write a
 biography for his mother’s tomb. In order to record all the variations, the record structure
-for the table ASSOC_DATA has become rather challenging to understand.
+for the table `ASSOC_DATA` has become rather challenging to understand.
 
-
-
----
-
-Chapter : The Structure of CBDB
-
 c. Structure of an Association Record
 Because associations in pre-modern Chinese society often are complex, the table tracking
 associations in CBDB uses a correspondingly large number of ﬁelds:
 Basic Information
-.Person ID
-.Associated person ID
-.The kind of association (association code)
-.The number of objects or events establishing the association
+1.Person ID
+2.Associated person ID
+3.The kind of association (association code)
+4.The number of objects or events establishing the association
 Information about Kinship and Other Relations that played a role in the Association
-.The kinship relation, if the association was established through a relative of the
+5.The kinship relation, if the association was established through a relative of the
 person
-.The ID of the person whose kinship relation established the association
-.The kinship relation of the associate, if the association was established through a
+6.The ID of the person whose kinship relation established the association
+7.The kinship relation of the associate, if the association was established through a
 relative of the associated person
-.The ID of the kin of the associate through whom the association was established
-.The ID of the person who claimed the existence of the association: for example,
+8.The ID of the kin of the associate through whom the association was established
+9.The ID of the person who claimed the existence of the association: for example,
 a son claiming it for his father
 Time and Place of the Association
-.The ID of the place of the association
-.The sequence of an association, if one does not know the actual date
-.The date of the association (year, month, and day, if known)
+10.The ID of the place of the association
+11.The sequence of an association, if one does not know the actual date
+12.The date of the association (year, month, and day, if known)
 Contextual Information
-.The code for the social institution at or through which the association was
+13.The code for the social institution at or through which the association was
 established
-.The code for the occasion on which the association was established
-.The code for the genre of the writing that establishes the association, if relevant
-.The title of the work that established the association, if relevant
-.The code for the scholarly topic around which the association was formed
+14.The code for the occasion on which the association was established
+15.The code for the genre of the writing that establishes the association, if relevant
+16.The title of the work that established the association, if relevant
+17.The code for the scholarly topic around which the association was formed
 Source and Notes
-.Source ID
-.Note
+18.Source ID
+19.Note
 4. Status
 CBDB has a table to take note of “social distinctiveness,” that for which people were
 known in society. Since the dating often is uncertain, however, the table has a ﬁeld to
 record sequence if known. Some forms of social distinctiveness may combine roles (a
 
-
-
----
-
-Chapter : The Structure of CBDB
-
 Buddhist monk known for his calligraphy, or a literatus who runs a printing ﬁrm). At
 present, CBDB records the diﬀerent aspects of status under distinct categories. This is a
 question awaiting future research.
@@ -1079,8 +882,8 @@ STATUS as a category of social experience (as opposed to any particular person�
 within the structure of social distinction) is a simple entity:
 Status code
 Status description
-Status category and subcategory 
-Status category and subcategory 
+Status category and subcategory 1
+Status category and subcategory 2
 Since social distinctions change over time, CBDB will continue to add to its current list as
 it draws upon sources for earlier and later periods.
 5. Modes of Entry
@@ -1103,12 +906,6 @@ associate, the “entry event” will need to have a way to record the non-kinsh
 the end, then, the ENTRY event has many attributes, only some of which are relevant to
 any particular instance:
 
-
-
----
-
-Chapter : The Structure of CBDB
-
 Person ID
 Entry type code
 Entry relation type code (for kin)
@@ -1118,7 +915,7 @@ Entry test date (both Western and nianhao + year (if known))
 Entry test ranking
 Entry address ID
 6. Offices and Postings
-CBDB currently lists over , oﬃce titles and—for the Tang, Song, Yuan, Ming, and
+CBDB currently lists over 32,000 oﬃce titles and—for the Tang, Song, Yuan, Ming, and
 Qing—their place in the government bureaucracy. POSTINGS is an entity at the
 intersection of people, the bureaucracy, and—since most instances will be away from the
 capital—places. A person serves in an oﬃce at a given rank in particular place at a speciﬁed
@@ -1148,18 +945,12 @@ Posting ID
 Oﬃce ID
 Address ID
 
-
-
----
-
-Chapter : The Structure of CBDB
-
 Considerations for Future Development
-. Buddhism and Daoism
+1. Buddhism and Daoism
 Buddhist and Daoist bureaucratic positions eventually will be added to the OFFICE
 and POSTINGS entities. This, however, also entails signiﬁcant research to clarify the
 historical changes in the structure of the Buddhist and Daoist bureaucracies.
-. Tracking Historical Change in Bureaucratic structure
+2. Tracking Historical Change in Bureaucratic structure
 One of the design issues that need to be considered again is how much of the
 complexity of the Chinese imperial bureaucratic system should be captured in the
 database. In the Chinese system from the Han through the Qing, the duties of a
@@ -1173,8 +964,8 @@ capture the historical changes in the functions designated by any particular o�
 (Oﬃce Name would become one entity and Oﬃce Function would be another.)
 Most of the actual duties of an oﬃce at any particular time are not relevant to the CBDB
 because these details contribute little to the analytic power of the database; the attributes
-of an oﬃce that do matter are () oﬃce as an indication of salary/rank or actual function,
-() the other oﬃce to which it reports, and () the type of the oﬃce (i.e. central military,
+of an oﬃce that do matter are (1) oﬃce as an indication of salary/rank or actual function,
+(2) the other oﬃce to which it reports, and (3) the type of the oﬃce (i.e. central military,
 prefectural civil, etc.) At present, CBDB has captured some of this information, but
 clarifying the changes in oﬃce title is in itself a major research project.
 7. Places
@@ -1191,12 +982,6 @@ the same function as the “part-of” table in CHGIS. Since an address ID chang
 when the unit changes shape or name, it does not change ID simply when it becomes part of
 a diﬀerent higher level administrative unit. Thus there are two tables:
 
-
-
----
-
-Chapter : The Structure of CBDB
-
 Address Code
 Address code
 Address name
@@ -1220,11 +1005,11 @@ Address last year (that the address belongs to the superior place)
 Administrative type
 X coordinate
 Y coordinate
-belongs (the parent: the larger administrative unit it reports to)
-belongs (the parent of the parent)
-belongs (etc.)
-belongs
-belongs
+belongs1 (the parent: the larger administrative unit it reports to)
+belongs2 (the parent of the parent)
+belongs3 (etc.)
+belongs4
+belongs5
 To allow the examination of trends across dynastic boundaries, the database needs a way to
 examine what happens in a particular location over long periods of time. For this, CBDB
 relies on data about physical location, the x-y coordinates on the map.1 The analytic forms
@@ -1235,12 +1020,6 @@ To reiterate, CBDB uses the x-y coordinates of the seat of the administrative un
 1 In Geographic Information Systems (GIS) research, longitude and latitude typically are referred to as x-y
 coordinates.
 
-
-
----
-
-Chapter : The Structure of CBDB
-
 8. Biographical Place Information
 People have many connections to place: where they were born, lived, died, and were
 buried, where they served in oﬃce, where they held property and ran businesses, where
@@ -1248,10 +1027,10 @@ they visited. Since these relations to place arise out of activities recorded in
 in CBDB (e.g., oﬃce holding, and possessions), the information appears in these various
 tables rather than in one place. The tables that record information about people and places
 are:
-Basic biographical information relating to place (BIOG_ADDR_DATA)
-Place of oﬃcial service (POSTED_TO_ADDR_DATA)
-The place where a non-kinship relation took place (ASSOC_DATA)
-The place where people participated in social institutions (BIOG_INST_DATA)
+Basic biographical information relating to place (`BIOG_ADDR_DATA`)
+Place of oﬃcial service (`POSTED_TO_ADDR_DATA`)
+The place where a non-kinship relation took place (`ASSOC_DATA`)
+The place where people participated in social institutions (`BIOG_INST_DATA`)
 The CBDB form (LookAtPlace) allows the user to ask questions that integrate all these
 sources of place information. Note that at present CBDB does not systematically preserve
 information about places persons brieﬂy visited, where they received their education, or
@@ -1261,14 +1040,14 @@ assigns these place associations based on available information, but the data is
 incomplete. Therefore CBDB uses a hierarchy of categories of place association to assign a
 person’s index place. CBDB ﬁrst uses the “basic aﬃliation” 籍貫, if available. The order
 of assigning address aﬃliations is as follows:
-. Basic aﬃliation 籍貫
-. Household address 戶籍地 (Ming dynasty)
-. Actual residence 落籍
-. Last known address
-. Moved to
-. Eight Banners (Qing dynasty)
-. Alternative basic aﬃliation
-. Place of exile
+1. Basic aﬃliation 籍貫
+2. Household address 戶籍地 (Ming dynasty)
+3. Actual residence 落籍
+4. Last known address
+5. Moved to
+6. Eight Banners (Qing dynasty)
+7. Alternative basic aﬃliation
+8. Place of exile
 However, this hierarchy of codes to use in assigning the index place may not be the most
 suitable for particular research projects. Thus, CBDB allows the user to change this order.
 See Appendix X for discussion.
@@ -1278,12 +1057,6 @@ paleographic material, printed primary texts, and secondary scholarship (in both
 digital form). Since a work like Huang Zongxi’s Song Yuan xue’an is both a scholarly
 compendium of earlier writings and a work in its own right, and since the paleographic
 
-
-
----
-
-Chapter : The Structure of CBDB
-
 materials also were written by authors who are of interest to the database, these distinctions
 for pre-modern texts of any sort are neither clear nor useful. CBDB accordingly treats all
 three types as TEXTS. Texts have the attributes one can expect:
@@ -1310,7 +1083,7 @@ Current Publication Information (if extant)
 Text Data
 Text ID
 Person ID
-Role ID (from the table TEXT_ROLE_CODES)
+Role ID (from the table `TEXT_ROLE_CODES`)
 10. Social Institutions
 People participated in the lives of their communities in many ways. A man, for example,
 may have served for several years as the director of an academy. That academy had
@@ -1319,12 +1092,6 @@ important social links between the man and the students. The academy also had do
 who contributed to its creation and upkeep and helped to deﬁne a community centered on
 the institution. Similar patterns appeared for Buddhist monasteries and Daoist temples.
 
-
-
----
-
-Chapter : The Structure of CBDB
-
 CBDB is beginning to track this information in a way that captures the uncertainty we ﬁnd
 in the historical sources. There are, for example, thirty-nine temples with the name
 Kaiyuansi 開元寺. A biographical source may tell us that Wang Anshi contributed funds
@@ -1359,12 +1126,6 @@ Institution Code (if only the name is known, CBDB assigns a 0 to this ﬁeld)
 Institutional Role Code
 Role Dates
 
-
-
----
-
-Chapter : The Structure of CBDB
-
 Summary of Tables in CBDB
 1. Basic Entities
 These represent the basic elements of the social world of pre-modern China. Each has a
@@ -1372,93 +1133,87 @@ complex history and structure that are set out in additional ancillary tables. C
 interaction of people with these aspects of their world in the secondary tables.
 Table Name
 Description
-ADDR_CODES
+`ADDR_CODES`
 the units in the administrative geography of China.
 ADDRESSES
 a convenient reference table that displays the hierarchy
-ASSOC_CODES
+`ASSOC_CODES`
 the non-kinship social relations that connected people
-BIOG_MAIN
+`BIOG_MAIN`
 the people of pre-modern China
-ENTRY_CODES
+`ENTRY_CODES`
 the means by which people entered into institutions
-KINSHIP_CODES
+`KINSHIP_CODES`
 the kinship categories of pre-modern China
-OFFICE_CODES
+`OFFICE_CODES`
 the units of the bureaucratic organization of government
-SOCIAL_INSTITUTION_CODES
+`SOCIAL_INSTITUTION_CODES`
 a list of academies, monasteries, temples, etc.
-STATUS_CODES
+`STATUS_CODES`
 the means by which people attained social distinction
-TEXT_CODES
+`TEXT_CODES`
 the corpus of pre-modern writings + important secondary works
 2. Relations between Basic Entities
 Table Name
 Description
-ADDR_BELONGS_DATA
+`ADDR_BELONGS_DATA`
 data for the hierarchical structure of administrative units
-ALTNAME_DATA
+`ALTNAME_DATA`
 the many names by which people were known
-ASSOC_DATA
+`ASSOC_DATA`
 the non-kinship relations between people
-BIOG_ADDR_DATA
+`BIOG_ADDR_DATA`
 relations between people and administrative geography
-BIOG_INST_DATA
+`BIOG_INST_DATA`
 the relations of people to social institutions
-BIOG_SOURCE_DATA
+`BIOG_SOURCE_DATA`
 the list of sources used in deﬁning the CBDB data for a person
-BIOG_TEXT_DATA
+`BIOG_TEXT_DATA`
 the relations of people to texts
-ENTRY_DATA
+`ENTRY_DATA`
 the initiating relations between people and institutions
-KIN_DATA
+`KIN_DATA`
 the kinship relations connecting people
-OFFICE_TYPE_TREE
+`OFFICE_TYPE_TREE`
 the hierarchical structure of bureaucratic organizations
 POSTED_TO_ADDR
 the relations between people, oﬃce, and place
-POSTING_DATA
+`POSTING_DATA`
 the container table for postings: people linked to oﬃce
-POSTED_TO_OFFICE_DATA
+`POSTED_TO_OFFICE_DATA`
 the details of people’s connection to oﬃce
-STATUS_DATA
+`STATUS_DATA`
 data on a person’s place in the system of social distinctions
 
-
-
----
-
-Chapter : The Structure of CBDB
-
 3. Relationship Type Information
 Table Name
 Description
-BIOG_ADDR_CODES
+`BIOG_ADDR_CODES`
 the categories of relations between people and places
-ALTNAME_CODES
+`ALTNAME_CODES`
 the categories of names by which people were known
 APPOINTMENT_TYPE_CODES
 the categories of relations between people and postings:
 regular, acting, probationary, etc.
-ASSOC_TYPES
+`ASSOC_TYPES`
 broader categories of social relationships that organize the
 many non-kinship association codes into groups
-ASSUME_OFFICE_CODES
+`ASSUME_OFFICE_CODES`
 indicating whether a person took up the posting
-BIOG_INST_CODES
+`BIOG_INST_CODES`
 the roles a person plays in relation to an institution
 ENTRY_TYPE
 broader categories of entry to organize the entry codes into
 groups
-EXTANT_CODES
+`EXTANT_CODES`
 indicating degree of the source and its known existence
 GENRE_CODES
 the bibliographic classiﬁcations of texts
 GENRE_TYPES
 the broader categories of bibliographic classiﬁcations
-LITERARYGENRE_CODES
+`LITERARYGENRE_CODES`
 the forms of literary composition
-OCCASION_CODES
+`OCCASION_CODES`
 the events in which people participated
 OFFICE_TYPES
 the categories of oﬃces
@@ -1467,36 +1222,36 @@ the categories of topics of learning and scholarship
 SOCIAL_INSTITUTION_ADDR_
 TYPES
 the type of address (actual or derived) used for an institution
-SOCIAL_INSTITUTION_TYPES
+`SOCIAL_INSTITUTION_TYPES`
 the categories of social institutions
 STATUS_TYPE
 The categories of social distinction
-TEXT_BIBLCAT_CODES
+`TEXT_BIBLCAT_CODES`
 The ﬁne-grained categories by which texts are organized
-TEXT_BIBLCAT_TYPES
+`TEXT_BIBLCAT_TYPES`
 The larger units for textual categorization
-TEXT_ROLE_CODES
+`TEXT_ROLE_CODES`
 the categories of relations between people and texts
-YEAR_RANGE_CODES
+`YEAR_RANGE_CODES`
 the relative degree of exactness of a date
 4. Historical Auxiliary Tables
 Table Name
 Description
-CHORONYM_CODES
+`CHORONYM_CODES`
 codes for the place+surname used to identify medieval clans
-COUNTRY_CODES
+`COUNTRY_CODES`
 codes for countries appearing in the data
-DYNASTIES
+`DYNASTIES`
 codes for dynasties and periods
 ETHNICITY_TRIBE_CODEScodes for ethnic groups appearing in the data
-GANZHI_CODES
+`GANZHI_CODES`
 codes for the sixty two-character terms in sexagenary cycle
-KIN_MOURNING
+`KIN_MOURNING`
 codes for all kin relations and mourning obligations in the ﬁve
 degrees of mourning
-MEASURE_CODES
+`MEASURE_CODES`
 codes for quantities of goods, money, books, and space
-NIAN_HAO
+`NIAN_HAO`
 codes for all reign period titles
 SOCIAL_INSTITUTION_
 ALTNAMES
@@ -1505,115 +1260,97 @@ SOCIAL_INSTITUTION_
 ALTNAMES_TYPES
 codes for diﬀerent types of alternative names
 
-
-
----
-
-Chapter : The Structure of CBDB
-
 5. Analytic Auxiliary Tables
 Table Name
 Description
-ASSOC_CODE_TYPE_REL
+`ASSOC_CODE_TYPE_REL`
 the relationship of speciﬁc social relations to larger categories of
 social relations
-ENTRY_CODE_TYPE_REL
+`ENTRY_CODE_TYPE_REL`
 the relationship of speciﬁc modes of entry to larger categories of
 entry
 GENRE_CODE_TYPE_REL
 the relationship of speciﬁc genre codes to larger categories of
 genres
-OFFICE_CODE_TYPE_REL
+`OFFICE_CODE_TYPE_REL`
 the relationship of speciﬁc oﬃces to the oﬃce hierarchy
-OFFICE_CATEGORIES
+`OFFICE_CATEGORIES`
 the categories of oﬃces: rank, honorary, etc.
-STATUS_CODE_TYPE_REL
+`STATUS_CODE_TYPE_REL`
 the relation of speciﬁc status codes to the larger categories of
 social distinction
-TEXT_BIBLCAT_CODE_TYPE_REL
+`TEXT_BIBLCAT_CODE_TYPE_REL`
 6. “Denormalized” Tables
-Because the data tables for the relations between basic entities (group  above) are in
+Because the data tables for the relations between basic entities (group 2 above) are in
 normalized form that uses codes that refer to other tables for the entities, relations, and
-historical information, they are diﬃcult to use for queries (See Chapter ). In order to
+historical information, they are diﬃcult to use for queries (See Chapter 4). In order to
 simplify the process of writing queries, CBDB provides a set of tables where the codes have
 been supplemented by the values (mostly text strings like the names of people, places, oﬃcial
 positions, etc.) to which the codes refer. The main tables are listed below:
 Table Name
 Description
-ZZZ_ALT_NAME_DATA
+`ZZZ_ALT_NAME_DATA`
 ﬁlls in alternate name type
-ZZZ_BIOG_ADDR_DATA
+`ZZZ_BIOG_ADDR_DATA`
 ﬁlls in address and address type
-ZZZ_BIOG_MAIN
+`ZZZ_BIOG_MAIN`
 ﬁlls in nianhao, ethnicity
-ZZZ_BIOG_NAME_OFFICE
+`ZZZ_BIOG_NAME_OFFICE`
 Links surnames to posted oﬃce names (used in
 searching)
-ZZZ_BIOG_TEXT_DATA
+`ZZZ_BIOG_TEXT_DATA`
 ﬁlls in the person’s name, the person’s role, and
 the text data
-ZZZ_ENTRY_DATA
+`ZZZ_ENTRY_DATA`
 ﬁlls in the person’s name, entry type, etc.
-ZZZ_KIN_BIOG_ADDR
+`ZZZ_KIN_BIOG_ADDR`
 this is the table for kinship, but it also provides
 the index place
-ZZZ_NONKIN_BIOG_ADDR
+`ZZZ_NONKIN_BIOG_ADDR`
 this is the table for associations, but it also
 provides the index place
-ZZZ_POSTED_TO_ADDR_DATA
+`ZZZ_POSTED_TO_ADDR_DATA`
 ﬁlls in person name, oﬃce name, address
 information
-ZZZ_POSTED_TO_OFFICE_DATA ﬁlls in person name and oﬃce information
-ZZZ_STATUS_DATA
+`ZZZ_POSTED_TO_OFFICE_DATA` ﬁlls in person name and oﬃce information
+`ZZZ_STATUS_DATA`
 ﬁlls in person name and status description
 
-
-
----
-
-
-Chapter . CBDB Tools for Analysis
 The China Biographical Database contains large amounts of information, but the information
 is of little value unless there are ways to analyze it. At present, the Access version of CBDB
 has seven forms speciﬁcally designed to allow the user to query the database about important
 categories of information. The names of the forms describe their function.
-. LookAtEntry allows one to ﬁnd groups of people who qualiﬁed for oﬃce through a
+1. LookAtEntry allows one to ﬁnd groups of people who qualiﬁed for oﬃce through a
 particular route for a speciﬁed period.
-. LookAtAssociations allows one to ﬁnd groups of people who were linked through a
+2. LookAtAssociations allows one to ﬁnd groups of people who were linked through a
 particular category of association
-. LookAtOﬃce allows one to look at not only the people who held particular oﬃces but
+3. LookAtOﬃce allows one to look at not only the people who held particular oﬃces but
 also those who held related oﬃces subordinate to ever higher levels of bureaucratic
 structure.
-. LookAtKinship allows one to examine the kinship networks for individuals. These
+4. LookAtKinship allows one to examine the kinship networks for individuals. These
 include both the mourning circle of the traditional Chinese kinship system and more
 extended sets of relations.
-. LookAtNetworks allows one to look at all the networks (both kinship and social
+5. LookAtNetworks allows one to look at all the networks (both kinship and social
 relations) for an individual, a group of individuals, or a speciﬁed place.
-. LookAtAssociationPairs allows one to examine the intersection of the networks for two
+6. LookAtAssociationPairs allows one to examine the intersection of the networks for two
 individuals. It locates both people connected to the two target individuals but also can
 identify connections at one further remove (i.e. people who had a connection with the ﬁrst
 individual who had relations to people somehow related to the second individual).
-. LookAtPlace brings together all the types of relations between people and places into a
+7. LookAtPlace brings together all the types of relations between people and places into a
 single form. People who formed social relations in a place, served in oﬃce there, or whose
 registry was there all can be part of a single list.
-. LookAtStatus allows one to group those individuals identiﬁed by particular forms of
+8. LookAtStatus allows one to group those individuals identiﬁed by particular forms of
 social distinction.
-. LookAtTexts allows the user to explore the people associated with the production of
+9. LookAtTexts allows the user to explore the people associated with the production of
 particular categories of texts (unoﬃcial histories, commentaries on canonical ritual texts,
 etc.)
 In more complicated queries, one can explore relations between groups of people by using the
-results of a search in one form as the input to a second form. Chapter , on advanced queries,
+results of a search in one form as the input to a second form. Chapter 4, on advanced queries,
 considers an example of this approach. Beyond the six forms, however, Access also allows the
 user who is familiar with the structure of the database to make queries that can look at any and
 all aspects of CBDB data. This process uses Access’ built-in Query Designer to create SQL
-(Structured Query Language) queries to examine the data and is the second topic in Chapter .
+(Structured Query Language) queries to examine the data and is the second topic in Chapter 4.
 
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 NOTE: The explanations of the forms in this chapter provide examples of searches, but the
 results you get will diﬀer from these because CBDB periodically updates the data in the tables.
 A. The Navigation Pane
@@ -1621,24 +1358,12 @@ As the name suggests, the Navigation Pane is the central console for using the f
 developed for the Access version of the database. Clicking on the nine query command
 buttons opens the browser and the eight analytic forms discussed above. The Navigation Pane
 also has four additional functions.
-. Error Reporting: The Navigation pane also allows you to report problems with the
+1. Error Reporting: The Navigation pane also allows you to report problems with the
 program. If you click on “Report an Error,” the program brings you to a Google form:
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Select the type of error and ﬁll in the information requested on the form.
-. User’s Guide: Clicking on “Users Guide” will open a copy of this User’s Guide.
-. Relinking the Data Tables: The current version of the Access database splits the CBDB
+2. User’s Guide: Clicking on “Users Guide” will open a copy of this User’s Guide.
+3. Relinking the Data Tables: The current version of the Access database splits the CBDB
 data tables from the user interface. Because the database has grown very large, the size of the
 ﬁles that hold the data were approaching the limit of what Access could handle, and thus the
 data tables are in three separate ﬁles. The user interface then is linked to the tables. When you
@@ -1650,65 +1375,35 @@ your CBDB folder and then link the interface to those new ﬁles. The CBDB data 
 have a date-stamp in the form YYYYMMDD as part of the name of the ﬁles. If you click on
 “Relink Tables,” a form will request the date-stamp information:
 Simply ﬁll in the new version information and click “OK.”
-. Changing the Index Address Ranking: While the default setting for how CBDB
+4. Changing the Index Address Ranking: While the default setting for how CBDB
 deﬁnes index places works well for most users, scholars pursuing particular topics may need to
 change how index place is deﬁned. Clicking on this command button opens a form to allow
 the user to do just this. When one opens the form, it shows the current order for selection of
 categories of relation to place that is used to deﬁne the index place:
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 One then can choose a new set of categories to be used to deﬁne index place. Clicking on
 “Disable” limits the selection process to just those categories above the disabled row:
 In this example, we set the ﬁrst choice for index place to “Household Address” (戶籍地) and
 the second to “Actual Residence” 落籍. All other relations to place are ignored. Clicking on
-the “Update Index Addresses” then recalculates the index place for BIOG_MAIN and replaces
+the “Update Index Addresses” then recalculates the index place for `BIOG_MAIN` and replaces
 the values for index place in all the tables that use the value.
 After changing the ranking of place aﬃliations, one can restore the CBDB default
 ranking and index place values by simply clicking on the “Reset to Default” command button.
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 B. The Browser: Looking up Data on an Individual
 The browser in CBDB provides a convenient way to explore basic information on individuals
 in the database. It draws on just the raw data for people in the database, so it has no signiﬁcant
 analytic or synthetic abilities. The only exception in is the name search functions described
-below. When one opens the browser, it begins with the ﬁrst person in the BIOG_MAIN
+below. When one opens the browser, it begins with the ﬁrst person in the `BIOG_MAIN`
 table. (The sorting by name starts with all people who have just a personal name but no
 surname.)
 Since the CBDB interface in MS Access aspires to be bilingual, the user can switch between
 English, traditional characters (繁體) and simpliﬁed characters (简体) by clicking on the buttons in
 the upper right of the form.
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Searching the Database
 By Name
-Since BIOG_MAIN has over , people, just scrolling through the window on the left is
+Since `BIOG_MAIN` has over 535,000 people, just scrolling through the window on the left is
 not the most eﬀective way to locate an individual. Therefore, the browser has two search
 functions. The ﬁrst is a search by name. “Name,” however, includes all the categories of
 names used in CBDB (courtesy name 字, style name 號, etc.). Thus, if a text provides only Su
@@ -1716,39 +1411,18 @@ Shi’s 蘇軾 style name, Dongpo 東坡, rather than his full name, one can sea
 see how many people share those two characters in any of their names. Of course, one can
 directly search by “Su Shi” or “蘇軾” as well.
 Searching by Pinyin
-. A basic search by pinyin (i.e., “Su Shi”) looks for the search string anywhere in the name, but
+1. A basic search by pinyin (i.e., “Su Shi”) looks for the search string anywhere in the name, but
 the search can be narrowed or broadened.
-. Using a lower-case name, the search looks for the phrase in any part of a name, so that “hao”
+2. Using a lower-case name, the search looks for the phrase in any part of a name, so that “hao”
 will produce “Zhao Fang,” “Shao Yong,” and “Chao Buzhi,” etc., as well as “Hao Jing” and
 “Cheng Hao.”
-. If the ﬁrst letter is capitalized (“Hao”), the search ﬁnds names that begin with “Hao” (“Hao
+3. If the ﬁrst letter is capitalized (“Hao”), the search ﬁnds names that begin with “Hao” (“Hao
 Jing” and “Cheng Hao”).
-. If one adds an “!” at the beginning, the search routine looks at just surnames.
+4. If one adds an “!” at the beginning, the search routine looks at just surnames.
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 By Name + Oﬃce
 If a text provides only a surname and a title, the browser allows one to search by those as well.
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Clicking on the “Search by Surname + Oﬃce” command button opens a form that allows
 one to not only specify the name and oﬃce but also to narrow the search by providing a range
 of index years or dynasties:
@@ -1759,18 +1433,6 @@ scrolling through Du Fu’s nine posts conﬁrms that he indeed served as a Gong
 Once one clicks the “Search” command button, if the form ﬁnds any people who
 match the speciﬁed criteria, these results are transferred to the Browser:
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Exploring Results
 The browser itself is fairly self-explanatory. Each tab provides the basic data in CBDB for the
 individual in the main categories: addresses, alternative names, writings, postings, mode(s) of
@@ -1780,13 +1442,13 @@ those stored in the basic tables: they are far less complete than the lists crea
 LookAtNewtworks.
 The current version of the browser incorporates two signiﬁcant improvements in the
 display of data. The ﬁrst is that the list of kin is more complete than in in earlier versions.
-Those versions provided just the raw list of kin in the raw data table KIN_DATA. Now the
+Those versions provided just the raw list of kin in the raw data table `KIN_DATA`. Now the
 browser implements a search for the individual’s kinship network using parameters for
-maximum kinship distance. The browser searches for combinations including  ancestor
-generations,  descendant generations, one marriage connection and one collateral (i.e.,
+maximum kinship distance. The browser searches for combinations including 2 ancestor
+generations, 2 descendant generations, one marriage connection and one collateral (i.e.,
 brother or sister) relationship link. For greater detail, see the discussion in “Using the Form
 ‘Query Kinship’”
-For Su Shi, the browser discovered  kinship relations (the ﬁrst is just “ego,” Su Shi
+For Su Shi, the browser discovered 143 kinship relations (the ﬁrst is just “ego,” Su Shi
 himself). The Notes ﬁeld for each kinship record provides the path that the search took to get
 from Su Shi to the kin listed in the record. For Chao Buzhi, for example, the query went from
 Su Shi’s third son to that son’s second daughter’s husband. Chao Buzhi was that husband’s
@@ -1795,49 +1457,16 @@ The second change is to provide a hyperlink to whatever databases were used to a
 information on an individual. For Su Shi, for example, the browser provides a link to his entry
 in Academia Sinica’s Naming Authority 人名權威資料 database:
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Clicking on the link takes one to Su Shi’s entry:
 Saving Results
 A. Having located a person, one can use the Store Person ID button to save the person’s ID to
 be reused in Query Kinship, Query Social Networks, and Query Pair-wise Associations.
-
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
-
-{image omitted}
 
 B. One can save all the information assembled in the browser to an HTML ﬁle by clicking on
 the Save to File command button.
 At present, the HTML ﬁle is in a very simple format (the displayed information here is just the
 beginning of the ﬁle):
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 C. Using the Form “Query by Methods of Entry into Government
 LookAtEntry is the simplest form. One opens it by clicking on “Query by Methods of Entry
 into Government” on the main page and clicks on the “Select Entry” button to choose a
@@ -1846,49 +1475,24 @@ Note that all of the forms have the option to switch between English, traditiona
 Chinese. When one clicks on the “繁體” label, it then gives one the option to return to
 English:
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Selecting the Modes of Entry
 Clicking on the Select Entry button opens a form with a list of options. Since there are many
 diﬀerent ways to attain eligibility for oﬃce, CBDB uses a collapsible tree to simplify the
 selection process:
 One can narrow the choices by looking at a particular general type of entry which is on the
-menu on the left of the window (A):
+menu on the left of the window (A1):
 One can either select a speciﬁc method of entry from the menu on the right or select all the
-listed methods (A). One also can search for a speciﬁc method using the search box located on
-the bottom right corner (B). The searching rules for CBDB are to ﬁrst look for the search
-
-{image omitted}
-
-
-{image omitted}
+listed methods (A2). One also can search for a speciﬁc method using the search box located on
+the bottom right corner (B1). The searching rules for CBDB are to ﬁrst look for the search
 
 B1
-
-{image omitted}
 
 2
 A1
 A2
 
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 phrase at the beginning of the text and then look within the text. If CBDB ﬁnds the search, you
-can search for the next instance of the phrase (B), if the ﬁrst is not what you seek by clicking
+can search for the next instance of the phrase (B2), if the ﬁrst is not what you seek by clicking
 on the “Find Next” button:
 Often one wants to look at several categories within a selected type of mode of entry. CBDB
 now allows one to select one, two or more method of entry. Simply click to select or to un-
@@ -1896,81 +1500,35 @@ select:
 As of version BG of the interface, one can save the list of modes of entry one has selected.
 Saving the list gives one additional ﬂexibility, since one can combine or edit lists for later use.
 
-{image omitted}
-
-
-{image omitted}
-
 B2
 
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 After selecting the combination of modes of entry one wants to explore, one can save them to a
 text ﬁle by clicking on Save Entry. This will open a “File Save” dialog box:
 Once one has saved the ﬁle, it can be imported again by clicking on Import Entry. This will
 open an “File Open” dialog box.
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 After selecting the ﬁle to import and clicking on Open, the form will show that it is using an
 imported list, and one can run the query using the list:
 Setting Search Parameters
 Setting Time Parameters
 After one ﬁnds the method(s) of entry and clicks Select, one returns to the LookAtEntry
-form, and can now choose the year range (1) to run the query ():
+form, and can now choose the year range (1) to run the query (2):
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 The form allows one to choose either the entry year or the index year of the person. (The index
 year is included in the search if the box “Use Index Years” is selected.) Because in many cases
 we do not know the entry year (given as zero in that case), it may prove useful to run the same
 query with the “Use Index Years” option selected:
-Note the number of s in the “Entry Year” column. This approach yields  records,
-compared with just  when using the entry year. However, there are people for whom we
+Note the number of 0s in the “Entry Year” column. This approach yields 734 records,
+compared with just 87 when using the entry year. However, there are people for whom we
 know the dynasty but do not know their index year. The search by dynasty is less ﬁne-grained:
-
-{image omitted}
-
-
-{image omitted}
 
 1
 2
 
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 although we are looking for the Five Dynasties and Northern Song Dynasty, the entire Song
-Dynasty has just one dynastic code. For this search, we identify , people, of whom 
-have no index year. However,  of those people do have years of entry:
-The table the query produces has  columns:
+Dynasty has just one dynastic code. For this search, we identify 1,341 people, of whom 134
+have no index year. However, 10 of those people do have years of entry:
+The table the query produces has 32 columns:
 Name (Pinyin)
 Name (Chinese)
 Index Year
@@ -1981,7 +1539,7 @@ Entry Year
 Description of Entry (English)
 Description of Entry (Chinese)
 Person’s Index Place (Pinyin)
-See discussion of index place on pages -
+See discussion of index place on pages 22-23
 Person’s Index Place (Chinese)
 Type of Place Association
 the type of place association used in assigning an index place
@@ -2002,15 +1560,6 @@ information
 Kin Name (Pinyin)
 Kin Name (Chinese)
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Associate Name (Pinyin)
 Sometimes people are granted entry into government
 through recommendation or through the role of some other
@@ -2037,15 +1586,6 @@ choose from the sorting options:
 If one wishes to save the table, the simplest method is to select the entire table by clicking on
 the small box in the upper left-hand corner. Then save to the clipboard with Ctrl-C.
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 One then can paste the table into any program that accepts the format.
 Setting Place Parameters
 If one wishes to explore the mode of entry for people from a particular region, one uses the
@@ -2053,117 +1593,57 @@ Select Place button in the upper right part of the form:
 This opens the Select Address form. One can search for a place name using the ﬁlter box: to
 ﬁlter by Kaifeng 開封, enter “Kaifeng” into the Filter text box and then click the Filter
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 command button. This gives a list of all places that begin with the word “Kaifeng.” (Using
 the Chinese, here 開封, is better to avoid the possibility of homonyms.)
 Note that there are many addresses for Kaifeng. We will select the Kaifeng county active from
- to  by clicking on the corresponding row and clicking Select; this will return us to
+1053 to 1119 by clicking on the corresponding row and clicking Select; this will return us to
 the main window, where we can run another query.
-Because the index years start in , before the county code, we select “Use XY Reference” to
-include codes for the region before . Using the single address for Kaifeng produces  people.
+Because the index years start in 900, before the county code, we select “Use XY Reference” to
+include codes for the region before 1053. Using the single address for Kaifeng produces 110 people.
 If one wishes to look at Kaifeng more broadly, return to the Select Address form and once
 again enter “Kaifeng” into the Filter text box and then click the Filter command button. Then
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 either select ALL the ﬁltered addresses by clicking on the “Select ALL Filtered” button. This
 will return you to the main LookAtEntry form, with all the Kaifeng codes selected; by
 including the prefecture (Kaifeng Fu) all its subordinate counties will be included:
 The Place text ﬁelds will show the ﬁlter term in a pair of square brackets, here “[[Kaifeng]].”
-Running the query now produces  records for people from Kaifeng whose index years
-were between  and  and who entered government service through the yin privilege.
+Running the query now produces 156 records for people from Kaifeng whose index years
+were between 900 and 1100 and who entered government service through the yin privilege.
 If all of the address IDs for Kaifeng are too many, one can limit the number of codes in
 the Select Address form by selecting just those that are relevant and then click on “Select:”
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 When one selects more than one address, the Query by Method of Entry form will have
 “[[Multi-Select]]/[[多選]]” instead of a place name. A search for yin privilege for people with
-index years between  and  using these address codes produces  records.
+index years between 900 and 1100 using these address codes produces 159 records.
 If one wishes more precisely and ﬂexibly to control the address codes in one’s search, one can
 create a text ﬁle with a list of address codes. Using the example of Kaifeng, for instance, one
 can select all the ﬁltered records in the Select Address form, paste the records into a new
 Word or Excel ﬁle, delete the records one does not want, and copy the Address IDs to text ﬁle.
-The importing routine checks the list against the address codes in ADDR_CODES and moves
+The importing routine checks the list against the address codes in `ADDR_CODES` and moves
 invalid codes to an ImportErrorList table for your inspection. (The table ImportErrorList is
 listed on the left-hand part of the Access screen. To view it, just double-click on it.)
 
-{image omitted}
-
-
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Now click on the Import Places button in the LookAtEntry form and select the ﬁle to
 be imported. (CBDB gives a warning when it reads the list of IDs and ﬁnds an invalid ID.) If
 the import has been successful, one will see “[Imported List]” in the Place Information text
 boxes. Once the list has been imported, set the other parameters, and run the query.
-This approach produces  people, the same as the ﬁltered version. However, note the
+This approach produces 156 people, the same as the ﬁltered version. However, note the
 Include Subordinate Units checkbox in the upper right corner. One of the places on the
 imported list was the Kaifeng Superior Prefecture 開封府: it has other counties subordinate to
 it that are included in the search when the checkbox is selected. This is the default setting.
 Note that the table includes people from Yongqiu 雍邱 and Guancheng 管城: these are
 administrative units subordinate to Kaifeng Superior Prefecture and included in the search. If
 one unclicks the Include Subordinate Units checkbox, these counties disappear from the
-search, which then produced just  people.
+search, which then produced just 105 people.
 There is one additional approach to searching by name that handles the problem of when a
-place name might change and thus be excluded from a list using names. During the Later Jin (-
-), for example, Kaifeng was called by its old name, Bianzhou. CBDB allows one to pick
+place name might change and thus be excluded from a list using names. During the Later Jin (936-
+947), for example, Kaifeng was called by its old name, Bianzhou. CBDB allows one to pick
 one address (or a ﬁltered or imported list of addresses) and, based on its longitude and latitude,
 to ﬁnd all the administrative units throughout the speciﬁed time period that were close to that
 unit. If one imports the list of address codes for Kaifeng above and checks the Use the XY
-Reference checkbox as well as the Include Subordinate Units checkbox, one ﬁnds 
+Reference checkbox as well as the Include Subordinate Units checkbox, one ﬁnds 159
 people.
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Saving Results
 If one has created a query that produces a list of people who one wants to reuse in other
 queries—for example, if one wants to look at the kinship networks for the oﬃcials from
@@ -2171,52 +1651,31 @@ Kaifeng who entered government service through yin privilege—one can store the
 people for reuse in the forms that use Person IDs as input (LookAtKinship, LookAtNetworks,
 LookAtAssociationPairs).
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Simply click on the Store Person IDs button in this form and then click on the Recall
 Person IDs in the other form.
 If one wishes to save the results to a ﬁle readable by a GIS program, one selects the
 coding for the ﬁle and clicks on the Save to GIS button at the bottom of the form. The table
 is saved to a text ﬁle, by default, “entry_gis.txt.” One can specify the encoding of the text ﬁle
-as either GB or UTF-.
+as either GB18030 or UTF-8.
 CBDB results also can be saved in KML format, the standard for importing CBDB query
 results into Google Earth.
 Starting with user interface version BF, CBDB now also allows one to save the results
-of a search to a set of ﬁles that can be opened with Neoj or other graph databases (see
-https://neoj.com/developer/graph-database/ ). One selects the encoding and then clicks on
-Save to Neoj. For the Kaifeng search in our example, the program creates seven .csv
+of a search to a set of ﬁles that can be opened with Neo4j or other graph databases (see
+https://neo4j.com/developer/graph-database/ ). One selects the encoding and then clicks on
+Save to Neo4j. For the Kaifeng search in our example, the program creates seven .csv
 (“comma-separated values”) ﬁles:
-EntryCode_UTF.csv
-KinshipCodes_UTF.csv
-People_UTF.csv
-PeopleEntry_UTF.csv
-PeoplePlaces_UTF.csv
-PeoplePlaceCodes_UTF.csv
-Places_UTF.csv
+EntryCode_UTF8.csv
+KinshipCodes_UTF8.csv
+People_UTF8.csv
+PeopleEntry_UTF8.csv
+PeoplePlaces_UTF8.csv
+PeoplePlaceCodes_UTF8.csv
+Places_UTF8.csv
 The seven ﬁles create graph representations of the various aspects of the data created through
 the search.
-All the search forms support output to Neoj but vary in the number of ﬁles created,
+All the search forms support output to Neo4j but vary in the number of ﬁles created,
 depending on the nature of the data collected through the forms’ queries.
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 D. Using the Form “Query Associations”
 LookAtAssociations allows one to look at the people who have participated in particular
 associations or categories of associations. After opening the form, one clicks on “Select
@@ -2224,18 +1683,6 @@ Association” to choose the type of association one wants to investigate.
 There are over four hundred categories of associations, so CBDB allows one to pick by type
 and subtype.
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Consider the “Scholarship” associations from the list on the left. Under “Scholarship” there
 are seven subtypes. The subtype “intellectual aﬃliations” in turn has seventeen categories of
 associations. As with selecting entry codes, one can select the relevant codes.
@@ -2244,22 +1691,10 @@ at the top and then clicking on the “Select” button at the bottom center:
 Note that, as with entry, one can search for terms in the table of associations in both English
 and Chinese (using the search box at the bottom right corner) and search again if the ﬁrst item
 found is not what you are looking for. In the screenshot below, I have selected all intellectual
-aﬃliation associations () as the subtype of association. I then chose the year between  and
- (), and ran the query ():
+aﬃliation associations (1) as the subtype of association. I then chose the year between 900 and
+1400 (2), and ran the query (3):
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
-Although dates are a part of the ASSOC_DATA table, we do not have date information for
+Although dates are a part of the `ASSOC_DATA` table, we do not have date information for
 most associations, and LookAtAssociations uses the index year of the individuals to see
 whether they fall within the speciﬁed beginning and end dates.
 Using the index year of people, however, introduces a signiﬁcant limitation at the same
@@ -2268,27 +1703,13 @@ an index year simply disappear from the results. This CBDB allows one to search 
 using the index years by unchecking the Use Index Years box directly below the input boxes
 for years:
 
-{image omitted}
-
-
-{image omitted}
-
-
-{image omitted}
-
 1
 2
 3
 
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
-Note that the results rise from  to . One can sort on index years after doing the search
+Note that the results rise from 474 to 606. One can sort on index years after doing the search
 to look for the relevant associations.
-The Associations table in LookAtAssociations has  columns to display the types
+The Associations table in LookAtAssociations has 40 columns to display the types
 of information recorded in theASSOC_DATA table:
 Name (Pinyin)
 Name (Chinese)
@@ -2342,17 +1763,11 @@ Dynasty Code
 Associate Index Type Code
 Associate Dynasty Code
 
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 In addition to the table of associations, LookAtAssociations also provides a table listing all
 the people involved in the association one is investigating. One views this table simply by
 clicking on the People in Association tab. This table provides information about association
 with place.
-This table has  columns:
+This table has 19 columns:
 Name (pinyin)
 Name (Chinese)
 Index Year
@@ -2376,21 +1791,12 @@ One can save the address information for display through a GIS program by clicki
 Save to GIS. Since association data provides an implicit social network linking the groups of
 people connected by the category of association being examined, one can save the network for
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 analysis in the Pajek format, for example, by clicking on the Save to Pajek button. Pajek is
 one standard format for visualization in social network analysis (SNA). In addition data can be
 saved to Gephi or UCINet, and many programs can read it and convert it to other formats.
 CBDB allows ﬁles for both GIS programs and for Pajek to be saved in diﬀerent text encodings
 to enable the use of Chinese characters. Note that there is an option to include the Person ID
-with the node information in the Pajek ﬁles. Finally, one can also save the data to Neoj ﬁles.
+with the node information in the Pajek ﬁles. Finally, one can also save the data to Neo4j ﬁles.
 Search by Place
 Like the LookAtEntry form, LookAtAssociations allows one to look at associations for
 people from a particular place or from a particular list of places.
@@ -2407,25 +1813,6 @@ turns out that the results are the same if one chooses either “Narrow” or �
 Like all other tables, LookAt Associations allows one to store the results of a query for later use
 in another form. One clicks on the “Store Person IDs” button.
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 E. Using the Form “Query Oﬃces Holding”
 The bureaucratic system of imperial China was complex, and it evolved over time. As a result,
 CBDB at present has over six thousand oﬃce codes and will certainly have many more as the
@@ -2447,32 +1834,11 @@ titles of oﬃces in all dynasties. One can scroll up (the form initially goes t
 table) to ﬁnd the Tang dynasty oﬃces. As in other forms, one can pick more than one oﬃce
 title.
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Oﬃces in the Supply Commissioner’s Oﬃce in the Song Dynasty
 A Tang oﬃce containing the character 鹽 (“salt”)
 The ﬁlter allows one to select related oﬃces across dynastic boundaries. One can select
 individual oﬃces related to salt, or one can select all oﬃces.
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Cross-dynastic Oﬃce Selection
 One can use the ﬁlter for oﬃce names to ﬁnd a set of oﬃces that crosses dynastic
 boundaries and, therefore, allows one to make cross-dynastic comparisons. For example, one
@@ -2480,18 +1846,6 @@ can search for all the Grand Empress Dowagers:
 Selecting these oﬃce titles, one can locate all the women in CBDB who served as Grand
 Empress Dowager:
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Saving, Editing and Importing Lists of Oﬃces
 Because of the complexity of oﬃce structure—and especially structures across dynastic
 boundaries, CBDB provides a way to build reusable lists of oﬃces that one might want to
@@ -2500,37 +1854,10 @@ oﬃces in the Vice Grand Councilor’s Oﬃce:
 One can save this list by clicking on the Save Oﬃces button:
 This command opens a “Save File” dialog box:
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Once one has saved the ﬁle (as a text ﬁle), one can edit it in the usual manner:
 The ﬁle begins with the oﬃce ID, then a <Tab> character, then the rest of the information.
 Lists of oﬃce IDs from diﬀerent ﬁles can be combined and imported back into the form.
 
-{image omitted}
-
-
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Clicking the button will open an “Open ﬁle” dialog box:
 The form then displays “[[Imported List]],” and one can run a query using the list:
 Querying Office
@@ -2539,18 +1866,6 @@ Councilor in CBDB and does not use either index years or dynasties. Because at p
 codes are tied to dynasty, in fact all the results are from the Song (although one can use ﬁltering by
 oﬃce name to create a cross-dynastic list of oﬃce codes):
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 The query generates two tabbed pages of results. The ﬁrst, Oﬃce Postings, displays
 information about all the postings to the oﬃces being examined. The second, People in
 Oﬃce, lists the people who were appointed to the oﬃces. This list of people is particularly
@@ -2558,85 +1873,37 @@ useful if one wishes to then import it into the LookAtNetworks form to explore t
 networks connecting the people who held a particular oﬃce. (One clicks on the square in the
 upper left corner to select all the records, copies them (Ctrl-c), and pastes them to a text ﬁle.
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 If one sets a time ﬁlter to the Ming dynasty for oﬃces from the Song dynasty, as expected, one
 gets no results:
 One can also set a ﬁlter for a range of years for which appointments to selected oﬃces
 were made. It turns out that this option is most useful for the Ming, where data on years for
-oﬃce postings is more abundant. Without limiting the years, CBDB ﬁnds  postings for:
+oﬃce postings is more abundant. Without limiting the years, CBDB ﬁnds 411 postings for:
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
-Adding the ﬁlter limits the results to the years - to  postings:
+Adding the ﬁlter limits the results to the years 1400-1500 to 33 postings:
 If one wishes to look at people who held oﬃce at a particular place or places, the form allows
 the user to select a place through the procedures discussed above. One can select a single
 place, use a ﬁlter for name, or import a list of address IDs. Then one runs the query in the
 usual way. Below is a query about the people who served in prefectural oﬃces in Wuzhou 婺
 州 during the Song dynasty.
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 One can also explore where people from a particular place (or list of places) held particular
 types of oﬃce. Below is a query about where people from Kaifeng held prefectural oﬃce
 during the Song dynasty.
 And one can combine the two restrictions and explore who from Kaifeng served in prefectural
 oﬃce in Wuzhou during the Song:
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Exporting to GIS
 Because one might want to look at the spatial distribution of either the postings or the people
 who held the posts, the LookAtOﬃce form provides ways to save both to ﬁles that can be
-read by GIS software. One can specify either UTF- or GB encoding at the bottom left
+read by GIS software. One can specify either UTF-8 or GB18030 encoding at the bottom left
 of the form:
 Note that if the results do not have any place information with X-Y coordinates, then one
 cannot save information to a GIS ﬁle. For example, the oﬃce records for Vice Grand-
 Counselor Oﬃces does not have any coordinates associated with them because the oﬃce
 location is simply “Song Dynasty.”
 As in all othr forms, one can save the results to a set of CSV (comma-separated values)
-files for use with Neoj.
-The table “Oﬃce Postings” has  ﬁelds:
+files for use with Neo4j.
+The table “Oﬃce Postings” has 30 ﬁelds:
 Person Name (pinyin)
 Person Name (Chinese)
 Index Year
@@ -2650,15 +1917,6 @@ Y coordinate of Person Index Address
 Oﬃce (translation)
 Oﬃce (Chinese)
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 First year of appointment
 Last year of appointment
 Dynasty (Pinyin) (useful in cases where the years are very uncertain)
@@ -2694,12 +1952,6 @@ Index Address Type (English)
 Index Address Type (Chinese)
 XY count (number of people) for the Index Address
 
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 F. Using the Form “Query Kinship”
 Queries involving kinship are more complex than queries examining categories of association
 or modes of attaining eligibility for oﬃce. Since the information on kinship for an individual
@@ -2707,12 +1959,12 @@ usually contains just a few records, CBDB begins with those records and then loo
 kinship information available for all the kin listed for the initial person. CBDB repeats this
 search for the kin, the kin of the kin, the kin of the kin of the kin, and so on, until speciﬁed
 criteria are met. First is simply a limit to the number of search iterations to allow. Usually
- loops are adequate. Second are limits on the distance of the kinship relations being
+5000 loops are adequate. Second are limits on the distance of the kinship relations being
 examined:
 Max. Ancestor Gen. speciﬁes how many generations of ancestors to include. One’s
-father’s generation is ; the grandfather is , great-grandfather , and so on.
+father’s generation is 1; the grandfather is 2, great-grandfather 3, and so on.
 Max. Descend. Gen. speciﬁes how many generations of descendants to include.
-One’s children’s generation is , grandchildren , great-grandchildren , and so
+One’s children’s generation is 1, grandchildren 2, great-grandchildren 3, and so
 on.
 Max. Collateral Kin limits how many horizontal moves are allowed. For example,
 one’s wife’s sister has one unit of “marriage” distance and one unit of
@@ -2741,23 +1993,17 @@ Ms. Huang
 Yu Hong
 Huang Shuda
 
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 mark collateral relations. In the measurement system used in LookAtKinship:
 Huang Yu 黃育
 is FFBS
-(Up = , Down = , Collateral = )
+(Up = 2, Down = 1, Collateral = 1)
 Yu Hong 余宏
-is FFBSDH (Up = , Down = , Collateral = , Marr. = )
+is FFBSDH (Up = 2, Down = 2, Collateral = 1, Marr. = 1)
 Li Cui 李萃
 is MB
-(Up = , Collateral = , Marr. = )
+(Up = 1, Collateral = 1, Marr. = 1)
 Du Shenlao 杜莘老 is SDH
-(Down = , Marr. = )
+(Down = 2, Marr. = 1)
 Because LookAtNetwork keeps looking through a very large table of kinship relations until the
 distance limits are reached, the kinship table produced by the search can grow very large.
 Therefore please note:
@@ -2774,22 +2020,13 @@ SB  S
 SZ  D
 DB  S
 DZ  D
-These simpliﬁcations reduce the collateral distance by .
+These simpliﬁcations reduce the collateral distance by 1.
 CBDB also provides a more experimental option for simplifying concatenated kinship terms
 that the user should use with caution. The user can activate a CBDB kinship simpliﬁcation
 algorithm by clicking on the Simplify Kinship Terms check box. (Appendix D lists the
 kinship terms simpliﬁed by the CBDB algorithm.) When one clicks on this option, CBDB
 warns that this approach should be double-checked:
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Another standard concern in Chinese kinship studies is to examine the so-called “mourning
 circle” deﬁned by ﬁve degrees of kinship relation. LookAtKinship allows one to simply click
 on the “Mourning Circle” check-box to reconstruct what is known in the database about kin
@@ -2800,18 +2037,6 @@ networks one seeks to explore. There are three diﬀerent ways to select people.
 recall an individual person (from the Browser) or group of people stored in the database as
 the result of an earlier query (see LookAtEntry for an example of storing the list). If the
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 “Recall Person IDs” button is enabled, this means that there is a person ID or group of IDs
 created earlier that can be used now.
 When one clicks on “Recall Person IDs,” the form either loads the person (if there is just one
@@ -2826,21 +2051,6 @@ Note that this is a change from earlier versions of the program. The text ﬁle
 should contain nothing more than a list of person IDs and needs to be in ANSI
 text formatting.
 
-{image omitted}
-
-
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 After one clicks on the Import People command button, selects the ﬁle, and
 LookAtKinship successfully reads the ﬁle, the form will look like:
 One then sets the desired parameters and runs the query.
@@ -2850,23 +2060,11 @@ person using either Chinese characters or pinyin. As in the Browser search funct
 looks not only at formal names (姓名) but also all the alternative names used for people. Thus,
 if one enters Su Dongpo 蘇東坡, the form will correctly locate the record for Su Shu 蘇軾.
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Once one has selected the person, one sets the search limits (or chooses the Mourning Circle)
 and clicks the Run Query command button to start the search.
 When the search ﬁnishes, there are two tables one can examine. The ﬁrst, Kinship
 Network, lists all the kinship relations discovered through the search:
-This table has  columns:
+This table has 27 columns:
 Name (pinyin)
 Kin Name (Chinese)
 Name (Chinese)
@@ -2897,23 +2095,14 @@ Index Address Type
 The second table, Ego-Relative Kinship, describes the kinship relation between each person
 in the ﬁrst table and the person selected at the very beginning:
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 For example, Chao Buzhi 晁補之 is Su Shi’s third son’s second daughter’s husband’s mother’s
-brother (SDHMB) with a metric of {,,,}. The path one traverses to reach Chao
+brother (S3D2HMB) with a metric of {1,2,1,1}. The path one traverses to reach Chao
 Buzhi’s younger brother Chao Jiangzhi 晁將之 is ﬁrst to locate Chao Buzhi and then ﬁnd all
-of Chao Buzhi’s brothers. Their metrics would then be that of Chao Buzhi, {,,,} + one
-more collateral step, for the result {,,,}, which would exceed the search parameter for
-collateral distance, set to just . However, the search algorithm automatically reduces BB (in
-SDHMB+B) to B, since they, as Chao Buzhi’s brothers, are also brothers to the husband’s
-mother. They then fall within the  collateral link distance and are included in the search
+of Chao Buzhi’s brothers. Their metrics would then be that of Chao Buzhi, {1,2,1,1} + one
+more collateral step, for the result {1,2,2,1}, which would exceed the search parameter for
+collateral distance, set to just 1. However, the search algorithm automatically reduces BB (in
+S3D2HMB+B) to B, since they, as Chao Buzhi’s brothers, are also brothers to the husband’s
+mother. They then fall within the 1 collateral link distance and are included in the search
 results. (The “Ego-Relative Kinship” table has an additional column that gives a raw path that
 shows how CBDB simpliﬁed the kinship relations, but, as explained above, CBDB simpliﬁes
 only the simplest relations (e.g., BZ  Z). More complex simpliﬁcations require
@@ -2923,26 +2112,17 @@ corner of either table in this form, one can select all the records in the table
 cut and pasted into other programs. Also, right-clicking on any of the column headings allows
 one to sort on that column.
 Finally, one can export the kinship data to four diﬀerent types of ﬁles. The ﬁrst three
-are diﬀerent formats of Social Network Analysis (SNA) ﬁles: UCINet (), Gephi (), and
-Pajek () with various character code options and the option to include ID in the labels. For
+are diﬀerent formats of Social Network Analysis (SNA) ﬁles: UCINet (1), Gephi (2), and
+Pajek (3) with various character code options and the option to include ID in the labels. For
 Gephi and UCINet, the program can also remove zero-degree nodes, those nodes without
 connections to any other nodes. (This sometimes occurs when one imports a list of people to
 search for, and some of those people have no kinship information in CBDB.) The fourth type
-of ﬁle is for GIS visualization: the program can save the ﬁle as a ﬁle readable GIS software ()
+of ﬁle is for GIS visualization: the program can save the ﬁle as a ﬁle readable GIS software (4)
 or in KML format with two diﬀerent code options. The output includes the xy_count ﬁeld,
 which is the count of the number of people associated with a particular set of coordinates. This ﬁeld is very
 useful as a parameter for displaying results in GIS software. Note that the form allows one to
 exclude the ego-records in the GIS output. When one has searched for the kinship network of a
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 single, selected person, checking this box just removes the selected person from the output
 with little impact on the results. However, if one looks for the kinship networks of a list of
 people, including the people on the list can distort the data, and especially the xy_count, and it
@@ -2952,26 +2132,18 @@ indicate degree of distance from the target person:
 Black
 = the target node;
 Blue
-= nodes at a summed kinship distance of 
-Green = nodes at a summed kinship distance of 
-Orange = nodes at a summed kinship distance of 
-Yellow = nodes at a summed kinship distance of 
+= nodes at a summed kinship distance of 1
+Green = nodes at a summed kinship distance of 2
+Orange = nodes at a summed kinship distance of 3
+Yellow = nodes at a summed kinship distance of 4
 Red
-= nodes at a summed kinship distance of  or more
+= nodes at a summed kinship distance of 5 or more
 
-{image omitted}
+1
+2
+3
+4
 
-
-
-
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 G. Using the Form “Query Social Networks”
 LookAtNetworks is the most powerful querying interface developed for the Access version
 of CBDB. It allows the user to explore social networks deﬁned both by kinship ties and by
@@ -2991,25 +2163,16 @@ with a list of people, then all the people on that list serve as starting points
 place or list of places, then the people initially identiﬁed as associated with that place or those
 places serve as the starting points.
 WARNING: Higher node distances may result in a very large dataset
-NOTE: A query set at a node distance of  will result in a) all the people associated with the
+NOTE: A query set at a node distance of 1 will result in a) all the people associated with the
 selected person(s) and b) all the associations between the people in the network. This
 particular kind of network is called an ego network: it is important because it sometimes
 reveals that even within the network of one person there were rival networks. One can sort
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 these relationships in the query results table, and one can delete any records one does not wish
 to export for further analysis.
 Basic Query Functions
 Running a query begins with selecting the elements to investigate.
-. Begin with People
+1. Begin with People
 A. Select a Person
 If one wants to look at the social networks which link a particular person to others, one can
 click on the Select Person command button to open a form for searching for a person:
@@ -3025,64 +2188,30 @@ Note that this is a change from earlier versions of the program. The text ﬁle
 should contain nothing more than a list of person IDs and needs to be in ANSI
 text formatting.
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
-After one clicks on the Import People() command button, selects the ﬁle, and
+After one clicks on the Import People(1) command button, selects the ﬁle, and
 LookAtNetworks successfully reads the ﬁle, the form will look like:
-The two boxes that give the person’s name () will state “[Imported List] and [輸入的人
+The two boxes that give the person’s name (2) will state “[Imported List] and [輸入的人
 名].”
 C. Recall a Person or a Group of People from a Previous Stored Search Result
 The third way to select people for analysis is to recall either a single ID that was stored
 from the Browser or a list of IDs saved from a previous query. One simply clicks on the
-Recall Person IDs (: next page) command button. If there is just one saved ID, the
+Recall Person IDs (3: next page) command button. If there is just one saved ID, the
 form displays the person’s name. If one recalls a list of IDs, the form displays “[Recalled
-List]” and “[召回的人名]” instead of a person’s name (: next page):
+List]” and “[召回的人名]” instead of a person’s name (4: next page):
 
-{image omitted}
+1
+2
 
-
-{image omitted}
-
-
-{image omitted}
-
-
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
-. Begin with Place
+2. Begin with Place
 A. Select a Place
 When one clicks on the Select Place command button, one opens a form to allow one to
 select a particular place. As described in the section on LookAtEntry, , the form provides
 a Filter function to select a group of addresses all beginning with a speciﬁed word or
 phrase.
 
-{image omitted}
+4
+3
 
-
-{image omitted}
-
-
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 B. Import a List of Places
 Sometimes it is more useful to work with a set of Address IDs to precisely deﬁne the area
 for which one wants to study the social networks. Importing a list of Address ID works the
@@ -3099,35 +2228,29 @@ C. Use XY Reference
 As in the other forms, CBDB allows the one to use the longitude and latitude of the
 place(s) one has selected to identify other relevant administrative units for the speciﬁed
 time period. One clicks on the Use XY Reference check box to activate this feature.
-. Determine the Time Period
+3. Determine the Time Period
 This is straight-forward: simply ﬁll in the beginning and ending years for the index years of
 people to be considered for the search.
-. Select the Node Distance
+4. Select the Node Distance
 One needs to be careful: the number of people found by the search procedure can grow
 exponentially with the increase in node distance. It is a good practice to start conservatively
 with a small node distance. In the example search discussed below, using the nine people
 who became eligible for service through law examinations, a node distance of three
-produces over  relationships.
-. Set the Maximum Number of Iterations
+produces over 5000 relationships.
+5. Set the Maximum Number of Iterations
 The search procedure is slow with CBDB’s large dataset, and one might want to
 experiment with a relatively small “Max Loop #.”
-. Select Kin, Non-Kin, Male and Female
+6. Select Kin, Non-Kin, Male and Female
 The LookAtKinship form does not allow one to look at kinship relations for a group of
 people imported through a list, so LookAtNetworks provides an alternative approach to
 examining kinship. One selects “Kin” and de-selects “Non-Kin.” There also may be times
 when one wants to eliminate associations (kinship or social) based on females, or one may
 want to examine networks strictly among women. LookAtNetworks allows the user to
 select these options.
-. Select Types of Non-Kinship Relations
+7. Select Types of Non-Kinship Relations
 Because there are many, many categories of non-kinship relationship, most of which are of
 little importance in a particular query, one can limit the search to selected large groups of
 
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 associations. These are:
 Friendship
 Family
@@ -3144,89 +2267,45 @@ associations as one wishes. Once selected, these limits to the range of associat
 active through the entire search process.
 Once all of these decisions have been made, one runs the query. The example examined
 below uses the list of people (A) who entered service through the law examination. The ﬁrst
-version selects the years  through  (B) with a maximum node distance of  (C) and a
-maximum loop count of  (D) but does not constrain either the kinship or the non-kinship
+version selects the years 930 through 1240 (B) with a maximum node distance of 3 (C) and a
+maximum loop count of 10 (D) but does not constrain either the kinship or the non-kinship
 associations and allows all possible types of association.
-The result is a network with , people participating in , relations.
-
-{image omitted}
+The result is a network with 6,441 people participating in 24,782 relations.
 
 A
 B
 C
 D
 
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Table of Associations in the Social Network
 Table of People Participating in the Social Network
 Many of the pairs of people in this list have more than one relationship between them, so
 CBDB also produces a table in the Aggregated Social Relations tab with just one record for
 each pair of people that gives the number of relations between them:
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 If the network is too large, one can examine more narrowly deﬁned networks. If one looks just
-at kinship relations for the group, CBDB ﬁnds  people linked through  relations (with
-total node distance of  and constraints on the kinship distance for the relationships).
-If one looks just at associations formed through writing with a maximum node distance of ,
-excludes kinship, and uses dynasty rather than index year, CBDB discovers , relations
-(with , aggregated relations) among , people:
+at kinship relations for the group, CBDB ﬁnds 117 people linked through 144 relations (with
+total node distance of 3 and constraints on the kinship distance for the relationships).
+If one looks just at associations formed through writing with a maximum node distance of 2,
+excludes kinship, and uses dynasty rather than index year, CBDB discovers 7,699 relations
+(with 3,897 aggregated relations) among 1,379 people:
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 The results seem promising: not too many links, and not too few:
 However, if one scrolls to the right in the table of results and right-clicks on the header of the
 ﬁeld called “Edge Distance” to sort the records, one will discover that only the ﬁrst nine
 records connect the initial group of people who became eligible for service through legal
-examinations with other individuals. (These are relations with an “edge distance” of , i.e.,
+examinations with other individuals. (These are relations with an “edge distance” of 0, i.e.,
 directly linked to the original list.) Only ﬁve of the initial thirteen people have any associations
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 deﬁned by writings, and these links are to only seven people. Of those seven associations, ﬁve
 are to people (Liu Zhi, Yang Jian, Zhu Xi, Zhang Shi, and Lou Yue) who have vast social
 networks who contribute most of the relations in the social network. Thus, it perhaps is better
-to return to the larger set of unrestricted relations among , people and use the tools of
+to return to the larger set of unrestricted relations among 3,897 people and use the tools of
 social network analysis to sort through the data.
 Requerying
 Some users have discovered that it is useful to reuse the people identiﬁed in one query in
 LookAtNetworks to serve as the basis for additional queries in the same form. For example,
-the search for the kinship relations of the men who passed the law examination produced .
+the search for the kinship relations of the men who passed the law examination produced 146.
 We can look to see if they wrote to one another by ﬁrst clicking on the Store Person IDs
 command button and then directly clicking on the Recall Person IDs command button.
 This loads the current results as a list of person IDs. One then restricts the non-kin
@@ -3235,7 +2314,7 @@ is now available for use in other forms as well.)
 Outputting Results
 LookAtNetworks provides ways to output the results of a query to three diﬀerent SNA
 programs: UCINet, Pajek, and Gephi. Because Pajek supports Chinese characters, CBDB
-allows the output to Pajek to be in either of three coding systems-UTF-, Big-, and GB-or in
+allows the output to Pajek to be in either of three coding systems-UTF-8, Big-5, and GB-or in
 pinyin without characters. GIS software also supports Chinese characters, but how they are
 handled diﬀers depending on the regional settings of one’s computer. The default display for
 both nodes and edges in the Pajek output ﬁles uses color-coding to indicate degree of distance
@@ -3243,20 +2322,14 @@ from the target person:
 Black
 = the target node
 Blue
-= nodes at a summed distance of 
-Green = nodes at a summed distance of 
-Orange = nodes at a summed distance of 
-Yellow = nodes at a summed distance of 
+= nodes at a summed distance of 1
+Green = nodes at a summed distance of 2
+Orange = nodes at a summed distance of 3
+Yellow = nodes at a summed distance of 4
 Red
-= nodes at a summed distance of  or more
-One also can export a set of CSV (comma-separated values) ﬁles for use with Neoj.
+= nodes at a summed distance of 5 or more
+One also can export a set of CSV (comma-separated values) ﬁles for use with Neo4j.
 
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 H. Using the Form “Query Pair-wise Associations”
 At times one wants to consider whether there were any social links between two individuals or
 among members of a group of people identiﬁed through criteria other than those of kinship or
@@ -3264,109 +2337,53 @@ social network. One could use LookAtNetworks to generate the social network of o
 person and see at what point the other person or people appear as part of the network.
 However, the Access version of CBDB provides a tool to directly examine if there were any
 connections without going through the general network search.
-The form is simple. First one () either chooses two individuals or imports a list of people, or
+The form is simple. First one (1) either chooses two individuals or imports a list of people, or
 recalls either a single person stored from the Browser [who becomes the “First Person”] or a list
 of people from earlier, saved query results using the procedure described for other forms above,
-then () the range of dynasties or index years for the people in the relations, if desired, and
-ﬁnally, () the type of permissible relations. The options for relationships are:
-. Allow -node Intermediaries: That is, people who are directly linked to both (or, for
-imported lists, two) of the selected people: Person A — Node — Person Bl . In this case
+then (2) the range of dynasties or index years for the people in the relations, if desired, and
+ﬁnally, (3) the type of permissible relations. The options for relationships are:
+1. Allow 1-node Intermediaries: That is, people who are directly linked to both (or, for
+imported lists, two) of the selected people: Person A — Node1 — Person Bl . In this case
 one leaves the check box for two-node intermediaries unchecked.
-. Allow -node Intermediaries: Here one allows people linked to one person who in turn
+2. Allow 2-node Intermediaries: Here one allows people linked to one person who in turn
 have links to people linked to the second person (or to another person on the imported list):
-Person A — Node — Node — Person Bl. In this case one clicks on the check box for
+Person A — Node1 — Node2 — Person Bl. In this case one clicks on the check box for
 two-node intermediaries to select the option.
-. Include Kinship relations: The default is simply to look at social (non-kinship) relations
+3. Include Kinship relations: The default is simply to look at social (non-kinship) relations
 connecting people, but kinship also can be important, and the form allows one to examine the
 role of kinship relations in the social network.
 
-{image omitted}
+1
+2
+3
 
-
-
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 One Node Intermediary Searches
 For example, if one explores the links between Su Shi 蘇軾and Cheng Yi 程頤, allowing only
-people directly linked to both of them ﬁnds  associations among  people.
+people directly linked to both of them ﬁnds 214 associations among 21 people.
 As in LookAtNetworks, the form provides two output tables: “Associations” for the
 relationships, and another, “People in Associations,” for the people in the relations.
 As with the other forms, one can save the results of a search by clicking on the grey square in
 the upper left hand corner of the table to select all the records and then using Ctrl-C:
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 One also can sort on a column of the table by clicking on the column (in this case, “Name”) to
 select it, then right-clicking to choose the type of sort:
 One also can select a block of records to save by clicking the mouse on the left-hand grey
 column of the ﬁrst record in the block and then, with the left-click button still held down,
 dragging the mouse down the grey column to the last record in the desired group:
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 However, note that the entry directly below the selected block includes Dai Biaoyuan 戴表元
-(-), a late Southern Song ﬁgure. If one wishes to narrow the search to intermediate
+(1244-1310), a late Southern Song ﬁgure. If one wishes to narrow the search to intermediate
 nodes who are roughly contemporaneous with the target people, one can use index years to
 limit the search. (Using dynasty as a ﬁlter does not help.) If one limits the index years to a
-range between  and , one ﬁnds fourteen people with  relations connecting them:
+range between 1000 and 1100, one ﬁnds fourteen people with 112 relations connecting them:
 If one then includes kin of either Su Shi or Cheng Yi who have a social connection to the
 other, then one discovers one additional connection but, in this case, no additional people:
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Two Node Intermediary Searches
 If one broadens the search to allow two intermediary links to connect the target people, the
-network becomes more complicated: The program reveals  relations among  people
-with index years between  and :
+network becomes more complicated: The program reveals 1404 relations among 123 people
+with index years between 1000 and 1100:
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Searches Using Lists
 If one wants to look for connections within a larger group of people chosen by other criteria,
 the form allows one to import a list of person IDs. Here one looks at Jinhua men who from
@@ -3374,63 +2391,33 @@ the Yuan dynasty who have extant collections. As in all lists for importing peop
 requires a single column of IDs in ANSI encoding:
 One clicks on the Import List of People command button and locates the ﬁle:
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 If the ﬁle is successfully read, the form indicates that the names are from an imported list. To
 clear the list and return to selecting people through the two Select command buttons, simply
 click on the Clear List of people command button.
 Once one has imported the list, the search procedures are the same. In this case, the
-query is set to look for one-node intermediaries with index years between  and  and
-produces , associations among  people:
+query is set to look for one-node intermediaries with index years between 1200 and 1350 and
+produces 1,588 associations among 187 people:
 Output to SNA and GIS Programs
 Like the other forms, LookAtAssociationPairs can generate ﬁles for use with Pajek and with
 GIS visualization programs. The output tables for Associations and People are the same as
 those in LookAtAssociations. Please consult the information in that section of the User’s
 Guide.
-Allowing the form to list all the relations between the -node and -node
-intermediaries between Su Shi and Cheng Yi who have index years between  and 
+Allowing the form to list all the relations between the 1-node and 2-node
+intermediaries between Su Shi and Cheng Yi who have index years between 1050 and 1120
 intermediaries produces a network that can be imported into Pajek.
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 The default display for both nodes and edges in the SNA output ﬁles uses color-coding to
 indicate degree of distance from the target person and the type of connections:
 Nodes
 Edges
 White = the target nodes;
 from target nodes
-Blue = nodes that serve as -node intermediaries from st order to nd order nodes
-Green = nodes that serve as -node intermediaries between nd order nodes (except for
+Blue = nodes that serve as 1-node intermediaries from 1st order to 2nd order nodes
+Green = nodes that serve as 2-node intermediaries between 2nd order nodes (except for
 one mysterious line to Su Shi)
 The output ﬁles aggregate the associations between people, and the width of the lines reﬂects
 the number of associations between nodes.
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 I. Using the Form “Query Place Associations”
 The forms discussed above produce information about the relationship between people and
 places in the contexts of kinship and social relations, oﬃce holding, and entry into
@@ -3440,28 +2427,19 @@ registry of the kin of a friend. This sort of drawing together of connections pr
 without a way to aggregate information about a place over time.
 Thus CBDB provides the form LookAtPlace. The form can trace seven types of relationship
 to place:
-.Biographical Data: was this place the index place of the person? Did he or she move
+1.Biographical Data: was this place the index place of the person? Did he or she move
 there?
-.Entry Data: did the person take an examination at this place, or was this place
+2.Entry Data: did the person take an examination at this place, or was this place
 otherwise associated with the person’s entry into government service? (At present
 CBDB has very little data on this type of relationship to place.)
-.Connection via Kinship: who were the kin of people from this place?
-.Connection via Association: who had associations with people from this place?
-.Place of Association: what social connections were created at this place? (At present
+3.Connection via Kinship: who were the kin of people from this place?
+4.Connection via Association: who had associations with people from this place?
+5.Place of Association: what social connections were created at this place? (At present
 CBDB has very little data on this type of relationship to place.)
-.Oﬃce Posting Data: who held oﬃce at this place?
-.Institutional Connection: who were associated with social institutions at this place?
-The query below looks at Jinhua for people with index years between  and .
+6.Oﬃce Posting Data: who held oﬃce at this place?
+7.Institutional Connection: who were associated with social institutions at this place?
+The query below looks at Jinhua for people with index years between 1100 and 1260.
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 One can select which relationship to place to include in the search and can specify the usual
 sorts of parameters (use of dynasty, index years and the use of XY references). As with the other
 forms, one also can use a ﬁltered list of place names or import a list of address IDs.
@@ -3469,61 +2447,40 @@ In addition, because the categories of relationship of people to place include t
 not be relevant to the particular query, the form allows the user to select the categories of
 relationship to be used in the search:
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 One clicks on the Select Categories button, which opens a form. One can “Select All” and
 then click on those categories to not be included, clicks on the Select button to close the form
 and runs the query:
-In this particular search, removing the categories eliminates just  records.
-The output table has  ﬁelds:
-.
+In this particular search, removing the categories eliminates just 13 records.
+The output table has 17 ﬁelds:
+1.
 Person name (Pinyin)
-.
+2.
 Person name (Chinese)
-.
+3.
 Index year
-.
+4.
 Place Name (Pinyin)
-.
+5.
 Place Name (Chinese)
-.
+6.
 Associate Name (Pinyin)
-.
+7.
 Associate Name (Chinese)
-.
+8.
 First year
-.
+9.
 Last year
-.Category of Place Association
-.Relation to Place within Category (English)
-.Relation to Place within Category (Chinese)
-.X coordinate
-.Y-coordinate
-.Index Year Type (English)
-.Index Year Type (Chinese)
-.Index Year Type Code
+10.Category of Place Association
+11.Relation to Place within Category (English)
+12.Relation to Place within Category (Chinese)
+13.X coordinate
+14.Y-coordinate
+15.Index Year Type (English)
+16.Index Year Type (Chinese)
+17.Index Year Type Code
 The Category speciﬁes which of the seven types of relations to place is recorded for the person,
 while the Relation gives the speciﬁc information within the category. Thus the Category of
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 “Biography” indicates the person’s immediate biographical relationship to place, and the
 Relation provides the detail (“basic aﬃliation,” “moved to,” etc.). Similarly, the Category of
 “Associate Place” records that the person is from the selected place, the Associate has a social
@@ -3534,43 +2491,22 @@ People may have more than one relationship to a place, and the form provides a t
 that list the Aggregated People and Places relations and reveals many people with multiple
 types of relationships to Jinhua:
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Finally, the form provides a table that lists the people who participate in the
 relationships:
 At present, there are two ways to write the results of a search to a ﬁle:
 a.The ﬁrst is as SNA data in Pajek, UCINet, or Gephi format. This option is available only
 when one has selected Association, Associate, or Kinship.
-b.The second option is to write a series of CSV ﬁles for Neoj. The number of ﬁles
+b.The second option is to write a series of CSV ﬁles for Neo4j. The number of ﬁles
 produced through this option depends on the types of relationship to place the user has
 selected.
 If there is a need to save the data in GIS form, this functionality can be added in future
 versions of the software.
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 J. Using the Form “Query Status”
 LookAtStatus is a recent addition to the forms for exploring the CBDB data. It allows users
 to examine CBDB information on social distinctions recorded for members of the database.
-As explained in Chapter , status records ways in which individuals gained reputations in
-their communities. At present we have  codes divided into  categories:
+As explained in Chapter 2, status records ways in which individuals gained reputations in
+their communities. At present we have 285 codes divided into 7 categories:
 Occupation
 事業
 Scholarship
@@ -3591,57 +2527,24 @@ The form shares the features of the other forms. One can ﬁlter by dynasty or i
 can select an index place (or group of index places) to explore. And one can store the person
 IDs to use in other forms.
 One begins by selecting the category of status one seeks to explore. Since, at present, there are
- codes for status, the Select Status form, like the other forms, organizes the codes into
+275 codes for status, the Select Status form, like the other forms, organizes the codes into
 larger groups of types of status. As with the other selection forms, one can select an entire
 category of status relations, or one can choose one or more speciﬁc status relations.
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
-Below is the list of , records for social distinction through painting for individuals in the
+Below is the list of 1,015 records for social distinction through painting for individuals in the
 Ming dynasty.
 If one has selected just one type of status, in theory, the number of records in Status and
 People should be the same. Note, however, that there are duplicate records in the Status table.
 This is a bug that will be ﬁxed in the next release of the data. As the People table shows, there
-are only  individuals who have status as painters in the Ming dynasty.
+are only 893 individuals who have status as painters in the Ming dynasty.
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 One can save the IDs of the people for use in other forms by clicking on the Store Person
 IDs button, and one can save the list of status codes from the query to a ﬁle for reuse later by
 clicking on the Save Status button and saving the ﬁle.
-The form provides output to GIS data ﬁles as well as to Neoj ﬁles, which capture the bipartite
+The form provides output to GIS data ﬁles as well as to Neo4j ﬁles, which capture the bipartite
 person-status relationship (that is, people are connected as nodes to status types as nodes rather
 than as people connected to other people).
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 K. Using the Form “Query Texts and Roles”
 The form LookatTextRoles enables users to investigate people who have roles in the
 production of premodern Chinese texts. CBDB uses the classiﬁcation of texts used in the Siku
@@ -3667,55 +2570,25 @@ Translator
 翻譯者
 Work included in
 收入Y 集
-At present CBDB has approximately , records for people in relation to texts.
+At present CBDB has approximately 31,000 records for people in relation to texts.
 The design of LookAtTextRoles is very similar to that of other forms. It uses the
 same sorts of ﬁlters: by index year, by dynasty, and by index address.
 One ﬁrst selects a category of texts:
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 In this example, the user selects all the texts in the category of “Rites.” In the simplest query,
 one uses just the category without additional ﬁlters:
 Running the query produces a list of all the role in which people participated in the production
-of texts of the selected category for which CBDB has data. There are  roles in which 
+of texts of the selected category for which CBDB has data. There are 517 roles in which 282
 people participated in producing texts on the ritual classics in the Confucian canon. In the
 example, Lv Zuqian 呂祖謙 is identiﬁed as the author of the San Da li fuzhu三大禮賦注.
 The form also provides a list of all the people who participated in these roles:
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 These people can be stored for further analysis using other forms by clicking on the Store
 Person IDs button and can be saved to a GIS ﬁle to look at their geospatial distribution with
 the Save to GIS button.
-Output to a set of Neoj ﬁles by clicking on Save to Neoj gives one a way to further
-explore the bipartite relationship between people and texts using Neoj.
+Output to a set of Neo4j ﬁles by clicking on Save to Neo4j gives one a way to further
+explore the bipartite relationship between people and texts using Neo4j.
 
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 L. Using the form “Looking up Data on a Group of People
 As shown in the description of the other forms, CBDB allows the user to identify groups of
 people according to speciﬁed characteristics. The form LookAtGroupData allows the user
@@ -3725,18 +2598,6 @@ simpliﬁed Chinese:
 To input the group of IDs to be examined, one can either recall a stored list or import a list from a
 ﬁle:
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 Once one has selected the group of IDs, one then selected the types of information to explore.
 The choices are:
 a.status,
@@ -3746,20 +2607,8 @@ d.textual production, and
 e.associations with place (In some cases, one wants to know just the index addresses for the
 people in the group, and the form allows the user to select this option.)
 One can, for instance, import a list of the people from Jinhua County who earned jinshi
-degrees between and :
+degrees between1130 and 1200:
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 One selects the types of data and clicks the Search button:
 The Entry table shows that some jinshi degree holders also used other paths to enter
 government service in addition to the jinshi examination. Tang Zhongyou is an example.
@@ -3768,52 +2617,19 @@ the degree-holders. Tang Zhongyou is, again, a good example:
 To save the data from the search, there are three options. One is to select the data in a
 table by clicking on the small square in the upper left corner of the table and copying it:
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
 One then can paste the data to Excel or to a text ﬁle, etc.
-The second way to export the data is to save it to a set of Neoj ﬁles. The number of
+The second way to export the data is to save it to a set of Neo4j ﬁles. The number of
 ﬁles produced by the form depends on the number of categories of information one has
 selected for export (see below).
 The third way to export the data is to save it to a ﬁle that can be opened by GIS
 software or to a KML ﬁle:
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : CBDB Tools for Analysis
-
-As with exporting to Neoj, the user selects what type of data to export and the encoding For
+As with exporting to Neo4j, the user selects what type of data to export and the encoding For
 GIS, one also chooses the ﬁle format. When the user clicks the Export to GIS button, the
 form creates a separate ﬁle for each type of information.
 If the user has imported a list of IDs, this list can be saved by clicking on the Store Person
 IDs button.
 
-{image omitted}
-
-
-
-
----
-
-
-Chapter : Advanced Query Techniques
 The Access version of CBDB permits a variety of increasingly complex and powerful
 approaches to analyzing the data. The ﬁrst level of advanced query simply is to use the output
 from one form as the input for a second search. The next step, taken when one has become
@@ -3831,72 +2647,43 @@ oﬃcial status or whether there was in fact social mobility where marginal fami
 join the elite stratum through the educational success of their sons. To explore this question,
 one can look at the kinship structures for those who entered government service through
 examinations in localities at diﬀerent times during the Song and see if there is any change in
-organization. In our example, we consider Putian in Fujian during two periods: -
-and -. We ﬁrst use the LookAtEntry form:
+organization. In our example, we consider Putian in Fujian during two periods: 1050-1100
+and 1200-1250. We ﬁrst use the LookAtEntry form:
 
-{image omitted}
+2
+1
+4
+3
+5
 
-
-
-
-
-
-
-
-
----
-
-Chapter : Advanced Query Techniques
-
 The procedure is:
-() Use Select Entry to choose all types in the category of “Examination” 科舉門.
-() Set the range of examinations ﬁrst to -. (Here I show -.)
-() Use Select Place to choose Putian 莆田 during the Song Dynasty.
-() Run the Query
-() Use Store Person IDs to copy the IDs of the selected people into a temporary table.
+(1) Use Select Entry to choose all types in the category of “Examination” 科舉門.
+(2) Set the range of examinations ﬁrst to 1050-1100. (Here I show 1200-1250.)
+(3) Use Select Place to choose Putian 莆田 during the Song Dynasty.
+(4) Run the Query
+(5) Use Store Person IDs to copy the IDs of the selected people into a temporary table.
 Once you have the table of the IDs of people from Putian who entered government through
 examination for the speciﬁed period, open the form LookAtKinship and have the form read
-the stored table of people for -:
+the stored table of people for 1050-1100:
 Here, the procedure is:
-() Recall the list of people IDs with the Recall Person IDs command button at the top of
+(1) Recall the list of people IDs with the Recall Person IDs command button at the top of
 the form.
-() You will get conﬁrmation that the table was correctly imported when you see “[Recalled
+(2) You will get conﬁrmation that the table was correctly imported when you see “[Recalled
 List].”
-() Set the kinship parameters to  up,  down,  collateral, and  marriage.
-() After you run the query, save the results into a Pajek ﬁle that uses UTF- encoding. Set
-the output to not include -degree nodes (nodes with no connections to other nodes).
-() Repeat the process for the people from - and create a second Pajek ﬁle.
+(3) Set the kinship parameters to 2 up, 2 down, 1 collateral, and 1 marriage.
+(4) After you run the query, save the results into a Pajek ﬁle that uses UTF-8 encoding. Set
+the output to not include 0-degree nodes (nodes with no connections to other nodes).
+(5) Repeat the process for the people from 1200-1250 and create a second Pajek ﬁle.
 Open your Social Network program and “Draw” the results. In this example we use Pajek:
 
-{image omitted}
-
-
-
-
----
-
-Chapter : Advanced Query Techniques
-
 The initial layout for visualizing networks in Pajek is “Circular.” A more useful layout for
 looking at groups of kinship networks is to select “Separate Components” in the “Kamada-
 Kawai” layout listings.
 When one select and closely looks at the components of the kinship networks for men
-from Putian who passed an examination for the years - and -, one gets:
-Putian Examination Kinship Networks, -
+from Putian who passed an examination for the years 1050-1100 and 1200-1250, one gets:
+Putian Examination Kinship Networks, 1050-1100
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : Advanced Query Techniques
-
-Putian Examination Kinship Networks, -
+Putian Examination Kinship Networks, 1200-1250
 Note that by the later period, the “principal component” (the largest component in the
 network) has grown to include not only a Fang 方, Chen 陳, and Lin 林 clan, but also
 members of Zheng 鄭 and Gu 顧 clans. The Song 宋 surname largely has disappeared. In the
@@ -3911,97 +2698,61 @@ queries, you can learn more about the formalisms to help you work with the data 
 In order to use the Query Designer, you will need some knowledge of the tables in
 CBDB and their relations to one another. We have simpliﬁed some of the tasks by creating a
 set of tables that are “denormalized,” that is, where we have added descriptive ﬁelds to explain
-the codes in the ﬁelds that rely on IDs. For example, the table BIOG_ADDR_DATA records
+the codes in the ﬁelds that rely on IDs. For example, the table `BIOG_ADDR_DATA` records
 lists of places associated with individuals: where they were born, where their “basic aﬃliation”
 was, where they moved, where they were buried, etc. The key information for each record,
 however, is a set of three codes: a person ID, an address ID, and an address type ID. We have
-created a second table, ZZZ_BIOG_ADDR_DATA, that takes information from other
-tables (BIOG_MAIN, ADDR_CODES, BIOG_ADDR_CODES) to give the name of the
+created a second table, `ZZZ_BIOG_ADDR_DATA`, that takes information from other
+tables (`BIOG_MAIN`, `ADDR_CODES`, `BIOG_ADDR_CODES`) to give the name of the
 person, the name of the place, and the description of the type of address, along with other
 
-{image omitted}
-
-
-
-
----
-
-Chapter : Advanced Query Techniques
-
 useful data. Using these tables with descriptions and codes simpliﬁes the task of building a
 useful query. The tables are:
-. ZZZ_ALT_NAME_DATA
+1. `ZZZ_ALT_NAME_DATA`
 (ﬁlls in alternate name type)
-. ZZZ_BIOG_ADDR_DATA
+2. `ZZZ_BIOG_ADDR_DATA`
 (ﬁlls in address and address type)
-. ZZZ_BIOG_MAIN
+3. `ZZZ_BIOG_MAIN`
 (ﬁlls in nianhao, ethnicity)
-. ZZZ_ENTRY_DATA
+4. `ZZZ_ENTRY_DATA`
 (ﬁlls in entry type)
-. ZZZ_KIN_BIOG_ADDR
+5. `ZZZ_KIN_BIOG_ADDR`
 (this is the table for kinship, but it also provides the main entry for biographical
 address)
-. ZZZ_NONKIN_BIOG_ADDR
+6. `ZZZ_NONKIN_BIOG_ADDR`
 (this is the table for associations, but it also provides the main entry for biographical
 address)
-. ZZZ_POSTED_TO_ADDR_DATA
+7. `ZZZ_POSTED_TO_ADDR_DATA`
 (ﬁll in address information)
-. ZZZ_POSTED_TO_OFFICE_DATA
+8. `ZZZ_POSTED_TO_OFFICE_DATA`
 (ﬁlls in oﬃce information)
-. ZZZ_TEXT_DATA
+9. `ZZZ_TEXT_DATA`
 (ﬁlls in text data)
 I. An Example:
 The mode of entry into government of near kin of the successful jinshi
-degree candidates of the  examination
+degree candidates of the 1148 examination
 How might one use an SQL query to determine how many of the people who passed the jinshi
-examination in  (for which we have a complete list) had close relatives who had entered
+examination in 1148 (for which we have a complete list) had close relatives who had entered
 government service?
-. In the Create menu (next to the Home tab at the top of the main screen) , Select Query
+1. In the Create menu (next to the Home tab at the top of the main screen) , Select Query
 Design:
 
-
-
----
-
-Chapter : Advanced Query Techniques
-
-In the “Show Table” window, select ZZZ_ENTRY_DATA and click Add
-. Double-click on c_personid, c_entry_code, and c_year to add them to the query.
+In the “Show Table” window, select `ZZZ_ENTRY_DATA` and click Add
+2. Double-click on c_personid, c_entry_code, and c_year to add them to the query.
 Unclick the “Show” check-box for c_entry_code so that you can next specify a value but
 have the ﬁeld not appear in the results of the query, since in every record, the value of the
 ﬁeld will be the same.
 
-{image omitted}
-
-
-
-
----
-
-Chapter : Advanced Query Techniques
-
-. Then in “Criteria” specify the value  for c_entry_code (jinshi), and the year .
-. Check the results by right-clicking on the top border of the Query form and switching to
+3. Then in “Criteria” specify the value 36 for c_entry_code (jinshi), and the year 1148.
+4. Check the results by right-clicking on the top border of the Query form and switching to
 Datasheet View:
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : Advanced Query Techniques
-
-. There are  records. (Please note that as CBDB adds data, these results will change.)
-. Now add the kinship table ZZZ_KIN_BIOG_ADDR by clicking on Show Table along
-the Query Tools menu at the top of the screen and select ZZZ_KIN_BIOG_ADDR from the
+5. There are 273 records. (Please note that as CBDB adds data, these results will change.)
+6. Now add the kinship table `ZZZ_KIN_BIOG_ADDR` by clicking on Show Table along
+the Query Tools menu at the top of the screen and select `ZZZ_KIN_BIOG_ADDR` from the
 "Show Table" window:
 a. Create a link between the two tables by clicking on c_personid in
-ZZZ_ENTRY_DATA and dragging it to the c_personid in ZZZ_KIN_BIOG_ADDR.
+`ZZZ_ENTRY_DATA` and dragging it to the c_personid in `ZZZ_KIN_BIOG_ADDR`.
 The query builder may ask you to conﬁrm that you want to select only those pairs of
 records from the two tables which share the same person IDs.
 b. From the kinship table, add the following ﬁelds:
@@ -4014,70 +2765,25 @@ c_marstep (the number of marriage relations involved in the kinship relation)
 c_colstep (the number of brother/sister relations involved in the kinship relation)
 c_link_desc (the English description of the kinship relation)
 c_link_chn (the Chinese description of the kinship relation)
-c. Set the limit for generations up (c_upstep) to  (i.e., FF, FFB, etc.)
-Set the limit for generations down (c_dwnstep) to  (i.e, we want to look only at
+c. Set the limit for generations up (c_upstep) to 2 (i.e., FF, FFB, etc.)
+Set the limit for generations down (c_dwnstep) to 0 (i.e, we want to look only at
 ancestors)
-Set the limit for aﬃnes (c_marstep) to 
+Set the limit for aﬃnes (c_marstep) to 0
 
-{image omitted}
+Set the limit for brother/sister (c_colstep) to at most 1
+d. Repeat this process, but allow cousins (i.e. FBS or FFBS: 1 down step, at least 1 up)
+6. Check the results: There are 621 relatives that meet the criteria
 
-
-
-
----
-
-Chapter : Advanced Query Techniques
-
-Set the limit for brother/sister (c_colstep) to at most 
-d. Repeat this process, but allow cousins (i.e. FBS or FFBS:  down step, at least  up)
-. Check the results: There are  relatives that meet the criteria
-
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : Advanced Query Techniques
-
-. Now add a secondversion of the ZZZ_ENTRY_DATA table and link that table to the
-ZZZ_KIN_BIOG_ADDR table by making c_node_id = c_personid:
-. Add the two ﬁelds c_entry_desc and c_entry_desc_chn from ZZZ_ENTRY_DATA_ (to
+7. Now add a secondversion of the `ZZZ_ENTRY_DATA` table and link that table to the
+`ZZZ_KIN_BIOG_ADDR` table by making c_node_id = c_personid:
+8. Add the two ﬁelds c_entry_desc and c_entry_desc_chn from ZZZ_ENTRY_DATA_1 (to
 get the mode of entry of the kin) and check the results:
- kin from the  initial degree recipients have data on how they entered oﬃcialdom
+86 kin from the 273 initial degree recipients have data on how they entered oﬃcialdom
 
-{image omitted}
+9. Simply adding a 1 to the c_marstep will allow one to look at aﬃnal relations as well. Using
+the criterion “<2” means that a c_marstep of either 0 or 1 in the record will be acceptable:
+This produces 6 additional records for a total of 92.
 
-
-{image omitted}
-
-
-
-
----
-
-Chapter : Advanced Query Techniques
-
-. Simply adding a  to the c_marstep will allow one to look at aﬃnal relations as well. Using
-the criterion “<” means that a c_marstep of either  or  in the record will be acceptable:
-This produces  additional records for a total of .
-
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-Chapter : Advanced Query Techniques
-
 II. Some Useful Additional Procedures for Queries
 A. Null Information can be Useful
 In the above query, we dealt only with those relatives for whom information about their mode
@@ -4087,46 +2793,28 @@ helps clarify the percentage for whom we have data.
 Our initial design looked like:
 We need to change the way Access selects its records. To do this we need to modify
 the link between theentry datafor the kin and thekin themselves, which we created by
-equating c_node_id (i.e., the ID for the kin) in ZZZ_KIN_BIOG_ADDR with c_personid in
-ZZZ_ENTRY_DATA_, the second copy of ZZZ_ENTRY_DATA you added to the query.
-ZZZ_KIN_BIOG_ADDR. c_node_id = ZZZ_ENTRY_DATA_. c_personid
+equating c_node_id (i.e., the ID for the kin) in `ZZZ_KIN_BIOG_ADDR` with c_personid in
+ZZZ_ENTRY_DATA_1, the second copy of `ZZZ_ENTRY_DATA` you added to the query.
+`ZZZ_KIN_BIOG_ADDR`. c_node_id = ZZZ_ENTRY_DATA_1. c_personid
 To modify that link, double-click on the line connecting c_node_id and c_personid. This will
 open a dialog box:
 
-{image omitted}
-
-
-
-
----
-
-Chapter : Advanced Query Techniques
-
-Select option  and click OK. Note the arrow pointing to c_personid. This arrow indicates a
+Select option 2 and click OK. Note the arrow pointing to c_personid. This arrow indicates a
 “left join” in the language of SQL. This left join includes all the records from
-ZZZ_KIN_BIOG_ADDR (the left table) that match the other query criteria as well as the
-ﬁelds from ZZZ_ENTRY_DATA_ (the right table) where there is a match in kin IDs and
+`ZZZ_KIN_BIOG_ADDR` (the left table) that match the other query criteria as well as the
+ﬁelds from ZZZ_ENTRY_DATA_1 (the right table) where there is a match in kin IDs and
 entry IDs. (Left and Right are determined by the order in which the tables are linked.)
-When we execute the query, we get records for all the initial  kin.
+When we execute the query, we get records for all the initial 621 kin.
 B. The TablesFields Table
 For getting information on additional people involved in various types of social interactions,
 you need to know which ﬁelds in a table refer to IDs for people. When in doubt, you can open
 the TablesFields table from the list of tables on the left of the main Access interface and look
-for the ﬁelds in the table you want to explore. Those that have “BIOG_MAIN” in the
+for the ﬁelds in the table you want to explore. Those that have “`BIOG_MAIN`” in the
 “foreign key” column and “c_personid” in the ForeignKeyBase column refer to people.2 For
-example, in ASSOC_DATA, we have:
+example, in `ASSOC_DATA`, we have:
 2 In a normalized database, “foreign key” simply refers to those ﬁelds that use the IDs deﬁned (as primary keys) in
 other tables.
 
-{image omitted}
-
-
-
-
----
-
-Chapter : Advanced Query Techniques
-
 Among all these, the following are IDs of people:
 c_assoc_claimer_id (the ID of the person claiming the existence of the association)
 c_assoc_id (the ID of the associate)
@@ -4136,14 +2824,7 @@ c_kin_id (the ID of the kin of the main person in the record through who the ass
 exists, if any)
 c_personid (the person whom the record is about)
 
-{image omitted}
-
-
-
-
----
-
-
+128
 Appendices
 Appendix A: Installing the MS Access Files
 In order to keep the database ﬁles within the two gigabyte limit for Microsoft Access ﬁles,
@@ -4154,54 +2835,37 @@ between the User and Base ﬁles that you have installed in a shared directory. 
 or you need to recreate the link when you download new data ﬁles, the Navigation pane
 provides a way to recreate the links.
 To install the MS Access database
-. Create a folder into which to extract the four ﬁles that you have downloaded from the
+1. Create a folder into which to extract the four ﬁles that you have downloaded from the
 CBDB website. Extract the ﬁles.
-. Double-click on the User ﬁle to open it in Microsoft Access. You will see:
+2. Double-click on the User ﬁle to open it in Microsoft Access. You will see:
 Note the arrows next to most of the tables in the list on the left side of the screen. The arrow
 indicates that the table is a linked table from the Base ﬁles.
-. Double-click on any linked table, and if the table is successfully linked, it will open.
+3. Double-click on any linked table, and if the table is successfully linked, it will open.
 If the link is broken, you will see the message:
 
-{image omitted}
-
-
-
-
----
-
 Appendix A: Installing the MS Access Files
-
-. If you get an error message, double-check that the three data ﬁles are in the same directory
+129
+4. If you get an error message, double-check that the three data ﬁles are in the same directory
 as the User ﬁle. If they are, write down the name of one of the data ﬁles, e.g.
-CBDB__DATA.mdb. The date “” (in YYYYMMDD format) gives
+CBDB_20210225_DATA1.mdb. The date “20210225” (in YYYYMMDD format) gives
 the date of the data release.
-. Next, click on the “Relink Tables” command button in the Navigation Pane. This will
+5. Next, click on the “Relink Tables” command button in the Navigation Pane. This will
 open a form that will ask for the date of the data release:
 Write the date into the form and click “OK.” The form will relink the tables.
-. The User ﬁle is now ready to use.
+6. The User ﬁle is now ready to use.
 
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
-
-
+130
 Appendix B: Updating the Visual Basic Environment (if necessary)
 Adding References
 CBDB uses a variety of Visual Basic resources that are not part of the default MS Access Visual
 Basic environment. If your eﬀort to run a routine produces an error about an undeﬁned VB
 object, you may need to double-check the “References” used by Visual Basic.
 To do this:
-. Under “Database Tools” in the main Access window, select Visual Basic. This will launch
+1. Under “Database Tools” in the main Access window, select Visual Basic. This will launch
 the Visual Basic editor.
-. In the VB editor, click on the menu item “Tools” and then “References…” You will see
+2. In the VB editor, click on the menu item “Tools” and then “References…” You will see
 something like:
-. If you do not see the same references checked, please scroll down the list and make your
+3. If you do not see the same references checked, please scroll down the list and make your
 “References” list match this one. You may encounter a complaint about duplicated
 resources. In that case, you will see that your initial checked list has components that are not
 on this list. Uncheck them and try again.
@@ -4211,71 +2875,50 @@ select an association in LookAtAssociations, this is because you do not have a �
 (MSCOMTL.ocx) added to your Visual Basic environment.
 To Fix:
 
-{image omitted}
-
-
-
-
----
-
 Appendix B: Updating the Visual Basic Environment
-
-. Under “Database Tools” in the main Access window, select Visual Basic. This will launch
+131
+1. Under “Database Tools” in the main Access window, select Visual Basic. This will launch
 the Visual Basic editor.
-. In the VB editor, click on the menu item “Tools” and then “References…” You will see
+2. In the VB editor, click on the menu item “Tools” and then “References…” You will see
 something like:
-. If you see “Microsoft Windows Common Controls . (SP),” then your problem may
+3. If you see “Microsoft Windows Common Controls 6.0 (SP6),” then your problem may
 something else. Please uncheck the check box, close the window, exit the VB editor, close
-Access, then reopen Access, return to the editor, and go to step  below. If this does not let
+Access, then reopen Access, return to the editor, and go to step 5 below. If this does not let
 TreeView work, please let us know.
-. If you do NOT see the line, please scroll down the list. If you ﬁnd the line, click on it to
+4. If you do NOT see the line, please scroll down the list. If you ﬁnd the line, click on it to
 check the box. Click OK.
-. If you do not ﬁnd the Common Controls . on the list, you will need to add it.
+5. If you do not ﬁnd the Common Controls 6.0 on the list, you will need to add it.
 a. Click on “Browse…”
-b. If you are using Windows , go to the subdirectory SysWOW in the Windows
+b. If you are using Windows 7, go to the subdirectory SysWOW64 in the Windows
 directory.
-If you are using Windows XP, go to the subdirectory System.
+If you are using Windows XP, go to the subdirectory System32.
 c. Change the “Files of type” to: “ActiveX Controls (*.ocx)”
 d. You should see:
 
-{image omitted}
-
-
-
-
----
-
 Appendix B: Updating the Visual Basic Environment
-
+132
 e. Click on “MSCOMCTL.OCX”
 f. Click on “Open”
-g. Make sure the check-box for Common Controls . is checked in the References
+g. Make sure the check-box for Common Controls 6.0 is checked in the References
 window, then click “OK.”
-. If you do not ﬁnd MSCOMCTL.OCX in SysWOW, you will need to add it.
+6. If you do not ﬁnd MSCOMCTL.OCX in SysWOW64, you will need to add it.
 a. The CBDBPatch.rar ﬁle that you downloaded from the CBDB website contains a copy
 of the OCX ﬁle as well as these instructions.
-b. Copy the ﬁle MSCOMCTL.OCX to C:\WINDOWS\SysWOW
+b. Copy the ﬁle MSCOMCTL.OCX to C:\WINDOWS\SysWOW64
 c. Now you will need to register the ﬁle:
-. Click on the Windows “Start” Button.
-. Select “All Programs” and then “Accessories”
-. Right-click on “Command Prompt” and click on “Run as Administrator.”
-. Click “yes” when the system asks you if it can proceed.
-. In the Command Prompt window, type:
+1. Click on the Windows “Start” Button.
+2. Select “All Programs” and then “Accessories”
+3. Right-click on “Command Prompt” and click on “Run as Administrator.”
+4. Click “yes” when the system asks you if it can proceed.
+5. In the Command Prompt window, type:
 REGSVR32 C:\Windows\sysWOW64\MSCOMCTL.OCX
-. Hit “Enter” to run the program.
-. Close the Command Prompt window.
-d. Now perform the steps listed in () - () on the ﬁrst page.
-. To exit the Visual Basic Editor, click on the menu item “File” and then on “Close and
+6. Hit “Enter” to run the program.
+7. Close the Command Prompt window.
+d. Now perform the steps listed in (1) - (5) on the ﬁrst page.
+7. To exit the Visual Basic Editor, click on the menu item “File” and then on “Close and
 Return to Microsoft Access.”
 
-{image omitted}
-
-
-
-
----
-
-
+133
 Appendix C: Installing the SQLite CBDB database on a Macintosh
 For Apple users (or Linux users, who probably do not need these instructions), there is a
 stand-alone version of the CBDB database using the SQLite format.
@@ -4286,33 +2929,19 @@ ODBC driver for SQLite. (You may need to download these from the web, or you may
 decide to leave these steps to your information technology specialist, if you have access to one.
 The ODBC driver for SQLite can be downloaded from http://www.ch-
 werner.de/sqliteodbc/ ).
-. Install the Macintosh ODBC Administrator and the driver for SQLite.
-. In “Finder,” go to Utilities and open the ODBC Administrator.
-. Go to User DSN and add “CBDBFull” as an SQLite database:
-. Click on “Conﬁgure” to set up the connector:
-
-{image omitted}
-
-
-{image omitted}
-
-
-
-
----
+1. Install the Macintosh ODBC Administrator and the driver for SQLite.
+2. In “Finder,” go to Utilities and open the ODBC Administrator.
+3. Go to User DSN and add “CBDBFull” as an SQLite database:
+4. Click on “Conﬁgure” to set up the connector:
 
 Appendix C: Installing SQLite CBDB on the Mac
-
-. Add the keyword “database” and use the full path for the database ﬁle as the “value.”
-. Click on OK. The window will close. Then click on Apply.
-. The SQLite version of CBDB should be ready to use with OpenOﬃce or whatever
+134
+5. Add the keyword “database” and use the full path for the database ﬁle as the “value.”
+6. Click on OK. The window will close. Then click on Apply.
+7. The SQLite version of CBDB should be ready to use with OpenOﬃce or whatever
 software interface you prefer.
 
-
-
----
-
-
+135
 Appendix D: Kinship Simpliﬁcation Table
 Simpliﬁcations that are applied in all Searches:
 Kinship Term
@@ -4429,12 +3058,8 @@ HDF
 F
 H
 
-
-
----
-
 Appendix D: Change Log for CBDB
-
+136
 HDM
 F
 -
@@ -4544,12 +3169,8 @@ ZSM
 B
 Z
 
-
-
----
-
 Appendix D: Change Log for CBDB
-
+137
 Appendix E. Change Log for CBDB
 The Access version of CBDB was signiﬁcantly reorganized with the AW release: the data and
 the querying interface are now completely separate and can be updated independently. For all
@@ -4572,44 +3193,40 @@ few problems created by inconsistencies between the versions of SQL in Access an
 SQL Server. Advanced users should consider downloading and installing MS SQL
 Server Management Studio, which gives on direct access to the SQL Server CBDB
 database.
-Build 
+Build 20211110
 Design Change
 In LookAtOﬃce, selecting an oﬃce now provides more information about the dynasty
 of the selected oﬃce.
-Build 
+Build 20210826
 Design Change
 In the Browser for individuals, using pinyin now has three options:
-() lower case: it looks for the string anywhere in the name;
-() upper case: it looks for the string only at the beginnings of words (“Hao” will select
+(1) lower case: it looks for the string anywhere in the name;
+(2) upper case: it looks for the string only at the beginnings of words (“Hao” will select
 both Zhang Hao and Hao Jing;
-() string beginning with “!:” it looks only at the beginning of the surname (just “Hao
+(3) string beginning with “!:” it looks only at the beginning of the surname (just “Hao
 Jing”)
 
-
-
----
-
 Appendix D: Change Log for CBDB
-
-Build 
+138
+Build 20210609
 Bug Fixes:
-. Added additional ﬁelds to ZZ_SCRATCH_BIOG_MAIN (these had been deleted
+1. Added additional ﬁelds to ZZ_SCRATCH_BIOG_MAIN (these had been deleted
 in recreating the SQL Server database from the Access database. I have added the ﬁelds
 to the table in the SupplementalTablesSQL_Server.mdb ﬁle in the Migration subfolder.
-. Removed all references to ZZZ_ALL_BIOG_ADDR, which has been replaced in
-functionality by ZZZ_BIOG_MAIN
-. Added the ﬁeld c_kin_rel_count to ZZ_SCRATCH_KINNET_EDGE.
-. Because Access does not allow sorting of SQL Server tables opened as recordsets,
+2. Removed all references to `ZZZ_ALL_BIOG_ADDR`, which has been replaced in
+functionality by `ZZZ_BIOG_MAIN`
+3. Added the ﬁeld c_kin_rel_count to ZZ_SCRATCH_KINNET_EDGE.
+4. Because Access does not allow sorting of SQL Server tables opened as recordsets,
 replaced all such recordset with sorted queries of the tables.
-Build 
+Build 20210603
 Design Change
-. Created a ﬁlter-by-oﬃce-title function for selecting oﬃces
-. In order to ﬁlter by oﬃce title, I added c_dy, c_dynasty, and c_dynasty_chn both to
+1. Created a ﬁlter-by-oﬃce-title function for selecting oﬃces
+2. In order to ﬁlter by oﬃce title, I added c_dy, c_dynasty, and c_dynasty_chn both to
 ZZ_OFFICE_CODE and to Z_SCRATCH_DUMMY_OC.
 Bug Fixes
-. Cleared the scratch table for status codes when clicking on the highest tree level to
+1. Cleared the scratch table for status codes when clicking on the highest tree level to
 ﬁx a duplicate-value bug.
-Build 
+Build 20210601
 This is the initial version created by using the new CBDB dataset in Access. Since
 some scratch tables are unique to the SQL Server version, I have created an additional
 Access ﬁle SupplementalTablesSQL_Server.mdb with those tables, which need to be
@@ -4620,42 +3237,38 @@ This version dynamically constructs a kinship network for the selected person in
 browser.
 CBDB Interface Version BG:
 Changes:
-. The ability to save and import lists of codes to be used in search has been added to
+1. The ability to save and import lists of codes to be used in search has been added to
 Query Associations, Query Oﬃce Holding, Query by Methods of Entry, Query
 Status and Query Texts and Roles.
-. A sequence ﬁeld for alternative names has been added in the browser.
-. The default value for option "Restrict to Place" for the address ﬁlter in Query Social
+2. A sequence ﬁeld for alternative names has been added in the browser.
+3. The default value for option "Restrict to Place" for the address ﬁlter in Query Social
 Networks is now set to TRUE.
-. A search by oﬃce option has been added to Query Oﬃce Holding
-
-
-
----
+4. A search by oﬃce option has been added to Query Oﬃce Holding
 
 Appendix D: Change Log for CBDB
-
-. The ability to select the biographical address codes one wants to use has been added to
+139
+5. The ability to select the biographical address codes one wants to use has been added to
 Query by Place Associations.
-. This version adds a command button to the browser that dumps the data on a person
+6. This version adds a command button to the browser that dumps the data on a person
 to an HTML ﬁle.
-. A hyperlink ﬁeld has been added to the Sources tab in the browser.
+7. A hyperlink ﬁeld has been added to the Sources tab in the browser.
 Bug Fixes:
-. A bug in the form for selecting entry codes in Query by Methods of Entry in which the
+1. A bug in the form for selecting entry codes in Query by Methods of Entry in which the
 [All] option copied over no records to the code search list has been ﬁxed.
-. A bug in how the dynasties ﬁlter works in Query Pair-wise Associations and Query
+2. A bug in how the dynasties ﬁlter works in Query Pair-wise Associations and Query
 by Methods of Entry has been ﬁxed.
 CBDB Interface Version BF:
 Changes:
-. A Neoj export function has been added to all forms.
-. There is an accumulation of bug ﬁxes in this release.
+1. A Neo4j export function has been added to all forms.
+2. There is an accumulation of bug ﬁxes in this release.
 CBDB Interface Version BE:
 Changes:
-. LookAtTexts, a form for looking at people’s role in the production of texts, has been
+1. LookAtTexts, a form for looking at people’s role in the production of texts, has been
 added.
-. LookAtGroupData, a form to quick collect data on groups of people, has been added.
-Build 
+2. LookAtGroupData, a form to quick collect data on groups of people, has been added.
+Build 20220627
 Design Changes
-. Made the changes necessary for users to export dynasty information from
+1. Made the changes necessary for users to export dynasty information from
 LookAtKinship:
 a. Added c_dy, c_dynasty, c_dynasty_chn, c_kin_dy, c_kin_dynasty, and
 c_kin_dynasty_chn to ZZ_SCRATCH_KIN, ZZ_SCRATCH_KINNET,
@@ -4664,16 +3277,12 @@ ZZ_SCRATCH_GEPHI_NODE_DISTINCT
 b. Added the new ﬁelds to the forms frmZZ_SCRATCH_KIN and
 frmZZ_SCRATCH_KINNET
 c. Revised the code for exporting to UCINet and Gephi
-. Made the changes necessary for users to export dynasty information from
+2. Made the changes necessary for users to export dynasty information from
 LookAtNetworks by revising the code for exporting to UCINet and Gephi
 
-
-
----
-
 Appendix D: Change Log for CBDB
-
-. Created the form LookAtGroupData.
+140
+3. Created the form LookAtGroupData.
 a. Created tables Z_SCRATCH_DUMMY_OF,
 Z_SCRATCH_DUMMY_ENTRY, Z_SCRATCH_DUMMY_BA
 b. Added c_sequence, etc. to ZZ_SCRATCH_ENTRY
@@ -4683,100 +3292,92 @@ ZZ_SCRATCH_GROUP_OFFICE
 ZZ_SCRATCH_GROUP_ENTRY
 ZZ_SCRATCH_GROUP_TEXT
 ZZ_SCRATCH_GROUP_PLACE
-d. Added ﬁelds to ZZZ_BIOG_ADDR_DATA
+d. Added ﬁelds to `ZZZ_BIOG_ADDR_DATA`
 Created the table ZZ_SCRATCH_BIOG_ADDR_DATA
-e. Added a routine to rebuild ZZZ_BIOG_ADDR_DATA to DATA
-Build 
-. A “Simplify Kinship Terms” option has been added to Query Kinship.
-. A “Store Person ID” button has been added to the Browser, so that once the user has
+e. Added a routine to rebuild `ZZZ_BIOG_ADDR_DATA` to DATA3
+Build 20220425
+1. A “Simplify Kinship Terms” option has been added to Query Kinship.
+2. A “Store Person ID” button has been added to the Browser, so that once the user has
 selected a person, that person can be recalled for use in Query Kinship, Query Social
 Networks, and Query Pair-wise Association by simply clicking on the “Recall
 Person IDs” command button.
-Build 
-. Information on sources for records has been added to all the forms.
+Build 20220315
+1. Information on sources for records has been added to all the forms.
 CBDB Interface Version BD:
 Changes:
-. The forms for selecting codes for association, entry into government service, oﬃce
+1. The forms for selecting codes for association, entry into government service, oﬃce
 titles, and status now support the multi-select option. The user can click on items in a
 list to select those that are of interest.
-. The user can now filter oﬃce titles by name when selecting oﬃce. This feature replaces
+2. The user can now filter oﬃce titles by name when selecting oﬃce. This feature replaces
 the earlier search function. Because the ﬁltering produces a list of oﬃces from diﬀerent
 dynasties, the form now includes information about the dynasty associate with each
 oﬃce name.
-Build 
+Build 20211102
 Design Change
-. In LookAtOﬃce, selecting an oﬃce now provides more information about the
+1. In LookAtOﬃce, selecting an oﬃce now provides more information about the
 dynasty of the selected oﬃce.
-. In the Browser for individuals, one can now search by Surname + Oﬃce Title in
+2. In the Browser for individuals, one can now search by Surname + Oﬃce Title in
 either Chinese or in pinyin.
-Build 
+Build 20210826
 Design Change
-
-
-
----
 
 Appendix D: Change Log for CBDB
-
+141
 In the Browser for individuals, using pinyin now has three options:
-() lower case: it looks for the string anywhere in the name;
-() upper case: it looks for the string only at the beginnings of words (“Hao” will select
+(1) lower case: it looks for the string anywhere in the name;
+(2) upper case: it looks for the string only at the beginnings of words (“Hao” will select
 both Zhang Hao and Hao Jing;
-() string beginning with “!:” it looks only at the beginning of the surname (just “Hao
+(3) string beginning with “!:” it looks only at the beginning of the surname (just “Hao
 Jing”)
-Build 
+Build 20210609
 Bug Fixes
-. Removed all references to ZZZ_ALL_BIOG_ADDR, which has been replaced in
-functionality by ZZZ_BIOG_MAIN
-. Added the ﬁeld c_kin_rel_count to ZZ_SCRATCH_KINNET_EDGE.
-Build 
+1. Removed all references to `ZZZ_ALL_BIOG_ADDR`, which has been replaced in
+functionality by `ZZZ_BIOG_MAIN`
+2. Added the ﬁeld c_kin_rel_count to ZZ_SCRATCH_KINNET_EDGE.
+Build 20210606
 Bug Fixes
-. Changed all references to TEXT_DATA to BIOG_TEXT_DATA in the Admin
+1. Changed all references to TEXT_DATA to `BIOG_TEXT_DATA` in the Admin
 Version of BD (the Used BC version had already been corrected).
- (Initial build for BD)
+20210603 (Initial build for BD)
 Design Change
-. Created a ﬁlter-by-oﬃce-title function for selecting oﬃces
-. In order to ﬁlter by oﬃce title, I added c_dy, c_dynasty, and c_dynasty_chn both to
+1. Created a ﬁlter-by-oﬃce-title function for selecting oﬃces
+2. In order to ﬁlter by oﬃce title, I added c_dy, c_dynasty, and c_dynasty_chn both to
 ZZ_OFFICE_CODE and to Z_SCRATCH_DUMMY_OC.
 Bug Fixes
-. Cleared the scratch table for status codes when clicking on the highest tree level to
+1. Cleared the scratch table for status codes when clicking on the highest tree level to
 ﬁx a duplicate-value bug.
 CBDB Interface Version BC:
 Changes:
-. Index Place is now handled the way Index Year is: both are added to BIOG_MAIN.
-Index Year derives from birth year or death year (values in BIOG_MAIN), if they are
+1. Index Place is now handled the way Index Year is: both are added to `BIOG_MAIN`.
+Index Year derives from birth year or death year (values in `BIOG_MAIN`), if they are
 known, and, if not, from data elsewhere in the system. A source code for the index
-year value is included in BIOG_MAIN. Similarly, Index Place is derived from data in
-BIOG_ADDR_DATA, and the type code for Index Place is included in BIOG_MAIN.
-As a result, users should use ZZZ_BIOG_MAIN instead of ZZZ_ALL_BIOG_ADDR
+year value is included in `BIOG_MAIN`. Similarly, Index Place is derived from data in
+`BIOG_ADDR_DATA`, and the type code for Index Place is included in `BIOG_MAIN`.
+As a result, users should use `ZZZ_BIOG_MAIN` instead of `ZZZ_ALL_BIOG_ADDR`
 as the table for building queries about people
-. Because scholars may prefer to use diﬀerent categories of place association to deﬁne the
+2. Because scholars may prefer to use diﬀerent categories of place association to deﬁne the
 Index Place, the BC version of CBDB includes a form accessible from the Navigation
 Pane through which the user can change the hierarchy of places associations used to
 deﬁne Index Place. (See the explanation under the heading “Navigation Pane.”
-. Searching by dynasty behaves a bit diﬀerently. When one speciﬁes that the “from” and
+3. Searching by dynasty behaves a bit diﬀerently. When one speciﬁes that the “from” and
 “to” dynasties are the same, for example from Yuan 元 to Yuan, the search routines
-now look for data with that particular code (Yuan = ) rather than for all dynasties that
-
-
-
----
+now look for data with that particular code (Yuan = 18) rather than for all dynasties that
 
 Appendix D: Change Log for CBDB
-
-have a temporal overlap with the selected dynasty (for instance, the Yuan [-],
-overlaps with the Song dynasty [-]).
-. To select codes for Association, Entry, Oﬃce, Place, and Status, CBDB now allow
+142
+have a temporal overlap with the selected dynasty (for instance, the Yuan [1234-1367],
+overlaps with the Song dynasty [960-1279]).
+4. To select codes for Association, Entry, Oﬃce, Place, and Status, CBDB now allow
 the user to select more than one category at a time. As a result, the form behaves a bit
 diﬀerently than before: the form always moves to the bottom of the list for any type in
 the right-hand list box, so that the user will need to scroll up to see the entire list. Also,
 while the search function still works, it does not highlight the target record.
-. Various bugs were ﬁxed in the behavior of the forms. In particular, the address tree
+5. Various bugs were ﬁxed in the behavior of the forms. In particular, the address tree
 now does a better job checking and sorting out subordinate relations between
 administrative units.
 CBDB Interface Version BB:
 Changes:
-. The Index Year has been signiﬁcantly revised. It now represents the birth year of the
+1. The Index Year has been signiﬁcantly revised. It now represents the birth year of the
 individual. For individuals for whom the year of birth is not known, CBDB uses a
 series of calculations based on other data (see the main text for a detailed explanation).
 While CBDB has derived the index year for individuals in the past, it now uses derived
@@ -4784,14 +3385,14 @@ index years to derive yet more index years when it is possible. The Index Year T
 Code preserves the steps in the derivation. Please note that each iteration is yet more
 inaccurate, but we believe that for running queries an index year that is oﬀ by a decade
 is still better than having no index year at all.
-. CBDB is now explicit that the address codes used for searches is an Index Place, a
+2. CBDB is now explicit that the address codes used for searches is an Index Place, a
 construct analogous to Index Year. While the address codes used for searches always
 have been assigned according to a hierarchy of place information, we believe that it is
 better to be explicit about the status of index place. Even the “basic place aﬃliation”
 (jiguan籍貫) has problems in its historical interpretation, so that it always remains
 useful to be circumspect about the assignment of index places. They are largely—but
 not entirely—reliable.
-. The approach to kinship searches has been revised. In concatenating kinship relations
+3. The approach to kinship searches has been revised. In concatenating kinship relations
 in iterative searches, CBDB now automatically simpliﬁes eight relationships:
 BB (brother’s brother)  Brother
 ZB (sister’s brother)  Brother
@@ -4802,53 +3403,45 @@ SZ (son’s sister)  Daughter
 DB (daughter’s brother)  Son
 DZ (daughter’s sister)  Daughter
 The eﬀect of this change is that the “collateral” parameter in the relationship decreases by
-, so that the relationship (and the person identiﬁed through the relationship) may now
+1, so that the relationship (and the person identiﬁed through the relationship) may now
 remain within the search limits speciﬁed by the user. Moreover, CBDB may identify
 
-
-
----
-
 Appendix D: Change Log for CBDB
-
+143
 additional new relations of the newly permitted individual who would not have
 appeared in the earlier version of the search.
-. CBDB now has a MS Access “Look at Status” form to allow users to explore categories
+4. CBDB now has a MS Access “Look at Status” form to allow users to explore categories
 of social distinction.
-. All the MS Access query forms now permit using dynasty as a search parameter.
+5. All the MS Access query forms now permit using dynasty as a search parameter.
 There remain many individuals for which CBDB lacks the data to assign an index year,
 and while searches by dynasty deﬁne a rather broad time period, still it provides some
 temporal speciﬁcation that we believe may prove useful.
 CBDB Interface Version BA:
 Changes:
-. This release ﬁxes a major bug in the way that the XY count is counted when outputting
+1. This release ﬁxes a major bug in the way that the XY count is counted when outputting
 data to Gephi.
-. This release adds the ability to export to Gephi in the Query Associations and Query
+2. This release adds the ability to export to Gephi in the Query Associations and Query
 Pair-Wise Associations forms.
-. The output to Gephi now includes the XY coordinates to allow users to take advantage
+3. The output to Gephi now includes the XY coordinates to allow users to take advantage
 of the Geographic Distribution visualization add-on in Gephi.
 CBDB Interface Version AZ:
 Changes:
-. Removal of the ability to ﬁlter by superior administrative unit when selecting places.
-. Addition of the ability to include or disallow the inclusion of subordinate
+1. Removal of the ability to ﬁlter by superior administrative unit when selecting places.
+2. Addition of the ability to include or disallow the inclusion of subordinate
 administrative units when running queries that involve restrictions to speciﬁc places.
 CBDB Interface Version AY:
-This release is eﬀective as of --. Additions include:
-, Michael Fuller updated address selector to allow users to ﬁlter place names by superior
+This release is eﬀective as of 2019-04-29. Additions include:
+1, Michael Fuller updated address selector to allow users to ﬁlter place names by superior
 administrative units.
-, Edith Enright systematically reﬁned our label translations in Access query interface.
+2, Edith Enright systematically reﬁned our label translations in Access query interface.
 CBDB Data Release 20220312
 Changes:
-. [To be Added]
-Build 
-. Source information was added to ZZZ_NONKIN_BIOG_ADDR
-
-
-
----
+1. [To be Added]
+Build 20220315
+1. Source information was added to `ZZZ_NONKIN_BIOG_ADDR`
 
 Appendix D: Change Log for CBDB
-
+144
 CBDB Data Release 20211222
 Changes:
 1. 19,286 new persons and their 3,689 alternative names, 19,576 records of entry data from the
@@ -4874,7 +3467,7 @@ Qing dynasties from local gazetteers.
 gazetteers were created by CBDB crowdsourcing contributors.
 CBDB Data Release 20201110
 Changes:
-. The Index Year has been signiﬁcantly revised. It now represents the birth year of the
+1. The Index Year has been signiﬁcantly revised. It now represents the birth year of the
 individual. For individuals for whom the year of birth is not known, CBDB uses a
 series of calculations based on other data. While CBDB has derived the index year for
 individuals in the past, it now uses derived index years to derive yet more index years
@@ -4882,260 +3475,232 @@ when it is possible. The Index Year Type Code preserves the steps in the
 derivation. Please note that each iteration is yet more inaccurate, but we believe that
 for running queries an index year that is oﬀ by a decade is still better than having no
 index year at all.
-.  garrison addresses for Ming dynasty. (Contributor: Ruoran Cheng)
-
-
-
----
+2. 417 garrison addresses for Ming dynasty. (Contributor: Ruoran Cheng)
 
 Appendix D: Change Log for CBDB
-
-.  social status records for thinkers. (Contributor: Mengxi Bi)
-. Kinship and entry data mistakes were ﬁxed. (Contributors: Moqin Zhou, Song Chen)
-. Added TEXT_INSTANCE_DATA table to collect version information of books.
+145
+3. 376 social status records for thinkers. (Contributor: Mengxi Bi)
+4. Kinship and entry data mistakes were ﬁxed. (Contributors: Moqin Zhou, Song Chen)
+5. Added `TEXT_INSTANCE_DATA` table to collect version information of books.
 (Contributors: Edith Enright, Song Chen)
-. Change TEXT_DATA table name to BIOG_TEXT_DATA.
+6. Change TEXT_DATA table name to `BIOG_TEXT_DATA`.
 CBDB Data Release 20190424
 Changes:
-. , new social assignations for Tang and Five Dynasties from The communication
-poems for Tang and Five Dynasties ﬁgures唐五代人交往詩索引 with , new ﬁgures,
- new alternative names and  new kinship relationships etc. (contributor: Shuhua
+1. 18,124 new social assignations for Tang and Five Dynasties from The communication
+poems for Tang and Five Dynasties ﬁgures唐五代人交往詩索引 with 4,380 new ﬁgures,
+702 new alternative names and 671 new kinship relationships etc. (contributor: Shuhua
 Zhang 張淑華, Qiong Yang 楊瓊, Yongqin Li 李永琴, Chengguo Pei 裴成國)
-. , new Tang addresses with , belongs data from General History of Chinese
+2. 5,895 new Tang addresses with 11,844 belongs data from General History of Chinese
 Administrative Divisions中國行政區劃通史. (contributor: Chao Wei 魏
 超, Yifan Wang 王一帆, Yun Xing 邢雲, Wen Luo 駱文, Yuying Yuan 袁鈺瑩)
-. , new address names with  new address belongs data for Jin Dynasty.
+3. 1,200 new address names with 670 new address belongs data for Jin Dynasty.
 (contributor: Jingjia Qiu 邱靖嘉)
-. , new oﬃce titles for Jin dynasty. (contributor: Jingjia Qiu 邱靖嘉)
+4. 1,765 new oﬃce titles for Jin dynasty. (contributor: Jingjia Qiu 邱靖嘉)
 CBDB Data Release 20180831
 Changes:
-. , new persons added with , entries jiguan data, , other entries, and ,
+1. 5,300 new persons added with 5,300 entries jiguan data, 4,000 other entries, and 2,300
 alternative names from the Name Authority Database at Academia Sinica;
-. , person ID entries are mapped between CBDB and the Name Authority Database;
-. Bugs were ﬁxed in pinyin entries and jiguan data etc.
+2. 8,000 person ID entries are mapped between CBDB and the Name Authority Database;
+3. Bugs were ﬁxed in pinyin entries and jiguan data etc.
 CBDB Interface Version AX
-This release is eﬀective as of --. Additions include:
-. An important feature of kinship network algorithm was added. The duplicate records
+This release is eﬀective as of 2018-12-14. Additions include:
+1. An important feature of kinship network algorithm was added. The duplicate records
 for kinship relationships can be calculated correctly in this new algorithm.
-. The query forms now have a Store Person IDs button to save the list of people created
+2. The query forms now have a Store Person IDs button to save the list of people created
 in a query. That stored list of IDs can be recalled for use in other forms (where
 relevant) through a new Recall Person IDs button.
 
-
-
----
-
 Appendix D: Change Log for CBDB
-
+146
 CBDB AW Version:
-This release is eﬀective as of --. Changes to the interface include:
-. Michael Fuller created Relink Tables button on the Navigation panel as a new and
+This release is eﬀective as of 2018-09-01. Changes to the interface include:
+1. Michael Fuller created Relink Tables button on the Navigation panel as a new and
 more eﬃcient mechanism to connect the user interface and the backend data which is
 now in three separate ﬁles with name that indicate the date of release of the data, for
 example CBDB_20190424_DATA1.mdb, CBDB_20190424_DATA2.mdb,
 CBDB_20190424_DATA3.mdb.
-. The database was thoroughly cleaned with the foreign key mechanism (contributor: Fu
+2. The database was thoroughly cleaned with the foreign key mechanism (contributor: Fu
 Qunchao 傅群超);
 20170829CBDB AV Version:
-This release is eﬀective as of --. Additions include:
+This release is eﬀective as of 2017-09-07. Additions include:
 Data
-. , new persons with , posting from local gazetteers;
-.  Wuzhou jinshi degree holders from Song to Yuan dynasties;
-.  ﬁgures with , kinship associations and  social associations from 全元文，
+1. 51,551 new persons with 34,447 posting from local gazetteers;
+2. 467 Wuzhou jinshi degree holders from Song to Yuan dynasties;
+3. 841 ﬁgures with 1,725 kinship associations and 381 social associations from 全元文，
 宋濂全集，遜志齋集 etc. (contributor: Yu Wen 于文);
 Interface
-. Michael Fuller and Chen Song has designed a Rerun function in Query Social
+1. Michael Fuller and Chen Song has designed a Rerun function in Query Social
 Networks to run queries using the results from the previous query.
-. A new query function named Query Place Associations.
-. The Oﬃce holding query form now allows the user to select both the place of the
+2. A new query function named Query Place Associations.
+3. The Oﬃce holding query form now allows the user to select both the place of the
 posting and the index place of the oﬃce-holder.
 20170424CBDB AU Version：
-This release is eﬀective as of --. The Access interface has not changed: It
+This release is eﬀective as of 2017-04-25. The Access interface has not changed: It
 remains the AU version, but the data has been updated to the 2010425 release.
 Additions include:
 Data
-.  Wuzhou ﬁgures with  biographical address data, , kinship relations and
+1. 789 Wuzhou ﬁgures with 500 biographical address data, 1,800 kinship relations and
 other data from 全宋文 and 金華府志 (contributor : Du Feiran 杜斐然);
-.  biographical addresses, , kinship relations,  postings and other data from 全
+2. 700 biographical addresses, 3,000 kinship relations, 500 postings and other data from 全
 元文, 宋濂全集 and 藥房樵唱 (contributor : Yu Wen 于文);
 
-
-
----
-
 Appendix D: Change Log for CBDB
-
-. , ﬁgures were connected to the 明清人名權威檔案 database (contributor: Institute
+147
+3. 6,700 ﬁgures were connected to the 明清人名權威檔案 database (contributor: Institute
 of History and Philology, Academia Sinica);
-. Tang bureaucratic tree added (contributor: Lik Hang Tsui 徐力恆)
-. Fixed several mistakes in the bureaucratic and biographical data. Thanks to Chu
+4. Tang bureaucratic tree added (contributor: Lik Hang Tsui 徐力恆)
+5. Fixed several mistakes in the bureaucratic and biographical data. Thanks to Chu
 Pingtzu 祝平次 and Yang Guang 楊光's for reporting them.
 20170310CBDB AU Version：
-This release is eﬀective as of --. Additions include:
+This release is eﬀective as of 2017-03-13. Additions include:
 Data
-. Data on , Tang ﬁgures and their , postings (source: 唐九卿考, 唐刺史考全編);
-. , Tang personid were disambiguated (contributor: Wen Xin 文欣);
-.  ﬁgures from 全元文 (contributor: Yu Wen 于文);
-.  social status data from the Tang Dynasty (source: 唐五代人物傳記資料綜合索
+1. Data on 8,836 Tang ﬁgures and their 15,138 postings (source: 唐九卿考, 唐刺史考全編);
+2. 5,921 Tang personid were disambiguated (contributor: Wen Xin 文欣);
+3. 770 ﬁgures from 全元文 (contributor: Yu Wen 于文);
+4. 1498 social status data from the Tang Dynasty (source: 唐五代人物傳記資料綜合索
 引);
 Interface
-. Updated User Guide with English and Chinese versions (collated by Lik Hang Tsui 徐
+1. Updated User Guide with English and Chinese versions (collated by Lik Hang Tsui 徐
 力恆);
-. Michael Fuller and Chu Ping-tzu rewrote several critical codes in CBDB Access
-Database so that it can run on both -bit and -bit MS Windows;
-. Michael Fuller added import person id list function to the Query Mediated Associations
+2. Michael Fuller and Chu Ping-tzu rewrote several critical codes in CBDB Access
+Database so that it can run on both 32-bit and 64-bit MS Windows;
+3. Michael Fuller added import person id list function to the Query Mediated Associations
 interface.
 20150202CBDB AS Version：
-This release is eﬀective as of --. Additions to previous versions include:
+This release is eﬀective as of 2015-03-18. Additions to previous versions include:
 Data
-. , new persons and , new entry records of Ming and Qing Civil Service
+1. 36,826 new persons and 38,565 new entry records of Ming and Qing Civil Service
 Jinshi Degree holder (source: 明清人物題名碑);
-. , Liao Dynasty oﬃce titles with Liao oﬃce tree (contributor: Cao Liu 曹流);
-. Yuan oﬃce tree (contributor: Yi Ding 丁一, Yu Yue 于月);
-. , Song Yuan Academies (contributor: Stephen P. Ford);
-.  China emperors with their Posthumous Name (謚號), Honoriﬁc name (廟號);
-
-
-
----
+2. 3,142 Liao Dynasty oﬃce titles with Liao oﬃce tree (contributor: Cao Liu 曹流);
+3. Yuan oﬃce tree (contributor: Yi Ding 丁一, Yu Yue 于月);
+4. 1,004 Song Yuan Academies (contributor: Stephen P. Ford);
+5. 272 China emperors with their Posthumous Name (謚號), Honoriﬁc name (廟號);
 
 Appendix D: Change Log for CBDB
-
+148
 Interface
-. Revised Help Files.
-. Place name ﬁlter to select a set of places for search
-. Searching places based on geographic coordinates and proximity
+1. Revised Help Files.
+2. Place name ﬁlter to select a set of places for search
+3. Searching places based on geographic coordinates and proximity
 20140310CBDB AR Version
-This release, on date --, is built upon the Oct.   dataset. Major changes in
+This release, on date 2014-03-10, is built upon the Oct. 8 2013 dataset. Major changes in
 this version include:
 Data
-. , association data from Ming Biographical Materials (明人傳記資料索
+1. 27,000 association data from Ming Biographical Materials (明人傳記資料索
 引)(contributor: Qiaomei Tang 唐巧美 and Hui Cheng 程卉)
-. , entry data from Ming civil service high degree holders (jinshi)
-. , posting data from Ming civil service high degree holders (jinshi)
-. , books from the Ming Qing Women Writers database (MQWW) and Ming
+2. 5,000 entry data from Ming civil service high degree holders (jinshi)
+3. 3,700 posting data from Ming civil service high degree holders (jinshi)
+4. 3,300 books from the Ming Qing Women Writers database (MQWW) and Ming
 Biographical Materials (明人傳記資料索引)
-. , address codes were updated (contributor: Yi Ding 丁一)
+5. 2,800 address codes were updated (contributor: Yi Ding 丁一)
 Interface
-. This release also ﬁxed minor mistakes in the posted_to_oﬃce data and altname data in
+1. This release also ﬁxed minor mistakes in the posted_to_oﬃce data and altname data in
 the previous standalone database.
-. In addition, new search and selection features have been added to the “LookAt” forms as
+2. In addition, new search and selection features have been added to the “LookAt” forms as
 well as greater ﬂexibility in choosing whether to use index years. All the search
 routines have been rewritten in SQL to greatly speed up the searches.
 20131008CBDB AQ Version:
-This release CBDBaq.mdb, on date --, is built upon the Sep.  
-dataset. This version adds biographical data on , new men and women to the dataset
-from the th to the th century, resulting in a total number of , individuals.
+This release 20131008CBDBaq.mdb, on date 2013-10-08, is built upon the Sep. 21 2013
+dataset. This version adds biographical data on 200,000 new men and women to the dataset
+from the 7th to the 20th century, resulting in a total number of 325,000 individuals.
 Major new additions include:
 Data
-. , principals and kin from Tang and Five Dynasties tomb biographies
-. data on , civil service high degree holders (jinshi) and , of their kin from
- Ming dynasty examination years
-. principals and kin from the  and  examinations
-
-
-
----
+1. 50,000 principals and kin from Tang and Five Dynasties tomb biographies
+2. data on 14,000 civil service high degree holders (jinshi) and 130,000 of their kin from
+52 Ming dynasty examination years
+3. principals and kin from the 1148 and 1256 examinations
 
 Appendix D: Change Log for CBDB
-
-. selected biographical data from the Index of Ming Biographical Materials (明人傳記資料索
+149
+4. selected biographical data from the Index of Ming Biographical Materials (明人傳記資料索
 引)
-. new data on the kin and social relations of women writers
-. a variety of new and expanded code tables
-. New data was developed through the contributions by and in collaboration with Profs.
+5. new data on the kin and social relations of women writers
+6. a variety of new and expanded code tables
+7. New data was developed through the contributions by and in collaboration with Profs.
 Ping Yao, Nicolas Tackett, Liu Cheng-yun, and Grace Fong.
 CBDB Patch:
 [Important!] This is the patch for ﬁxing the TreeView selection problem. If your copy of
 Access gives you an error when you try to select an oﬃce via the TreeView in
 LookAtOﬃces (Query Oﬃce Holding) or select an association in
 LookAtAssociations (Query Associations), this is because you do not have the correct
-version of the "Microsoft Windows Common Controls . (SP)" added to your Visual
+version of the "Microsoft Windows Common Controls 6.0 (SP6)" added to your Visual
 Basic environment.
 We have prepared a document to walk you through the steps for ﬁxing this
 problem. Please download this RAR ﬁle, unzip it, and follow the instructions in the PDF
 ﬁle.
 20130610CBDB AN Version:
-This release, on date --, is built upon the June th  dataset which adds
-biographical information for , new individuals to the January  dataset and
-results in , as the total number of individuals. The following lists the details of the
+This release, on date 2013-07-08, is built upon the June 10th 2013 dataset which adds
+biographical information for 12,773 new individuals to the January 2012 dataset and
+results in 128,923 as the total number of individuals. The following lists the details of the
 addition:
 Data
-. Incorporated individuals, their kin and their associates from: the Ming Qing Women
+1. Incorporated individuals, their kin and their associates from: the Ming Qing Women
 Writers database (MQWW) (contributor: Professor Grace Fong and the CBDB Beida
 editors), Quan Song Wen letters全宋文書信 (contributor: Pingtzu Chu 祝平次, Beida,
 Chen Liu 劉晨), Song Lian Quan Ji宋濂全集 (contributor: Qiaomei Tang 唐巧美), Ji
 Yun 紀昀’s associates (contributor: Clea Walford), Lu You 陸游’s associates
-(contributor: Ziyu Zhou 周子鈺), and the  紹興十八年 exam passers
+(contributor: Ziyu Zhou 周子鈺), and the 1148 紹興十八年 exam passers
 (contributor: Ziyu Zhou 周子鈺).
-. Collaborated with IHP, Academia Sinica 中研院史語所 to incorporated the basic
-information, alternative names, and entry data for , individuals from the 明清檔
-案人名權威資料 database (system number  to ). It results in , new
-individuals (because some of the them already exist in CBDB), , alternative
-names, and , entry data.
-. Collaborated with IHP to incorporate the basic biographical data, alternative names, and
-address data for the , individuals in the Ming Ren Chuan Ji Zi Liao Suo Yin 明人
-
-
-
----
+2. Collaborated with IHP, Academia Sinica 中研院史語所 to incorporated the basic
+information, alternative names, and entry data for 2,912 individuals from the 明清檔
+案人名權威資料 database (system number 13197 to 16110). It results in 2,134 new
+individuals (because some of the them already exist in CBDB), 6,540 alternative
+names, and 2,515 entry data.
+3. Collaborated with IHP to incorporate the basic biographical data, alternative names, and
+address data for the 9,900 individuals in the Ming Ren Chuan Ji Zi Liao Suo Yin 明人
 
 Appendix D: Change Log for CBDB
-
-傳記資料索引, which has given us , new individuals, , alternative names,
-and , biog address data.
-. Added  new individuals who were the kin of the subjects in the biographies section
+150
+傳記資料索引, which has given us 7,400 new individuals, 15,000 alternative names,
+and 8,600 biog address data.
+4. Added 987 new individuals who were the kin of the subjects in the biographies section
 of Song Shi 宋史.
-. Added , social association data from the Quan Song Wen letters 全宋文書信 and
-, associations from Index to Song Biographical Materials宋人傳記資料索引.
-. Added , posting data from the Kyoto Tang database 唐代人物知識ベース and
-, from Index to Yuan Biographical Materials元人傳記資料索引.
+5. Added 8,800 social association data from the Quan Song Wen letters 全宋文書信 and
+114,000 associations from Index to Song Biographical Materials宋人傳記資料索引.
+6. Added 14,447 posting data from the Kyoto Tang database 唐代人物知識ベース and
+22,067 from Index to Yuan Biographical Materials元人傳記資料索引.
 Interface
-. From the system side, in this release we also refactored a bunch of database tables (for
+1. From the system side, in this release we also refactored a bunch of database tables (for
 example, social institutions) in order to accommodate more detailed information about
 one’s life and to enable such queries.
 20120105CBDB AM Version:
-This release, on date --, is built upon the January  dataset and the
-CBDBal.mdb. Major changes in this version:
+This release, on date 2013-03-14, is built upon the January 2012 dataset and the
+20120105CBDBal.mdb. Major changes in this version:
 Data
-. Addition of , Tang-Wudai, Yuan, Ming, and Qing oﬃce codes.
-. Restructure of Social Institution tables:  code tables and  data table where we can
+1. Addition of 18,000 Tang-Wudai, Yuan, Ming, and Qing oﬃce codes.
+2. Restructure of Social Institution tables: 8 code tables and 1 data table where we can
 record the relation between a person and a social institution.
 20120105CBDB AL Version:
-This release CBDBal.mdb, on date --, is built upon the January 
-dataset. It contains the biographical information for , historical ﬁgures in the
+This release 20120105CBDBal.mdb, on date 2012-08-27, is built upon the January 2012
+dataset. It contains the biographical information for 116,149 historical ﬁgures in the
 Chinese history. It also comes with the most up-to-date built-in queries, including the
 latest revision of the Query Kinship and Query Social Network functionalities. Major
 changes in this version:
 Data
-. It includes Han addresses (漢代地名) and a new Ethnicity/Tribe code table.
-. It uses the new ethnicity coding for people.
+1. It includes Han addresses (漢代地名) and a new Ethnicity/Tribe code table.
+2. It uses the new ethnicity coding for people.
 Interface
-. "Look up Data on an Individual 按人查詢" now accepts search via alternative names. E.g.
+1. "Look up Data on an Individual 按人查詢" now accepts search via alternative names. E.g.
 You are able to ﬁnd 蘇軾 via 蘇東坡 now.
-. Bug ﬁxed in "Query Association 查詢社會關係" and improve the search performance.
-
-
-
----
+3. Bug ﬁxed in "Query Association 查詢社會關係" and improve the search performance.
 
 Appendix D: Change Log for CBDB
-
-NOTE: It is known that some of the CBDB built-in queries do not function on -bit
-version of Microsoft Oﬃce . It is because the -bit Oﬃce is not compatible with
+151
+NOTE: It is known that some of the CBDB built-in queries do not function on 64-bit
+version of Microsoft Oﬃce 2010. It is because the 64-bit Oﬃce is not compatible with
 former VBA programs (see the oﬃcial annoucement here), which the CBDB queries
-were built with. Therefore, if you are running a -bit Oﬃce, please consider to re-
-install a -bit version Oﬃce  on your -bit Windows machine. (Yes, you can
-still run the -bit Windows Operating System). Not sure which version are you
+were built with. Therefore, if you are running a 64-bit Oﬃce, please consider to re-
+install a 32-bit version Oﬃce 2010 on your 64-bit Windows machine. (Yes, you can
+still run the 64-bit Windows Operating System). Not sure which version are you
 running? Follow this link.
 20110705CBDB AF Version:
-This release, on date --, is the last release for the July  dataset.
+This release, on date 2012-02-07, is the last release for the July 2011 dataset.
 Data
-. It does not add signiﬁcant new data to the July  release but some code tables have
+1. It does not add signiﬁcant new data to the July 2011 release but some code tables have
 been improved and duplicates have been removed.
 Interface
-NOTE: Some of the built in queries do not function on  bit machines. This will be
+NOTE: Some of the built in queries do not function on 64 bit machines. This will be
 corrected in the near future.
-. Bug ﬁxed for the "Enter Biographical Data 輸入傳記資料"
-. Bug ﬁxed in the "Look up Data on an Individual 按人查詢" buttons.
+1. Bug ﬁxed for the "Enter Biographical Data 輸入傳記資料"
+2. Bug ﬁxed in the "Look up Data on an Individual 按人查詢" buttons.
 
