@@ -35,7 +35,7 @@ July 26, 2024
 * [Chapter 4. Advanced Query Techniques](chapter_4_advanced_query_techniques.md)
   - [A. Kinship Networks for Jinshi-degree Holders in Putian](chapter_4_advanced_query_techniques.md)
   - [B. Using the Access Query Designer](chapter_4_advanced_query_techniques.md)
-* [Appendices](00_appendices.md)
+* Appendices
   - [A. Installing the MS Access Files](appendix_a_installing_the_ms_access_files.md)
   - [B. Updating the Visual Basic Environment](appendix_b_updating_the_visual_basic_environment.md)
   - [C. Installing the SQLite CBDB Database on a Mac](appendix_c_installing_the_sqlite_cbdb_on_macintosh.md)
