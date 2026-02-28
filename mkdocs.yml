@@ -1,0 +1,34 @@
+site_name: CBDB User Guide
+site_description: The China Biographical Database User Guide
+site_url: https://cbdb-project.github.io/cbdb-user-guide/
+repo_url: https://github.com/cbdb-project/cbdb-user-guide
+repo_name: cbdb-project/cbdb-user-guide
+
+theme:
+  name: material
+  language: en
+
+plugins:
+  - search
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - tables
+  - admonition
+
+nav:
+  - Home: index.md
+  - Main Guide:
+      - Preface: preface.md
+      - Introduction: introduction.md
+      - Chapter 1. Relational Databases: chapter_1_relational_databases.md
+      - Chapter 2. The Structure of CBDB: chapter_2_the_structure_of_cbdb.md
+      - Chapter 3. CBDB Tools for Analysis: chapter_3_cbdb_tools_for_analysis.md
+      - Chapter 4. Advanced Query Techniques: chapter_4_advanced_query_techniques.md
+  - Appendices:
+      - Appendix A: appendix_a_installing_the_ms_access_files.md
+      - Appendix B: appendix_b_updating_the_visual_basic_environment.md
+      - Appendix C: appendix_c_installing_the_sqlite_cbdb_on_macintosh.md
+      - Appendix D: appendix_d_kinship_simplification_table.md
+      - Appendix E: appendix_e_change_log_for_cbdb.md
