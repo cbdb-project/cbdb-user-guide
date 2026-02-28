@@ -313,7 +313,7 @@ The table the query produces has 32 columns:
     (the type of place association used in assigning an index place)
 * X-coordinate of Index Place
     (CBDB uses administrative seats)
-* Y-coordinate of Index Place[^gis-xy]
+* Y-coordinate of Index Place
 * Count of XY coordinates
     (CBDB calculates how many people in the table share the same index place)
 * Exam Rank
@@ -566,6 +566,7 @@ of information recorded in the ASSOC_DATA table:
 In addition to the table of associations, LookAtAssociations also provides a table listing all the people involved in the association one is investigating. One views this table simply by clicking on the People in Association tab. This table provides information about association with place.
 
 This table has 19 columns:
+
 * Name (pinyin)
 * Name (Chinese)
 * Index Year
@@ -1696,8 +1697,3 @@ GIS, one also chooses the file format. When the user clicks the Export to GIS bu
 form creates a separate file for each type of information.
 If the user has imported a list of IDs, this list can be saved by clicking on the Store Person
 IDs button.
-
-----
-Footnote
-
-[^gis-xy]: In Geographic Information Systems (GIS) research, longitude and latitude typically are referred to as x-y coordinates.

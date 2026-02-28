@@ -470,7 +470,7 @@ pages, and notes. Therefore I will not note these in the discussions below.
 
     To allow the examination of trends across dynastic boundaries, the database needs a way to
     examine what happens in a particular location over long periods of time. For this, CBDB
-    relies on data about physical location, the x-y coordinates on the map.1 The analytic forms
+    relies on data about physical location, the x-y coordinates on the map.[^gis-xy] The analytic forms
     allow one to use the x-y data for the addresses one has selected to define squares around
     those x-y coordinates and locate additional addresses across time that fall within those
     squares. These addresses then can be searched across the time period one has specified.
@@ -603,3 +603,5 @@ pages, and notes. Therefore I will not note these in the discussions below.
         Institution Code (if only the name is known, CBDB assigns a 0 to this field)
         Institutional Role Code
         Role Dates
+
+[^gis-xy]: In Geographic Information Systems (GIS) research, longitude and latitude typically are referred to as x-y coordinates.
