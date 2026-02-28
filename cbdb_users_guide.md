@@ -806,29 +806,36 @@ Source and Notes
 18. Source ID
 19. Note
 
+
 4. Status
+
 CBDB has a table to take note of “social distinctiveness,” that for which people were
 known in society. Since the dating often is uncertain, however, the table has a field to
 record sequence if known. Some forms of social distinctiveness may combine roles (a
-
 Buddhist monk known for his calligraphy, or a literatus who runs a printing firm). At
 present, CBDB records the different aspects of status under distinct categories. This is a
 question awaiting future research.
+
 The structure of a Status datum for a person is:
-Person ID
-Status code
-Status sequence
-Date
-Source information and notes
+    Person ID
+    Status code
+    Status sequence
+    Date
+    Source information and notes
+
 STATUS as a category of social experience (as opposed to any particular person’s status
 within the structure of social distinction) is a simple entity:
-Status code
-Status description
-Status category and subcategory 1
-Status category and subcategory 2
+
+    Status code
+    Status description
+    Status category and subcategory 1
+    Status category and subcategory 2
+
 Since social distinctions change over time, CBDB will continue to add to its current list as
 it draws upon sources for earlier and later periods.
+
 5. Modes of Entry
+
 ENTRY itself is a simple entity, just a name, a type, and a subtype. At present it largely
 describes entry into government, but CBDB also has begun to track categories like monks’
 ordinations. Because different routes of entry entail different types of information, the
@@ -839,24 +846,29 @@ contrast, one enters government through the merit of someone else, the person, a
 relationship to the person should also be recorded, if known. Thus if Zhang Weisan
 entered office through yin protection privilege deriving from his uncle Zhang Jingyi, the
 entry would be:
-Person: [ID of] Zhang Weisan
-Entry type: [code for] yin
-Entry relation type: [code for] Uncle
-Entry relation: [ID of] Zhang Jingyi
+
+    Person: \[ID of\] Zhang Weisan
+    Entry type: \[code for\] yin
+    Entry relation type: \[code for\] Uncle
+    Entry relation: \[ID of\] Zhang Jingyi
+
 Since it is also possible that one can enter office through the yin privilege of a non-kin
 associate, the “entry event” will need to have a way to record the non-kinship relation. In
 the end, then, the ENTRY event has many attributes, only some of which are relevant to
 any particular instance:
 
-Person ID
-Entry type code
-Entry relation type code (for kin)
-Entry associate type code (for non-kin)
-Entry associate ID (used for both kin and non-kin)
-Entry test date (both Western and nianhao + year (if known))
-Entry test ranking
-Entry address ID
+    Person ID
+    Entry type code
+    Entry relation type code (for kin)
+    Entry associate type code (for non-kin)
+    Entry associate ID (used for both kin and non-kin)
+    Entry test date (both Western and nianhao + year (if known))
+    Entry test ranking
+    Entry address ID
+
+
 6. Offices and Postings
+
 CBDB currently lists over 32,000 office titles and—for the Tang, Song, Yuan, Ming, and
 Qing—their place in the government bureaucracy. POSTINGS is an entity at the
 intersection of people, the bureaucracy, and—since most instances will be away from the
@@ -869,30 +881,37 @@ separate tables, information about instances of POSTINGS requires two additional
 categories of one-to-many relations: in addition to the basic postings table, there are a
 posted-to-office table (relationship of people to office created in the POSTINGS event)
 and a posted-to-office-address table (relationship of people to office to place).
-Posting-Data
-Posting ID (this is a unique number)
-Person ID
-Source and Notes
-Posted-to-Office
-Posting ID
-Office ID
-Appointment Type (regular, provisional, honorary, etc.)
-Sequence (since often only the order of office is known with no further
-information about the years for any of the postings)
-Year (both Western and nianhao + year: a person may have duties added
-while still serving in a post)
-Sources and Notes
-Posted-to-Address
-Posting ID
-Office ID
-Address ID
+
+**Posting-Data**
+  Posting ID (this is a unique number)
+  Person ID
+  Source and Notes
+  
+**Posted-to-Office**
+  Posting ID
+  Office ID
+  Appointment Type (regular, provisional, honorary, etc.)
+  Sequence (since often only the order of office is known with no further
+  information about the years for any of the postings)
+  Year (both Western and nianhao + year: a person may have duties added
+  while still serving in a post)
+  Sources and Notes
+
+**Posted-to-Address**
+  Posting ID
+  Office ID
+  Address ID
 
 Considerations for Future Development
+
 1. Buddhism and Daoism
+
 Buddhist and Daoist bureaucratic positions eventually will be added to the OFFICE
 and POSTINGS entities. This, however, also entails significant research to clarify the
 historical changes in the structure of the Buddhist and Daoist bureaucracies.
+
 2. Tracking Historical Change in Bureaucratic structure
+
 One of the design issues that need to be considered again is how much of the
 complexity of the Chinese imperial bureaucratic system should be captured in the
 database. In the Chinese system from the Han through the Qing, the duties of a
@@ -903,14 +922,16 @@ names when it would have been more useful to simply acknowledge the drifts. Huck
 translated titles are indexed, however, and provide those who do not read Chinese with
 an easy means of further investigation. CBDB is planning to create tables that will
 capture the historical changes in the functions designated by any particular office title.
-(Office Name would become one entity and Office Function would be another.)
+(**Office Name** would become one entity and **Office Function** would be another.)
 Most of the actual duties of an office at any particular time are not relevant to the CBDB
 because these details contribute little to the analytic power of the database; the attributes
 of an office that do matter are (1) office as an indication of salary/rank or actual function,
 (2) the other office to which it reports, and (3) the type of the office (i.e. central military,
 prefectural civil, etc.) At present, CBDB has captured some of this information, but
 clarifying the changes in office title is in itself a major research project.
+
 7. Places
+
 CBDB uses a strategy for coding places that derives from the China Historical Geographic
 Information System (CHGIS) project and relies on the spatial entity ADDRESSES.
 Addresses are specifically historical instances of place designation that refer to an
@@ -924,34 +945,38 @@ the same function as the “part-of” table in CHGIS. Since an address ID chang
 when the unit changes shape or name, it does not change ID simply when it becomes part of
 a different higher level administrative unit. Thus there are two tables:
 
-Address Code
-Address code
-Address name
-Administrative type
-X coordinate
-Y coordinate
-Address first year
-Address last year
-Belongs to
-Address code
-Belongs-to Address code
-Belongs-to first year
-Belongs-to last year
+**Address Code**
+  Address code
+  Address name
+  Administrative type
+  X coordinate
+  Y coordinate
+  Address first year
+  Address last year
+  
+**Belongs to**
+  Address code
+  Belongs-to Address code
+  Belongs-to first year
+  Belongs-to last year
+
 From these two tables CBDB generates a convenient Addresses table that is used in the
 online database and can be consulted in the stand-alone version to provide information
 about the role of administrative units in the bureaucratic structure. Its structure is:
-Address code
-Address name
-Address first year (that the address belongs to the superior place)
-Address last year (that the address belongs to the superior place)
-Administrative type
-X coordinate
-Y coordinate
-belongs1 (the parent: the larger administrative unit it reports to)
-belongs2 (the parent of the parent)
-belongs3 (etc.)
-belongs4
-belongs5
+
+  Address code
+  Address name
+  Address first year (that the address belongs to the superior place)
+  Address last year (that the address belongs to the superior place)
+  Administrative type
+  X coordinate
+  Y coordinate
+  belongs1 (the parent: the larger administrative unit it reports to)
+  belongs2 (the parent of the parent)
+  belongs3 (etc.)
+  belongs4
+  belongs5
+
 To allow the examination of trends across dynastic boundaries, the database needs a way to
 examine what happens in a particular location over long periods of time. For this, CBDB
 relies on data about physical location, the x-y coordinates on the map.1 The analytic forms
@@ -959,29 +984,35 @@ allow one to use the x-y data for the addresses one has selected to define squar
 those x-y coordinates and locate additional addresses across time that fall within those
 squares. These addresses then can be searched across the time period one has specified.
 To reiterate, CBDB uses the x-y coordinates of the seat of the administrative unit.
-1 In Geographic Information Systems (GIS) research, longitude and latitude typically are referred to as x-y
+
+Note: In Geographic Information Systems (GIS) research, longitude and latitude typically are referred to as x-y
 coordinates.
 
 8. Biographical Place Information
+
 People have many connections to place: where they were born, lived, died, and were
 buried, where they served in office, where they held property and ran businesses, where
 they visited. Since these relations to place arise out of activities recorded in separate tables
 in CBDB (e.g., office holding, and possessions), the information appears in these various
 tables rather than in one place. The tables that record information about people and places
 are:
-Basic biographical information relating to place (`BIOG_ADDR_DATA`)
-Place of official service (`POSTED_TO_ADDR_DATA`)
-The place where a non-kinship relation took place (`ASSOC_DATA`)
-The place where people participated in social institutions (`BIOG_INST_DATA`)
+
+    Basic biographical information relating to place (`BIOG_ADDR_DATA`)
+    Place of official service (`POSTED_TO_ADDR_DATA`)
+    The place where a non-kinship relation took place (`ASSOC_DATA`)
+    The place where people participated in social institutions (`BIOG_INST_DATA`)
+
 The CBDB form (LookAtPlace) allows the user to ask questions that integrate all these
 sources of place information. Note that at present CBDB does not systematically preserve
 information about places persons briefly visited, where they received their education, or
 where they wrote texts.
+
 CBDB attempts to associate each person with an index place. As with index year, CBDB
 assigns these place associations based on available information, but the data is often
 incomplete. Therefore CBDB uses a hierarchy of categories of place association to assign a
 person’s index place. CBDB first uses the “basic affiliation” 籍貫, if available. The order
 of assigning address affiliations is as follows:
+
 1. Basic affiliation 籍貫
 2. Household address 戶籍地 (Ming dynasty)
 3. Actual residence 落籍
@@ -990,43 +1021,53 @@ of assigning address affiliations is as follows:
 6. Eight Banners (Qing dynasty)
 7. Alternative basic affiliation
 8. Place of exile
+
 However, this hierarchy of codes to use in assigning the index place may not be the most
 suitable for particular research projects. Thus, CBDB allows the user to change this order.
 See Appendix X for discussion.
+
 9. Texts
+
 There are three major types of texts of concern to the database: inscriptional and other
 paleographic material, printed primary texts, and secondary scholarship (in both print and
 digital form). Since a work like Huang Zongxi’s Song Yuan xue’an is both a scholarly
 compendium of earlier writings and a work in its own right, and since the paleographic
-
 materials also were written by authors who are of interest to the database, these distinctions
 for pre-modern texts of any sort are neither clear nor useful. CBDB accordingly treats all
 three types as TEXTS. Texts have the attributes one can expect:
-title
-category of writing (inscription or manuscript/printed)
-genre (the bibliographic categories common to that period)
-current publication date
-current publisher
-current publication location
+
+    title
+    category of writing (inscription or manuscript/printed)
+    genre (the bibliographic categories common to that period)
+    current publication date
+    current publisher
+    current publication location
+
 People can relate to the text in a variety of roles:
-author
-publisher
-editor
-collator
-translator
-annotator
+
+    author
+    publisher
+    editor
+    collator
+    translator
+    annotator
+
 The tables for texts are:
-Texts Codes
-Text ID
-Text Name
-Date of composition
-Current status: extant or not
-Current Publication Information (if extant)
-Text Data
-Text ID
-Person ID
-Role ID (from the table `TEXT_ROLE_CODES`)
+
+**Texts Codes**
+    Text ID
+    Text Name
+    Date of composition
+    Current status: extant or not
+    Current Publication Information (if extant)
+
+**Text Data**
+    Text ID
+    Person ID
+    Role ID (from the table `TEXT_ROLE_CODES`)
+
 10. Social Institutions
+
 People participated in the lives of their communities in many ways. A man, for example,
 may have served for several years as the director of an academy. That academy had
 students during this period: their respective roles in the academy would have served as
@@ -1040,43 +1081,48 @@ Kaiyuansi 開元寺. A biographical source may tell us that Wang Anshi contribut
 to repairs at a Kaiyuansi, but we may not know (yet) which Kaiyuansi was the recipient.
 Other sources eventually may clarify the point, but for the moment CBDB simply records
 “a Kaiyuansi.” There are four tables used to record this information:
-Social Institution Names
-Institution Name ID
-Institution Name
-Social Institutions
-Institution Name ID
-Institution Code (this is a unique ID for each institution: the name is an attribute that
-may change, but what the institution is, identified by the ID, does not. Of course, if
-the textual data shows that the name change signified to the people at the time that
-this was a new institution, then CBDB assigns the institution a new institution code as
-well.)
-Institution Type ID
-Institution Dates (this includes the beginning and ending years, if known, as well as the
-first known and last known years
-Social Institution Addresses
-Institution Name ID
-Institution Code
-Address ID (this gives an approximate location by identifying an administrative unit)
-XY-coordinates (this may be more precise than the coordinates associated with the
-Address ID. An institution may move within its locality.)
-Address Type (derived from Address ID or recorded independently)
-Address Dates
-Relationship of People to Institutions
-Person ID
-Institution Name ID
-Institution Code (if only the name is known, CBDB assigns a 0 to this field)
-Institutional Role Code
-Role Dates
 
-Summary of Tables in CBDB
+**Social Institution Names**
+  Institution Name ID
+  Institution Name
+
+**Social Institutions**
+  Institution Name ID
+  Institution Code (this is a unique ID for each institution: the name is an attribute that
+  may change, but what the institution is, identified by the ID, does not. Of course, if
+  the textual data shows that the name change signified to the people at the time that
+  this was a new institution, then CBDB assigns the institution a new institution code as
+  well.)
+  Institution Type ID
+  Institution Dates (this includes the beginning and ending years, if known, as well as the
+  first known and last known years
+
+**Social Institution Addresses**
+  Institution Name ID
+  Institution Code
+  Address ID (this gives an approximate location by identifying an administrative unit)
+  XY-coordinates (this may be more precise than the coordinates associated with the
+  Address ID. An institution may move within its locality.)
+  Address Type (derived from Address ID or recorded independently)
+  Address Dates
+
+**Relationship of People to Institutions**
+  Person ID
+  Institution Name ID
+  Institution Code (if only the name is known, CBDB assigns a 0 to this field)
+  Institutional Role Code
+  Role Dates
+
+## Summary of Tables in CBDB
+
 1. Basic Entities
+
 These represent the basic elements of the social world of pre-modern China. Each has a
 complex history and structure that are set out in additional ancillary tables. CBDB records the
 interaction of people with these aspects of their world in the secondary tables.
-Table Name
-Description
-`ADDR_CODES`
-the units in the administrative geography of China.
+
+Table Name | Description
+`ADDR_CODES` | the units in the administrative geography of China.
 ADDRESSES
 a convenient reference table that displays the hierarchy
 `ASSOC_CODES`
@@ -1095,7 +1141,9 @@ a list of academies, monasteries, temples, etc.
 the means by which people attained social distinction
 `TEXT_CODES`
 the corpus of pre-modern writings + important secondary works
+
 2. Relations between Basic Entities
+
 Table Name
 Description
 `ADDR_BELONGS_DATA`
@@ -1128,6 +1176,7 @@ the details of people’s connection to office
 data on a person’s place in the system of social distinctions
 
 3. Relationship Type Information
+
 Table Name
 Description
 `BIOG_ADDR_CODES`
@@ -1176,7 +1225,9 @@ The larger units for textual categorization
 the categories of relations between people and texts
 `YEAR_RANGE_CODES`
 the relative degree of exactness of a date
+
 4. Historical Auxiliary Tables
+
 Table Name
 Description
 `CHORONYM_CODES`
@@ -1203,6 +1254,7 @@ ALTNAMES_TYPES
 codes for different types of alternative names
 
 5. Analytic Auxiliary Tables
+
 Table Name
 Description
 `ASSOC_CODE_TYPE_REL`
@@ -1222,13 +1274,16 @@ the categories of offices: rank, honorary, etc.
 the relation of specific status codes to the larger categories of
 social distinction
 `TEXT_BIBLCAT_CODE_TYPE_REL`
+
 6. “Denormalized” Tables
+
 Because the data tables for the relations between basic entities (group 2 above) are in
 normalized form that uses codes that refer to other tables for the entities, relations, and
 historical information, they are difficult to use for queries (See Chapter 4). In order to
 simplify the process of writing queries, CBDB provides a set of tables where the codes have
 been supplemented by the values (mostly text strings like the names of people, places, official
 positions, etc.) to which the codes refer. The main tables are listed below:
+
 Table Name
 Description
 `ZZZ_ALT_NAME_DATA`
@@ -1262,6 +1317,7 @@ The China Biographical Database contains large amounts of information, but the i
 is of little value unless there are ways to analyze it. At present, the Access version of CBDB
 has seven forms specifically designed to allow the user to query the database about important
 categories of information. The names of the forms describe their function.
+
 1. LookAtEntry allows one to find groups of people who qualified for office through a
 particular route for a specified period.
 2. LookAtAssociations allows one to find groups of people who were linked through a
@@ -1286,6 +1342,7 @@ social distinction.
 9. LookAtTexts allows the user to explore the people associated with the production of
 particular categories of texts (unofficial histories, commentaries on canonical ritual texts,
 etc.)
+
 In more complicated queries, one can explore relations between groups of people by using the
 results of a search in one form as the input to a second form. Chapter 4, on advanced queries,
 considers an example of this approach. Beyond the six forms, however, Access also allows the
@@ -1295,15 +1352,19 @@ all aspects of CBDB data. This process uses Access’ built-in Query Designer to
 
 NOTE: The explanations of the forms in this chapter provide examples of searches, but the
 results you get will differ from these because CBDB periodically updates the data in the tables.
+
 A. The Navigation Pane
+
 As the name suggests, the Navigation Pane is the central console for using the forms
 developed for the Access version of the database. Clicking on the nine query command
 buttons opens the browser and the eight analytic forms discussed above. The Navigation Pane
 also has four additional functions.
+
 1. Error Reporting: The Navigation pane also allows you to report problems with the
 program. If you click on “Report an Error,” the program brings you to a Google form:
 
 Select the type of error and fill in the information requested on the form.
+
 2. User’s Guide: Clicking on “Users Guide” will open a copy of this User’s Guide.
 3. Relinking the Data Tables: The current version of the Access database splits the CBDB
 data tables from the user interface. Because the database has grown very large, the size of the
@@ -1317,6 +1378,7 @@ your CBDB folder and then link the interface to those new files. The CBDB data r
 have a date-stamp in the form YYYYMMDD as part of the name of the files. If you click on
 “Relink Tables,” a form will request the date-stamp information:
 Simply fill in the new version information and click “OK.”
+
 4. Changing the Index Address Ranking: While the default setting for how CBDB
 defines index places works well for most users, scholars pursuing particular topics may need to
 change how index place is defined. Clicking on this command button opens a form to allow
@@ -1333,18 +1395,21 @@ After changing the ranking of place affiliations, one can restore the CBDB defau
 ranking and index place values by simply clicking on the “Reset to Default” command button.
 
 B. The Browser: Looking up Data on an Individual
+
 The browser in CBDB provides a convenient way to explore basic information on individuals
 in the database. It draws on just the raw data for people in the database, so it has no significant
 analytic or synthetic abilities. The only exception in is the name search functions described
 below. When one opens the browser, it begins with the first person in the `BIOG_MAIN`
 table. (The sorting by name starts with all people who have just a personal name but no
 surname.)
+
 Since the CBDB interface in MS Access aspires to be bilingual, the user can switch between
 English, traditional characters (繁體) and simplified characters (简体) by clicking on the buttons in
 the upper right of the form.
 
 Searching the Database
 By Name
+
 Since `BIOG_MAIN` has over 535,000 people, just scrolling through the window on the left is
 not the most effective way to locate an individual. Therefore, the browser has two search
 functions. The first is a search by name. “Name,” however, includes all the categories of
@@ -1352,7 +1417,9 @@ names used in CBDB (courtesy name 字, style name 號, etc.). Thus, if a text pr
 Shi’s 蘇軾 style name, Dongpo 東坡, rather than his full name, one can search by that alone to
 see how many people share those two characters in any of their names. Of course, one can
 directly search by “Su Shi” or “蘇軾” as well.
+
 Searching by Pinyin
+
 1. A basic search by pinyin (i.e., “Su Shi”) looks for the search string anywhere in the name, but
 the search can be narrowed or broadened.
 2. Using a lower-case name, the search looks for the phrase in any part of a name, so that “hao”
@@ -1363,11 +1430,13 @@ Jing” and “Cheng Hao”).
 4. If one adds an “!” at the beginning, the search routine looks at just surnames.
 
 By Name + Office
+
 If a text provides only a surname and a title, the browser allows one to search by those as well.
 
 Clicking on the “Search by Surname + Office” command button opens a form that allows
 one to not only specify the name and office but also to narrow the search by providing a range
 of index years or dynasties:
+
 Note: Using the Chinese name and office produces more certain result, since the form simply
 looks for all office titles for people with the given surname in the database. (The pinyin office
 titles are in lower case with a space between each character.) Clicking on the Postings tab and
@@ -1376,12 +1445,14 @@ Once one clicks the “Search” command button, if the form finds any people wh
 match the specified criteria, these results are transferred to the Browser:
 
 Exploring Results
+
 The browser itself is fairly self-explanatory. Each tab provides the basic data in CBDB for the
 individual in the main categories: addresses, alternative names, writings, postings, mode(s) of
 entry into service, events, status, kinship relations, social relations, possessions, the sources
 used for the information, and relations to institutions. The lists of social relations are just
 those stored in the basic tables: they are far less complete than the lists created by
 LookAtNewtworks.
+
 The current version of the browser incorporates two significant improvements in the
 display of data. The first is that the list of kin is more complete than in in earlier versions.
 Those versions provided just the raw list of kin in the raw data table `KIN_DATA`. Now the
@@ -1390,17 +1461,21 @@ maximum kinship distance. The browser searches for combinations including 2 ance
 generations, 2 descendant generations, one marriage connection and one collateral (i.e.,
 brother or sister) relationship link. For greater detail, see the discussion in “Using the Form
 ‘Query Kinship’”
+
 For Su Shi, the browser discovered 143 kinship relations (the first is just “ego,” Su Shi
 himself). The Notes field for each kinship record provides the path that the search took to get
 from Su Shi to the kin listed in the record. For Chao Buzhi, for example, the query went from
 Su Shi’s third son to that son’s second daughter’s husband. Chao Buzhi was that husband’s
 mother’s brother.
+
 The second change is to provide a hyperlink to whatever databases were used to acquire
 information on an individual. For Su Shi, for example, the browser provides a link to his entry
 in Academia Sinica’s Naming Authority 人名權威資料 database:
 
 Clicking on the link takes one to Su Shi’s entry:
+
 Saving Results
+
 A. Having located a person, one can use the Store Person ID button to save the person’s ID to
 be reused in Query Kinship, Query Social Networks, and Query Pair-wise Associations.
 
@@ -1413,16 +1488,20 @@ C. Using the Form “Query by Methods of Entry into Government
 LookAtEntry is the simplest form. One opens it by clicking on “Query by Methods of Entry
 into Government” on the main page and clicks on the “Select Entry” button to choose a
 category:
+
 Note that all of the forms have the option to switch between English, traditional or simplified
 Chinese. When one clicks on the “繁體” label, it then gives one the option to return to
 English:
 
 Selecting the Modes of Entry
+
 Clicking on the Select Entry button opens a form with a list of options. Since there are many
 different ways to attain eligibility for office, CBDB uses a collapsible tree to simplify the
 selection process:
+
 One can narrow the choices by looking at a particular general type of entry which is on the
 menu on the left of the window (A1):
+
 One can either select a specific method of entry from the menu on the right or select all the
 listed methods (A2). One also can search for a specific method using the search box located on
 the bottom right corner (B1). The searching rules for CBDB are to first look for the search
