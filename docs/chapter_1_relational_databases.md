@@ -43,6 +43,7 @@ This abstract model, when transformed into a relational database, becomes a seri
 tables filled with data divided into fields:
 
 **PEOPLE**
+
 | ID | Name                     | Dates        |
 |----|--------------------------|-------------|
 | 1  | Lü Benzhong 吕本中       | 1084–1145   |
@@ -51,6 +52,7 @@ tables filled with data divided into fields:
 | 4  | Chen Jian (5) 陈荐       | fl. 1069    |
 
 **PEOPLE PLACES**
+
 | Person ID | Place ID | Relation Type ID |
 |-----------|----------|------------------|
 | 1         | 1        | 1                |
@@ -58,6 +60,7 @@ tables filled with data divided into fields:
 | 1         | 2        | 3                |
 
 **PLACES**
+
 | ID | Place Name        |
 |----|------------------|
 | 1  | Jinhua 金华      |
@@ -65,6 +68,7 @@ tables filled with data divided into fields:
 | 3  | Kaifeng 开封     |
 
 **PEOPLE-PLACE TYPES**
+
 | Relation Type ID | Relation Type       |
 |------------------|--------------------|
 | 1                | Basic Affiliation  |
@@ -230,4 +234,3 @@ time?
 In a relational database, the only real constraint on asking questions about the
 interactions of the entities in CBDB is how well one understands the database and the
 structure of the data in it.
-

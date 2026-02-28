@@ -11,21 +11,31 @@ theme:
 plugins:
   - search
 
+extra_javascript:
+  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
+  - javascripts/mermaid.js
+
 markdown_extensions:
+  - fenced_code
   - toc:
       permalink: true
   - tables
   - admonition
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
 
 nav:
   - Home: index.md
   - Main Guide:
       - Preface: preface.md
       - Introduction: introduction.md
-      - Chapter 1. Relational Databases: chapter_1_relational_databases.md
-      - Chapter 2. The Structure of CBDB: chapter_2_the_structure_of_cbdb.md
-      - Chapter 3. CBDB Tools for Analysis: chapter_3_cbdb_tools_for_analysis.md
-      - Chapter 4. Advanced Query Techniques: chapter_4_advanced_query_techniques.md
+      - Chapter 1: chapter_1_relational_databases.md
+      - Chapter 2: chapter_2_the_structure_of_cbdb.md
+      - Chapter 3: chapter_3_cbdb_tools_for_analysis.md
+      - Chapter 4: chapter_4_advanced_query_techniques.md
   - Appendices:
       - Appendix A: appendix_a_installing_the_ms_access_files.md
       - Appendix B: appendix_b_updating_the_visual_basic_environment.md
