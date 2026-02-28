@@ -210,8 +210,7 @@ When we execute the query, we get records for all the initial 621 kin.
 
 #### B. The TablesFields Table
 
-For getting information on additional people involved in various types of social interactions, you need to know which fields in a table refer to IDs for people. When in doubt, you can open the TablesFields table from the list of tables on the left of the main Access interface and look for the fields in the table you want to explore. Those that have “`BIOG_MAIN`” in the “foreign key” column and “c_personid” in the ForeignKeyBase column refer to people.[^foreign-key] For
-example, in `ASSOC_DATA`, we have:
+For getting information on additional people involved in various types of social interactions, you need to know which fields in a table refer to IDs for people. When in doubt, you can open the TablesFields table from the list of tables on the left of the main Access interface and look for the fields in the table you want to explore. Those that have “`BIOG_MAIN`” in the “foreign key” column and “c_personid” in the ForeignKeyBase column refer to people.[^foreign-key] For example, in `ASSOC_DATA`, we have:
 
 ![image_133_194](images/image_133_194.png)
 
@@ -225,5 +224,4 @@ Among all these, the following are IDs of people:
     exists, if any)
     c_personid (the person whom the record is about)
 
-[^foreign-key] In a normalized database, “foreign key” simply refers to those fields that use the IDs defined (as primary keys) in
-other tables.
+[^foreign-key]: In a normalized database, “foreign key” simply refers to those fields that use the IDs defined (as primary keys) in other tables.
