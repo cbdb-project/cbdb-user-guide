@@ -21,6 +21,7 @@ extra_javascript:
 
 markdown_extensions:
   - fenced_code
+  - footnotes
   - toc:
       permalink: true
   - tables
