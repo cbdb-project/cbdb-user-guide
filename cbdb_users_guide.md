@@ -260,82 +260,60 @@ interactions we care to record between people and places: where they were born,
 where they moved, where they were buried, and so on. We have the abstract model of
 relations between entities:
 
-## People
+```mermaid
+flowchart TB
+    A[People]
+    B[Places]
+    C[Places in People's Lives]
 
-## Places
-
-Places in People’s Lives
+    A --> C
+    B --> C
+```
 
 This abstract model, when transformed into a relational database, becomes a series of
 tables filled with data divided into fields:
-PEOPLE
-ID
-Name
-Dates
-1
-Lü Benzhong
-呂本中
-1084-
-1145
-2
-An Dun 安惇 1042-
-1101
-3
-Chao Buzhi
-晁補之
-1053-
-1110
-4
-Chen Jian(5)
-陳薦
-fl. 1069
-PEOPLE-PLACES
-Person
-ID
-Place
-ID
-Relation
-Type ID
-1
-1
-1
-1
-3
-2
-1
-2
-3
-PEOPLE-PLACE
-TYPES
-Relation
-Type ID
-Relation
-Type
-1
-Basic
-Affiliation
-2
-Moved to
-3
-Ancestral addr
-PLACES
-IDPlace Name
-1
-Jinhua 金華
-2
-Shouzhou 壽州
-3
-Kaifeng 開封
+
+**PEOPLE**
+| ID | Name                     | Dates        |
+|----|--------------------------|-------------|
+| 1  | Lü Benzhong 吕本中       | 1084–1145   |
+| 2  | An Dun 安惇              | 1042–1101   |
+| 3  | Chao Buzhi 晁补之        | 1053–1110   |
+| 4  | Chen Jian (5) 陈荐       | fl. 1069    |
+
+**PEOPLE PLACES**
+| Person ID | Place ID | Relation Type ID |
+|-----------|----------|------------------|
+| 1         | 1        | 1                |
+| 1         | 3        | 2                |
+| 1         | 2        | 3                |
+
+**PLACES**
+| ID | Place Name        |
+|----|------------------|
+| 1  | Jinhua 金华      |
+| 2  | Shouzhou 寿州    |
+| 3  | Kaifeng 开封     |
+
+**PEOPLE-PLACE TYPES**
+| Relation Type ID | Relation Type       |
+|------------------|--------------------|
+| 1                | Basic Affiliation  |
+| 2                | Moved to           |
+| 3                | Ancestral address  |
+
 Note that with this arrangement of tables, there is no limit to the number of people, the
 number of places, or the number of types of relations between people and places.
 From this example of how people and place relate to one another, we see that in
 relational databases there are three basic types of tables:
+
 1. Tables that describe the basic “entities.” (The yellow tables “People” and “Places”
 above) In CBDB, these include people, places, kinship term, bureaucratic structures, and so
 on. The fields in these tables capture the attributes of these entities that we want to know
 about. For people, this would include their names, birth and death dates, gender, and the like.
 For places (“addresses” in CBDB parlance) it would include names, the administrative levels
 (county, prefecture, etc.), when they were created, and so on.
+
 2. Tables that describe relations between basic entities. (The blue “People-Places”
 table) In CBDB, these translate the relations between people and their social, physical, and
 cultural environment into a structured format. The fields in these tables capture the features
@@ -354,7 +332,9 @@ and we need to be able to be more specific in recording the details of the inter
 example above, people can have many different ways of being related to a place: it might be the
 place at which they were formally registered, the place at which they actually lived, or the place
 where they were buried. We can group these relations into categories to give them structure.
-B. Rules for Structuring Data in a Relational Database
+
+### B. Rules for Structuring Data in a Relational Database
+
 In databases, we try to record any particular datum only once. In the example above,
 the name Lü Benzhong 呂本中appears in only one record in CBDB, in his basic entry in the
 table for PEOPLE entities (the table is called `BIOG_MAIN`). All other records that record
@@ -365,6 +345,7 @@ mistake in only one place. This principle of “one datum, one place” is calle
 There are occasions where CBDB violates this rule in order to speed processing, but if you
 wish to add additional tables to your own version of CBDB, we strongly recommend that you
 pay attention to the goal of maintaining a normalized database.
+
 In the example of a person’s relationship to places discussed above, we encounter the
 fact that a person can move to many different places. This is called a “one-to-many”
 relationship. If one were to try to represent this relationship through a simple table with rows
@@ -380,6 +361,7 @@ the “Moved to” data in the main table leads to the general rule: whenever we
 one-to-many relationship between basic entities (here, PEOPLE and PLACES), we need a
 separate category of relationship like PEOPLE-PLACES (and a table to represent that
 relationship) to allow us to capture the interaction.
+
 We encounter a different type of problem when we encode a book like Record of Things
 at Hand, which was edited by Zhu Xi and Lü Zuqian. Writings have a so-called “many-to-
 many” relationship: one book may have many authors or editors, and each of those writers
@@ -390,7 +372,8 @@ These three rules—normalize data, create new tables for one-to-many relations,
 treat many-to-many like one-to-many—are important if you wish to add new data types to
 CBDB.
 
-C. Relational Databases and the Interactions of Complex Data
+### C. Relational Databases and the Interactions of Complex Data
+
 CBDB models the interactions between people and the entities—the “things”—that shape
 their social world. Some of these entities are easily understood in their “thingness:” places are
 physical entities, and the official bureaucracy has a substantial structure in premodern Chinese
@@ -408,6 +391,42 @@ explore the legacy of information on individuals in premodern China. CBDB, as a 
 database, then allows users to explore the interactions between these entities in the lives of
 groups of individuals. For example, consider the following set of entities and their relations
 with the basic entity PEOPLE:
+
+```mermaid
+flowchart TB
+
+    %% Top layer
+    Places[Places]
+    SocialRelations[Social Relations]
+
+    %% Middle relationship layer
+    PeoplePlaces[People-Places]
+    PeopleSocial[People-Social Relations]
+
+    %% Core entity
+    People[People]
+
+    %% Lower relationship layer
+    PeopleKinship[People-Kinship]
+    PeopleOffice[People-Office]
+
+    %% Bottom layer
+    Kinship[Kinship]
+    Office[Office]
+
+    %% Connections
+    Places --> PeoplePlaces
+    SocialRelations --> PeopleSocial
+
+    People --> PeoplePlaces
+    People --> PeopleSocial
+    People --> PeopleKinship
+    People --> PeopleOffice
+
+    PeopleKinship --> Kinship
+    PeopleOffice --> Office
+```
+
 Although there is no direct link between KINSHIP and OFFICE, we still can explore the
 relation between them through the data we have accumulated about people. We can ask
 questions like “Was the role of medical officer hereditary, that is, were medical officers the sons
@@ -415,25 +434,9 @@ or nephews of medical officers, and did the families of medical officers marry t
 one another?” What about men who held mid-level military ranks: were those who moved
 into civil posts likely to marry daughters of men who held civil posts?
 
-People
+(TODO: Add Chart)
+**Querying the Relationship between OFFICE and KINSHIP**
 
-Places
-
-## Kinship
-
-Office
-
-People-Kinship
-
-People-Office
-
-People-Places
-
-Social Relations
-
-People-Social Relations
-
-Querying the Relationship between OFFICE and KINSHIP
 We can ask many, many questions about the relation of OFFICE and KINSHIP. Were there
 different patterns of marriage within rank for high civil officials and lower-ranking officials?
 Did these group form marriage alliances that created different strata? Did these patterns
@@ -441,87 +444,49 @@ change over time? We can ask similar sorts of questions about PLACE and SOCIAL
 RELATIONS. Were people from Sichuan, for example, forming local connections, or did
 they establish empire-wide networks? Did these patterns change from the early to late
 Northern Song and then again from the late Northern Song to the late Southern Song?
-Querying the Relationship of PLACE and SOCIAL RELATIONS
+
+
+(TODO: Add Chart)
+**Querying the Relationship of PLACE and SOCIAL RELATIONS**
+
 Finally, we can look at the interaction of multiple factors like the role of PLACE in the
 relationship between KINSHIP and OFFICE:
 
-People
+(TODO: Add Chart)
+**Querying the Role of PLACE in KINSHIP-OFFICE Relations**
 
-Places
-
-Kinship
-
-Office
-
-People-Kinship
-
-People-Office
-
-People-Places
-
-Social Relations
-
-People-Social Relations
-
-People
-
-Places
-
-Kinship
-
-Office
-
-People-Kinship
-
-People-Office
-
-People-Places
-
-Social Relations
-
-People-Social Relations
-
-Querying the Role of PLACE in KINSHIP-OFFICE Relations
 Were officials from Fujian more likely to develop local kinship networks than were official
 from Zhejiang? Did patterns differ depending on the rank, and did the patterns change over
 time?
+
 In a relational database, the only real constraint on asking questions about the
 interactions of the entities in CBDB is how well one understands the database and the
 structure of the data in it.
 
-People
+## Chapter 2. The Structure of CBDB
 
-Places
+### A. An Overview of the Entities in the Database
 
-Kinship
-
-Office
-
-People-Kinship
-
-People-Office
-
-People-Places
-
-Social Relations
-
-People-Social Relations
-
-A. An Overview of the Entities in the Database
 Database design uses tables to give concrete form to more abstract objects which we simply call
 “entities.” Since the goal of a database is to capture the relational information about entities, it
 remains useful to keep the abstract objects separate from the tables that represent their
 relations. That way, one can more easily ask the question of how the tables need to change to
 better stand in for the entities they represent.
+
 The central entity that defines biography in the database is, of course:
+
 1. People
+
 But since a relational database tracks the ways in which people form relations with other people,
 with their society (their political, social, economic and cultural institutions), and with the
 physical world, we also need entities with which people interact. First, relationships with
 people (these entities will be discussed in greater detail later):
+
 2. Kinship
 3. Social (Non-kin) Associations
+
 Next, with political and socio-cultural institutions and activities:
+
 4. Status (modes of social distinction such fame for calligraphy or serving as a monk)
 5. Modes of Entry into Government or other careers (e.g., passing the civil-service
 examinations, nepotism or the yin protection privilege)
@@ -532,21 +497,26 @@ There also are texts that people produced and through which we know about people
 8. Texts (including primary texts, secondary texts, and paleographic data). These include
 data sources from which CBDB draws its information (primary sources, secondary
 scholarly compilations, and digital resources).
+
 Then, there are structured aspects of the world with which people interacted that must be
 included in CBDB. The two aspects on which we have focused are administrative geography
 and bureaucratic structure:
+
 9. Administrative Geographic Hierarchy (defined in political terms as superior and
 subordinate administrative units)
-
 10. Bureaucratic Organization (the changes in bureaucracy and reporting
 responsibilities over time)
-B. Details of Entities
+
+### B. Details of Entities
 NOTE: The database allows one to record the source of information, including the pages in the
 source from which the information comes, and to add additional notes as seems appropriate.
 Every item in the database that records information on an individual has the attributes of source,
 pages, and notes. Therefore I will not note these in the discussions below.
+
 1. People
+
 a. Basic Data: name, male or female, date of birth, and date of death.
+
 Precise dates of birth and death often are not available, and all we have is a period of years
 of activity(“floruit” dates). Sometimes, not even that is available: we simply know the reign
 period(nianhao)or dynasty. In order to capture the level of precision in the data, the
@@ -556,19 +526,25 @@ year within the reign period, but one also can simply indicate “beginning,” 
 Western dates from the reign period information for birth, death, years of activity, and any
 other date given in the traditional Chinese nianhao designation, but it will preserve the
 vagueness in the nianhao coding.
+
 b. Ethnicity and Tribe Affiliation
+
 CDBD tracks ethnicity, like Han, Uighur, Tibetan, etc. We have over 465 codes at
 present. These codes are in the table ETHICITY_TRIBE_CODES, which organizes
 ethnicity and tribe designations by group and subgroup and includes variant forms for
 ethnicity names.
+
 c. Choronym
+
 From the Six Dynasties into the Tang, membership in a clan was of central importance
 in defining one’s social status. From the Song Dynasty onward people did make claims
 descent from a particular clan from a particular place (like the Cui clan of Boling) but
 they carried little social or political weight. The combination of place name and clan
 name defined a choronym. The codes for these choronyms are in the table
 `CHORONYM_CODES`.
-c. Index Year
+
+d. Index Year
+
 For computational purposes, CBDB needs a single year value to locate a person in
 time. The index year is an artificial value used in analyses. In earlier versions of the
 
@@ -674,111 +650,94 @@ grandfather’s index year to decide ego’s index year per A3. (Ego’s index
 year = grandfather’s index year + 60)
 The CBDB table that records this basic biographical information is `BIOG_MAIN`.
 `BIOG_MAIN` assigns each person a unique ID.
-d. Floruit years
+
+e. Floruit years
+
 CBDB gives two years: the earliest and the latest. Often when there is no data for
 index year or for birth and death dates, texts nonetheless provide datable references to
 individuals. CBDB gives the earliest and the latest known dates given in the textual
 sources we have examined so far.
+
 2. Kinship
+
 An instance of the Kinship relationship for an individual has three components (plus the
 source information):
-person
-kin
-kinship relation
+
+    person
+    kin
+    kinship relation
+
 This relationship is structured as: “Person A has Person B (the kin) as his/her Kinship
 Relation.” E.g. {Wang Anshi, Wang Anli, B-} means Wang Anshi has Wang Anli as a
 younger brother.
-The building-block relations for Kinship are the 10 basic categories:
-e
-Ego (the person whose kinship is being explored)
-F
-Father
-M
-Mother
-B
-Brother
-Z
-Sister
-S
-Son
-D
-Daughter
 
-H
-Husband
-W
-Wife
-C
-Concubine
+The building-block relations for Kinship are the 10 basic categories:
+
+    e Ego (the person whose kinship is being explored)
+    F Father
+    M Mother
+    B Brother
+    Z Sister
+    S Son
+    D Daughter
+    H Husband
+    W Wife
+    C Concubine
+
 There are also variations on the nature of the relationship, as well as additional types of
 notation to represent types of kinship relations beyond the nuclear family:
-+
-Older (e.g. older brother B+, 兄)
--
-Younger (e.g. younger sister Z‐，妹)
-*
-Adopted heir (as in S*, adopted son)
-°
-Adopted
-!
-Bastard
-^
-Step- (as in S^ step-son)
-½
-half- (as in Z½ , half-sister)
-~
-Nominal (as in M~ , legitimate wife as nominal mother to
-children of concubine)
-%
-Promised husband or wife (marriage not completed at time of
-record)
-y
-Youngest (e.g., Sy is the youngest known son)
-1, 2, 3…
-Numbers distinguish sequence (e.g., S1, S2 for first and second
-sons; W1, W2 for the first and the successor wives)
-n
-precise generation unknown
-G-#, G+#
-lineal ancestor (–) or descendant (+) of #th generation
-G-n, G+n, Gn
-lineal kin of an unknown earlier generation (G-n), or
-unknown later generation (G+n), or unknown generation
-(Gn)
-G-#B, BG+#
-a brother of a lineal ancestor of # generation; a brother’s lineal
-descendant of # generation
-K, K-#, K+#, Kn
-Lineage kin, of the same, earlier (–), later (+) or unknown (n)
-generation. CBDB uses “lineage kin” for cases where kinship is
-attested but the exact relationship is not known. Lineage kin are
-presumably not lineal (direct descent) kin.
-K–, K+
-Lineage kin of the same generation, younger (-) or elder (+).
-P, P-#, P+#, Pn
-Kin related via father’s sisters or mother’s siblings, of the same,
-earlier (–), later (+) or unknown (n) generation. Signified by
-the term biao (表) in Chinese. (CBDB uses these codes only
-when the exact relationship is not known).
-P–, P+
-Kin related via father's sisters or mother's siblings, of the same
-generation, younger (-) or elder (+).
-A
-Affine/Affinal kin, kin by marriage
+
+    + Older (e.g. older brother B+, 兄)
+    - Younger (e.g. younger sister Z‐，妹)
+    * Adopted heir (as in S*, adopted son)
+    ° Adopted
+    ! Bastard
+    ^ Step- (as in S^ step-son)
+    ½ half- (as in Z½ , half-sister)
+    ~ Nominal (as in M~ , legitimate wife as nominal mother to
+    children of concubine)
+    % Promised husband or wife (marriage not completed at time of
+    record)
+    y Youngest (e.g., Sy is the youngest known son)
+    1, 2, 3… Numbers distinguish sequence (e.g., S1, S2 for first and second
+    sons; W1, W2 for the first and the successor wives)
+    n precise generation unknown
+    G-#, G+# lineal ancestor (–) or descendant (+) of #th generation
+    G-n, G+n, Gn lineal kin of an unknown earlier generation (G-n), or
+    unknown later generation (G+n), or unknown generation
+    (Gn) G-#B, BG+# a brother of a lineal ancestor of # generation; a brother’s lineal
+    descendant of # generation
+    K, K-#, K+#, Kn Lineage kin, of the same, earlier (–), later (+) or unknown (n)
+    generation. CBDB uses “lineage kin” for cases where kinship is
+    attested but the exact relationship is not known. Lineage kin are
+    presumably not lineal (direct descent) kin.
+    K–, K+ Lineage kin of the same generation, younger (-) or elder (+).
+    P, P-#, P+#, Pn Kin related via father’s sisters or mother’s siblings, of the same,
+    earlier (–), later (+) or unknown (n) generation. Signified by
+    the term biao (表) in Chinese. (CBDB uses these codes only
+    when the exact relationship is not known).
+    P–, P+ Kin related via father's sisters or mother's siblings, of the same
+    generation, younger (-) or elder (+).
+    A Affine/Affinal kin, kin by marriage
+
 The codes for the types of relationships are in the table `KINSHIP_CODES`. Although
 CBDB records all the many variations of kinship, searches for kinship networks in CBDB
 use an important set of four metrics for kinship distance to simplify the vast proliferation
 of terms. Each code `KINSHIP_CODES` table has values for
 
-up, i.e., ancestor generation: father = 1, grandfather = 2, and so on
-down, i.e., descendent generation: son = 1, grandson = 2, etc.
-collateral relation: brother = 1, brother’s wife’s sister” =2....
-marriage relation: wife = 1, wife’s father’s wife = 2, and so on.
+    up, i.e., ancestor generation: father = 1, grandfather = 2, and so on
+    down, i.e., descendent generation: son = 1, grandson = 2, etc.
+    collateral relation: brother = 1, brother’s wife’s sister” =2....
+    marriage relation: wife = 1, wife’s father’s wife = 2, and so on.
+
 Thus brothers, step-brothers, bastard brothers, and adopted brothers all have set of values
 {up = 0; down = 0; collateral = 1; marriage = 0}. The data recording the kinship relations
 between people is stored in the table `KIN_DATA`.
+
 3. Non-kinship Associations
+
 a. Simple Non-kinship Associations
+
 These have a three-part structure: person + association + associate. The major challenge
 in recording the non-kinship Associations that individuals formed over their lives is to
 control the proliferation of categories derived from the historical texts.
@@ -786,16 +745,20 @@ Because associations are between pairs of people, there must be symmetrical type
 associations. That is, if {A “is the student of” B} is in the database, then {B “is the teacher
 of” A} also should be so. In fact, the current version of the program automatically
 generates this second entry. Thus, ASSOCIATIONS as an entity has an internal structure:
-Association type
-Paired Association type
-Association Categories/subcategories (3 levels at present)
+
+    Association type
+    Paired Association type
+    Association Categories/subcategories (3 levels at present)
+
 When editors for CBDB create a new category of association, they must also create its
 converse. Mutual associations, of course, are their own converse: {A “is friend of” B} is
 the same as {B “is friend of” A}. In most associations, however, the two people play
 distinct roles, and CBDB needs the converse category to capture the roles of the two
 people from their different perspectives: to record for A that {A “followed” B} also means
 that for B, {B “was followed by” A}.
+
 b. Mediated Associations
+
 In some important cases, associations form through the mediation of institutions or people.
 CBDB captures these types of relations by adding additional data to associations. For
 example, we might know of a relation between X and Y because X asked Y to write a
@@ -803,36 +766,46 @@ biography for his mother’s tomb. In order to record all the variations, the re
 for the table `ASSOC_DATA` has become rather challenging to understand.
 
 c. Structure of an Association Record
+
 Because associations in pre-modern Chinese society often are complex, the table tracking
 associations in CBDB uses a correspondingly large number of fields:
+
 Basic Information
-1.Person ID
-2.Associated person ID
-3.The kind of association (association code)
-4.The number of objects or events establishing the association
+
+1. Person ID
+2. Associated person ID
+3. The kind of association (association code)
+4. The number of objects or events establishing the association
+
 Information about Kinship and Other Relations that played a role in the Association
-5.The kinship relation, if the association was established through a relative of the
+
+5. The kinship relation, if the association was established through a relative of the
 person
-6.The ID of the person whose kinship relation established the association
-7.The kinship relation of the associate, if the association was established through a
+6. The ID of the person whose kinship relation established the association
+7. The kinship relation of the associate, if the association was established through a
 relative of the associated person
-8.The ID of the kin of the associate through whom the association was established
-9.The ID of the person who claimed the existence of the association: for example,
+8. The ID of the kin of the associate through whom the association was established
+9. The ID of the person who claimed the existence of the association: for example,
 a son claiming it for his father
+
 Time and Place of the Association
-10.The ID of the place of the association
-11.The sequence of an association, if one does not know the actual date
-12.The date of the association (year, month, and day, if known)
+
+10. The ID of the place of the association
+11. The sequence of an association, if one does not know the actual date
+12. The date of the association (year, month, and day, if known)
+
 Contextual Information
-13.The code for the social institution at or through which the association was
+
+13. The code for the social institution at or through which the association was
 established
-14.The code for the occasion on which the association was established
-15.The code for the genre of the writing that establishes the association, if relevant
-16.The title of the work that established the association, if relevant
-17.The code for the scholarly topic around which the association was formed
+14. The code for the occasion on which the association was established
+15. The code for the genre of the writing that establishes the association, if relevant
+16. The title of the work that established the association, if relevant
+17. The code for the scholarly topic around which the association was formed
 Source and Notes
-18.Source ID
-19.Note
+18. Source ID
+19. Note
+
 4. Status
 CBDB has a table to take note of “social distinctiveness,” that for which people were
 known in society. Since the dating often is uncertain, however, the table has a field to
