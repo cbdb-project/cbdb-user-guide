@@ -82,107 +82,69 @@ d. Index Year
 
 For computational purposes, CBDB needs a single year value to locate a person in
 time. The index year is an artificial value used in analyses. In earlier versions of the
-
 database, index year was based on when the person would have turned 60 sui.
 However, starting with the 2021 dataset, the index year has been based on the known
-or projected year of birth. The rules for calculating the value are complex and based
-on the following assumptions:
-A1:
-that a man received a Jinshi (進士) degree at age 30, the Juren (舉人) degree at
-27, and the Xuicai/licentiate (秀才/生員) degree at 21
-A2:
-that a wife was 3 years younger than her husband
-A3:
-the the first child was born when the father is at age 30 and a mother at age 27
-(per assumption A2)
-A4:
-that male children were born 2 years apart
-A5:
-that a man died at age 63 and a woman at age 55
-Rules Based on a Person’s Birth/Death Dates
-### Rule 1 Ego's index year = ego’s birth year
-### Rule 2 If we know ego’s death year and age at death, then: ego’s index year =
-ego’s death year – age at death
-### Rule 3
-If we know just the ego’s death year then: (per A5) ego’s index year =
-ego’s death year – 63 (for men), ego’s death year – 55 (for women)
-### Rule 4W Ego’s index year = husband’s birth year +3 (Note: If the woman was a
-concubine/second wife, then rule 9W precedes rule 4W.)
-Rules Based on Degree Dates
-### Rule 5 Ego’s index year = the year he obtained the Jinshi (進士) - 30
-### Rule 5W Ego’s index year = the year her husband obtained the Jinshi (進士) -
-30+3 = husband’s Jinshi year - 27
-### Rule 6 Ego’s index year = the year he obtained the Juren (舉人) - 27
-### Rule 6W Ego’s index year = the year her husband obtained the Juren (舉人) -
-27+3 = husband’s Juren year - 24
-### Rule 7 Ego’s index year = the year he obtained the Xuicai (秀才/生員) - 21
-### Rule 7W Ego’s index year = the year her husband obtained the Xuicai (秀才/生員
-年) - 21+3 = husband’s Xuicai year - 18
-Rules based on Birth Years of Kin
-### Rule 8 If we know the birth year of ego’s father, then ego’s index year is decided
-per assumption A3: ego's birth year was 30 years later than father's birth
-(Ego’s index year = father’s birth year + 30)
-### Rule 9 If we know the birth year of a male’s oldest child, then ego’s index year
-is decided per A3: ego's birth year was 30 years earlier than the birth year
-(Male’s index year = oldest child’s birth year – 30)
-### Rule 9W If we know the birth year of a female’s oldest child, then ego's index
-year is decided per A3: ego's birth year was 27 years earlier than the birth
+or projected year of birth. The rules for calculating the value are based on the following
+assumptions.
 
-year of her oldest child. (Female’s index year = oldest child’s birth year -
-27)
-### Rule 10 If we know the birth year of ego’s older brother, then ego’s index year
-is decided per A4: ego’s birth year was 2 years later than older brother’s
-birth year. (Ego’s index year = older brother’s birth year+2)
-### Rule 11 If we know the birth year of ego’s younger brother, then ego’s index
-year is decided per A4: ego’s birth year was 2 years earlier than younger
-brother’s birth year. (Ego's index year = younger brother’s birth year-2)
-### Rule 12 If we know the birth year of a male’s oldest son-in-law, then ego’s
-index year is decided per A3 & A4: ego’s birth year was 30 years earlier
-than the birth year of his oldest daughter, and his oldest son-in-law was
-3 years older than oldest daughter. (Male’s index year = birth year of
-oldest son-in-law+3-30 = birth year of oldest son-in-law -27)
-### Rule 12W If we know the birth year of a female’s oldest son-in-law, then ego’s
-index year is decided per A3 & A4: female’s birth year was 27 years
-earlier than the birth year of her oldest daughter, and her son-in-law was
-3 years older than her oldest daughter. (Female’s index year = birth year
-of oldest son-in-law+3-27 = birth year of oldest son-in-law - 24)
-### Rule 13 If we know the birth year of ego’s grandfather, then ego’s index year is
-decided per assumption A3: ego's birth year was 60 years later than
-grandfather’s birth year. (Ego's index year = grandfather’s birth year +
-60)
-Rules Based on the Index Years of Kin
-(Note: CBDB iteratively uses the derived index years for these values.)
-### Rule 14 If we know the index year of ego’s father, then we use father’s index
-year to decide ego’s index year per A3. (Ego’s index year = father’s index
-year + 30)
-### Rule 15 If we know the index year of a male’s oldest child, then we use that
-year to decide ego’s index year per A3. (Ego’s index year = index year of
-oldest child - 30)
-### Rule 15W If we know the index year of a female’s oldest child, then we use that
-year to decide ego’s index year per A3. (Female’s index year = index
-year of oldest child - 27)
-### Rule 16 If we know the index year of ego’s older brother, then we use that year
-to decide ego’s index year per A4. (Ego’s index year = index year of older
-brother + 2)
-### Rule 17 If we know the index year of ego’s younger brother, then we use that
-year to decide ego’s index year per A4. (Ego’s index year = index year of
-younger brother - 2)
-### Rule 18 If we know the index year of a male’s oldest son-in-law, then we use
-that year to decide ego’s index year per A3 & A4: ego’s birth year was 30
-years earlier than the birth year of his oldest daughter, and his oldest
-son-in-law was 3 years older than oldest daughter. (Ego’s index year =
+**Assumptions**
 
-index year of oldest son-in-law +3 -30 = index year of oldest son-in-
-law - 27)
-### Rule 18W If we know the index year of a female’s oldest son-in-law, then we use
-that year to decide her index year per A3 & A4: female’s birth year was
-27 years earlier than the birth year of her oldest daughter, and her son-
-in-law was 3 years older than her oldest daughter. (Ego’s index year =
-index year of oldest son-in-law +3 -27 = index year of oldest son-in-
-law - 24)
-### Rule 19 If we know the index year of ego’s grandfather, then we use
-grandfather’s index year to decide ego’s index year per A3. (Ego’s index
-year = grandfather’s index year + 60)
+| Code | Assumption |
+|---|---|
+| A1 | A man received Jinshi (進士) at age 30, Juren (舉人) at 27, and Xuicai/licentiate (秀才/生員) at 21. |
+| A2 | A wife was 3 years younger than her husband. |
+| A3 | The first child was born when the father was age 30 and the mother age 27 (per A2). |
+| A4 | Male children were born 2 years apart. |
+| A5 | A man died at age 63 and a woman at age 55. |
+
+**Rules Based on a Person’s Birth/Death Dates**
+
+| Rule | Condition / Formula |
+|---|---|
+| Rule 1 | Ego’s index year = ego’s birth year. |
+| Rule 2 | If we know ego’s death year and age at death: ego’s index year = ego’s death year − age at death. |
+| Rule 3 | If we know only ego’s death year (per A5): ego’s index year = death year − 63 (men), death year − 55 (women). |
+| Rule 4W | Ego’s index year = husband’s birth year + 3. (If the woman was a concubine/second wife, Rule 9W precedes Rule 4W.) |
+
+**Rules Based on Degree Dates**
+
+| Rule | Condition / Formula |
+|---|---|
+| Rule 5 | Ego’s index year = Jinshi year − 30. |
+| Rule 5W | Ego’s index year = husband’s Jinshi year − 27 (30 + 3 adjustment). |
+| Rule 6 | Ego’s index year = Juren year − 27. |
+| Rule 6W | Ego’s index year = husband’s Juren year − 24 (27 + 3 adjustment). |
+| Rule 7 | Ego’s index year = Xuicai year − 21. |
+| Rule 7W | Ego’s index year = husband’s Xuicai year − 18 (21 + 3 adjustment). |
+
+**Rules Based on Birth Years of Kin**
+
+| Rule | Condition / Formula |
+|---|---|
+| Rule 8 | If we know ego’s father’s birth year (per A3): ego’s index year = father’s birth year + 30. |
+| Rule 9 | If we know a male ego’s oldest child birth year (per A3): male’s index year = oldest child’s birth year − 30. |
+| Rule 9W | If we know a female ego’s oldest child birth year (per A3): female’s index year = oldest child’s birth year − 27. |
+| Rule 10 | If we know ego’s older brother’s birth year (per A4): ego’s index year = older brother’s birth year + 2. |
+| Rule 11 | If we know ego’s younger brother’s birth year (per A4): ego’s index year = younger brother’s birth year − 2. |
+| Rule 12 | If we know a male ego’s oldest son-in-law birth year (per A3 & A4): male’s index year = oldest son-in-law birth year + 3 − 30 = oldest son-in-law birth year − 27. |
+| Rule 12W | If we know a female ego’s oldest son-in-law birth year (per A3 & A4): female’s index year = oldest son-in-law birth year + 3 − 27 = oldest son-in-law birth year − 24. |
+| Rule 13 | If we know ego’s grandfather’s birth year (per A3): ego’s index year = grandfather’s birth year + 60. |
+
+**Rules Based on Index Years of Kin**
+
+Note: CBDB iteratively uses derived index years for these values.
+
+| Rule | Condition / Formula |
+|---|---|
+| Rule 14 | If we know ego’s father’s index year (per A3): ego’s index year = father’s index year + 30. |
+| Rule 15 | If we know a male ego’s oldest child’s index year (per A3): ego’s index year = oldest child’s index year − 30. |
+| Rule 15W | If we know a female ego’s oldest child’s index year (per A3): female’s index year = oldest child’s index year − 27. |
+| Rule 16 | If we know ego’s older brother’s index year (per A4): ego’s index year = older brother’s index year + 2. |
+| Rule 17 | If we know ego’s younger brother’s index year (per A4): ego’s index year = younger brother’s index year − 2. |
+| Rule 18 | If we know a male ego’s oldest son-in-law’s index year (per A3 & A4): ego’s index year = oldest son-in-law index year + 3 − 30 = oldest son-in-law index year − 27. |
+| Rule 18W | If we know a female ego’s oldest son-in-law’s index year (per A3 & A4): ego’s index year = oldest son-in-law index year + 3 − 27 = oldest son-in-law index year − 24. |
+| Rule 19 | If we know ego’s grandfather’s index year (per A3): ego’s index year = grandfather’s index year + 60. |
+
 The CBDB table that records this basic biographical information is `BIOG_MAIN`.
 `BIOG_MAIN` assigns each person a unique ID.
 
@@ -647,4 +609,3 @@ Other sources eventually may clarify the point, but for the moment CBDB simply r
   Institution Code (if only the name is known, CBDB assigns a 0 to this field)
   Institutional Role Code
   Role Dates
-
