@@ -97,89 +97,90 @@ person, the name of the place, and the description of the type of address, along
 8. `ZZZ_POSTED_TO_OFFICE_DATA` (fills in office information)
 9. `ZZZ_TEXT_DATA` (fills in text data)
 
-I. An Example:
+
+### I. An Example:
+
     The mode of entry into government of near kin of the successful jinshi degree candidates of the 1148 examination How might one use an SQL query to determine how many of the people who passed the jinshi examination in 1148 (for which we have a complete list) had close relatives who had entered government service?
 
 1. In the Create menu (next to the Home tab at the top of the main screen) , Select Query
 Design:
 
-![image_125_182](images/image_125_182.png)
+    ![image_125_182](images/image_125_182.png)
 
-In the “Show Table” window, select `ZZZ_ENTRY_DATA` and click Add
+    In the “Show Table” window, select `ZZZ_ENTRY_DATA` and click Add
 
-
-2. Double-click on c_personid, c_entry_code, and c_year to add them to the query.
-Unclick the “Show” check-box for c_entry_code so that you can next specify a value but
-have the field not appear in the results of the query, since in every record, the value of the
-field will be the same.
+2. Double-click on c_personid, c_entry_code, and c_year to add them to the query. Unclick the “Show” check-box for c_entry_code so that you can next specify a value but have the field not appear in the results of the query, since in every record, the value of the field will be the same.
 
 3. Then in “Criteria” specify the value 36 for c_entry_code (jinshi), and the year 1148.
 
-![image_126_183](images/image_126_183.png)
+    ![image_126_183](images/image_126_183.png)
 
 4. Check the results by right-clicking on the top border of the Query form and switching to Datasheet View:
 
-![image_126_184](images/image_126_184.png)
-
+    ![image_126_184](images/image_126_184.png)
 
 5. There are 273 records. (Please note that as CBDB adds data, these results will change.)
 
-![image_127_185](images/image_127_185.png)
+    ![image_127_185](images/image_127_185.png)
 
 6. Now add the kinship table `ZZZ_KIN_BIOG_ADDR` by clicking on Show Table along
 the Query Tools menu at the top of the screen and select `ZZZ_KIN_BIOG_ADDR` from the
-
 "Show Table" window:
-a. Create a link between the two tables by clicking on c_personid in
-`ZZZ_ENTRY_DATA` and dragging it to the c_personid in `ZZZ_KIN_BIOG_ADDR`.
-The query builder may ask you to confirm that you want to select only those pairs of
-records from the two tables which share the same person IDs.
-b. From the kinship table, add the following fields:
-c_person_name_chn (the name of the person identified by c_personid)
-c_node_id (the ID of the relative)
-c_node_chn (the name of the relative)
-c_upstep (the number of generations up in the kinship relation)
-c_dwnstep (the number of generations down in the kinship relation)
-c_marstep (the number of marriage relations involved in the kinship relation)
-c_colstep (the number of brother/sister relations involved in the kinship relation)
-c_link_desc (the English description of the kinship relation)
-c_link_chn (the Chinese description of the kinship relation)
-c. Set the limit for generations up (c_upstep) to 2 (i.e., FF, FFB, etc.)
-Set the limit for generations down (c_dwnstep) to 0 (i.e, we want to look only at
-ancestors)
-Set the limit for affines (c_marstep) to 0
 
-Set the limit for brother/sister (c_colstep) to at most 1
-d. Repeat this process, but allow cousins (i.e. FBS or FFBS: 1 down step, at least 1 up)
+    a. Create a link between the two tables by clicking on c_personid in
+    `ZZZ_ENTRY_DATA` and dragging it to the c_personid in `ZZZ_KIN_BIOG_ADDR`.
+    The query builder may ask you to confirm that you want to select only those pairs of
+    records from the two tables which share the same person IDs.
 
-![image_128_186](images/image_128_186.png)
+    b. From the kinship table, add the following fields:
+
+        c_person_name_chn (the name of the person identified by c_personid)
+        c_node_id (the ID of the relative)
+        c_node_chn (the name of the relative)
+        c_upstep (the number of generations up in the kinship relation)
+        c_dwnstep (the number of generations down in the kinship relation)
+        c_marstep (the number of marriage relations involved in the kinship relation)
+        c_colstep (the number of brother/sister relations involved in the kinship relation)
+        c_link_desc (the English description of the kinship relation)
+        c_link_chn (the Chinese description of the kinship relation)
+
+    c. Set the limit for generations up (c_upstep) to 2 (i.e., FF, FFB, etc.)
+
+        Set the limit for generations down (c_dwnstep) to 0 (i.e, we want to look only at ancestors)
+        Set the limit for affines (c_marstep) to 0
+        Set the limit for brother/sister (c_colstep) to at most 1
+
+    d. Repeat this process, but allow cousins (i.e. FBS or FFBS: 1 down step, at least 1 up)
+
+    ![image_128_186](images/image_128_186.png)
 
 6. Check the results: There are 621 relatives that meet the criteria
 
-![image_128_187](images/image_128_187.png)
+    ![image_128_187](images/image_128_187.png)
 
 7. Now add a second version of the `ZZZ_ENTRY_DATA` table and link that table to the
 `ZZZ_KIN_BIOG_ADDR` table by making c_node_id = c_personid:
 
-![image_129_188](images/image_129_188.png)
+    ![image_129_188](images/image_129_188.png)
 
 8. Add the two fields c_entry_desc and c_entry_desc_chn from ZZZ_ENTRY_DATA_1 (to
 get the mode of entry of the kin) and check the results:
 
-![image_129_189](images/image_129_189.png)
-86 kin from the 273 initial degree recipients have data on how they entered officialdom
+    ![image_129_189](images/image_129_189.png)
+
+    86 kin from the 273 initial degree recipients have data on how they entered officialdom
 
 9. Simply adding a 1 to the c_marstep will allow one to look at affinal relations as well. Using the criterion “<2” means that a c_marstep of either 0 or 1 in the record will be acceptable:
 
-![image_130_190](images/image_130_190.png)
+    ![image_130_190](images/image_130_190.png)
 
 This produces 6 additional records for a total of 92.
 
 ![image_130_191](images/image_130_191.png)
 
-II. Some Useful Additional Procedures for Queries
+### II. Some Useful Additional Procedures for Queries
 
-A. Null Information can be Useful
+#### A. Null Information can be Useful
 
 In the above query, we dealt only with those relatives for whom information about their mode of entering government service was known. Suppose, however, that we wanted a list of all the relatives as well as the available information about their mode of entering service. Such a list helps clarify the percentage for whom we have data.
 
@@ -207,13 +208,12 @@ entry IDs. (Left and Right are determined by the order in which the tables are l
 
 When we execute the query, we get records for all the initial 621 kin.
 
-B. The TablesFields Table
+#### B. The TablesFields Table
 
 For getting information on additional people involved in various types of social interactions, you need to know which fields in a table refer to IDs for people. When in doubt, you can open the TablesFields table from the list of tables on the left of the main Access interface and look for the fields in the table you want to explore. Those that have “`BIOG_MAIN`” in the “foreign key” column and “c_personid” in the ForeignKeyBase column refer to people.[^foreign-key] For
 example, in `ASSOC_DATA`, we have:
 
 ![image_133_194](images/image_133_194.png)
-
 
 Among all these, the following are IDs of people:
 
@@ -224,7 +224,6 @@ Among all these, the following are IDs of people:
     c_kin_id (the ID of the kin of the main person in the record through who the association
     exists, if any)
     c_personid (the person whom the record is about)
-
 
 [^foreign-key] In a normalized database, “foreign key” simply refers to those fields that use the IDs defined (as primary keys) in
 other tables.
