@@ -1,5 +1,15 @@
 ### Appendix C: Installing the SQLite CBDB database on a Macintosh
+
+![image_139_201](images/image_139_201.png)
+
+
+
 For Apple users (or Linux users, who probably do not need these instructions), there is a
+
+![image_139_202](images/image_139_202.png)
+
+
+
 stand-alone version of the CBDB database using the SQLite format.
 For any database file to be used in a Macintosh system, the operating system needs a
 connector between the file and the standard ODBC (Open Database Connectivity) interface.

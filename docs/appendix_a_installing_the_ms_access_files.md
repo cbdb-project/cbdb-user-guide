@@ -1,4 +1,7 @@
 ### Appendix A: Installing the MS Access Files
+
+![image_134_195](images/image_134_195.png)
+
 In order to keep the database files within the two gigabyte limit for Microsoft Access files,
 CBDB is divided into four files: three “Base” files with the tables of data, and a “User” file
 with the user interface. The User file draws on the tables in the Base files as “linked tables.”
@@ -14,6 +17,12 @@ Note the arrows next to most of the tables in the list on the left side of the s
 indicates that the table is a linked table from the Base files.
 3. Double-click on any linked table, and if the table is successfully linked, it will open.
 If the link is broken, you will see the message:
+
+![image_135_196](images/image_135_196.png)
+
+
+![image_135_197](images/image_135_197.png)
+
 
 4. If you get an error message, double-check that the three data files are in the same directory
 as the User file. If they are, write down the name of one of the data files, e.g.

@@ -1,5 +1,10 @@
 ## Chapter 4. Advanced Query Techniques
 
+
+
+![image_120_177](images/image_120_177.png)
+
+
 The Access version of CBDB permits a variety of increasingly complex and powerful
 approaches to analyzing the data. The first level of advanced query simply is to use the output
 from one form as the input for a second search. The next step, taken when one has become
@@ -25,6 +30,9 @@ and 1200-1250. We first use the LookAtEntry form:
 3
 5
 
+
+![image_121_178](images/image_121_178.png)
+
 The procedure is:
 (1) Use Select Entry to choose all types in the category of “Examination” 科舉門.
 (2) Set the range of examinations first to 1050-1100. (Here I show 1200-1250.)
@@ -45,12 +53,27 @@ the output to not include 0-degree nodes (nodes with no connections to other nod
 (5) Repeat the process for the people from 1200-1250 and create a second Pajek file.
 Open your Social Network program and “Draw” the results. In this example we use Pajek:
 
+
+
+
+
+![image_122_179](images/image_122_179.png)
+
+
+![image_122_180](images/image_122_180.png)
+
+
 The initial layout for visualizing networks in Pajek is “Circular.” A more useful layout for
 looking at groups of kinship networks is to select “Separate Components” in the “Kamada-
 Kawai” layout listings.
 When one select and closely looks at the components of the kinship networks for men
 from Putian who passed an examination for the years 1050-1100 and 1200-1250, one gets:
 Putian Examination Kinship Networks, 1050-1100
+
+
+
+![image_123_181](images/image_123_181.png)
+
 
 Putian Examination Kinship Networks, 1200-1250
 Note that by the later period, the “principal component” (the largest component in the
@@ -106,15 +129,29 @@ government service?
 1. In the Create menu (next to the Home tab at the top of the main screen) , Select Query
 Design:
 
+
+
+![image_125_182](images/image_125_182.png)
+
+
 In the “Show Table” window, select `ZZZ_ENTRY_DATA` and click Add
 2. Double-click on c_personid, c_entry_code, and c_year to add them to the query.
 Unclick the “Show” check-box for c_entry_code so that you can next specify a value but
 have the field not appear in the results of the query, since in every record, the value of the
 field will be the same.
 
+![image_126_183](images/image_126_183.png)
+
+
+![image_126_184](images/image_126_184.png)
+
+
 3. Then in “Criteria” specify the value 36 for c_entry_code (jinshi), and the year 1148.
 4. Check the results by right-clicking on the top border of the Query form and switching to
 Datasheet View:
+
+![image_127_185](images/image_127_185.png)
+
 
 5. There are 273 records. (Please note that as CBDB adds data, these results will change.)
 6. Now add the kinship table `ZZZ_KIN_BIOG_ADDR` by clicking on Show Table along
@@ -139,9 +176,29 @@ Set the limit for generations down (c_dwnstep) to 0 (i.e, we want to look only a
 ancestors)
 Set the limit for affines (c_marstep) to 0
 
+
+
+
+
+![image_128_186](images/image_128_186.png)
+
+
+![image_128_187](images/image_128_187.png)
+
+
 Set the limit for brother/sister (c_colstep) to at most 1
 d. Repeat this process, but allow cousins (i.e. FBS or FFBS: 1 down step, at least 1 up)
 6. Check the results: There are 621 relatives that meet the criteria
+
+
+
+
+
+![image_129_188](images/image_129_188.png)
+
+
+![image_129_189](images/image_129_189.png)
+
 
 7. Now add a second version of the `ZZZ_ENTRY_DATA` table and link that table to the
 `ZZZ_KIN_BIOG_ADDR` table by making c_node_id = c_personid:
@@ -149,11 +206,26 @@ d. Repeat this process, but allow cousins (i.e. FBS or FFBS: 1 down step, at lea
 get the mode of entry of the kin) and check the results:
 86 kin from the 273 initial degree recipients have data on how they entered officialdom
 
+
+
+
+
+![image_130_190](images/image_130_190.png)
+
+
+![image_130_191](images/image_130_191.png)
+
+
 9. Simply adding a 1 to the c_marstep will allow one to look at affinal relations as well. Using
 the criterion “<2” means that a c_marstep of either 0 or 1 in the record will be acceptable:
 This produces 6 additional records for a total of 92.
 
 II. Some Useful Additional Procedures for Queries
+
+
+![image_131_192](images/image_131_192.png)
+
+
 A. Null Information can be Useful
 In the above query, we dealt only with those relatives for whom information about their mode
 of entering government service was known. Suppose, however, that we wanted a list of all the
@@ -167,6 +239,11 @@ ZZZ_ENTRY_DATA_1, the second copy of `ZZZ_ENTRY_DATA` you added to the query.
 `ZZZ_KIN_BIOG_ADDR`. c_node_id = ZZZ_ENTRY_DATA_1. c_personid
 To modify that link, double-click on the line connecting c_node_id and c_personid. This will
 open a dialog box:
+
+
+
+![image_132_193](images/image_132_193.png)
+
 
 Select option 2 and click OK. Note the arrow pointing to c_personid. This arrow indicates a
 “left join” in the language of SQL. This left join includes all the records from
@@ -183,6 +260,11 @@ for the fields in the table you want to explore. Those that have “`BIOG_MAIN`�
 example, in `ASSOC_DATA`, we have:
 2 In a normalized database, “foreign key” simply refers to those fields that use the IDs defined (as primary keys) in
 other tables.
+
+
+
+![image_133_194](images/image_133_194.png)
+
 
 Among all these, the following are IDs of people:
 c_assoc_claimer_id (the ID of the person claiming the existence of the association)

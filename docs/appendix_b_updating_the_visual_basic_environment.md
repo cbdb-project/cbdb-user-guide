@@ -1,9 +1,19 @@
 ### Appendix B: Updating the Visual Basic Environment (if necessary)
+
+
+
+![image_136_198](images/image_136_198.png)
+
 Adding References
 CBDB uses a variety of Visual Basic resources that are not part of the default MS Access Visual
 Basic environment. If your effort to run a routine produces an error about an undefined VB
 object, you may need to double-check the “References” used by Visual Basic.
 To do this:
+
+
+![image_137_199](images/image_137_199.png)
+
+
 1. Under “Database Tools” in the main Access window, select Visual Basic. This will launch
 the Visual Basic editor.
 2. In the VB editor, click on the menu item “Tools” and then “References…” You will see
@@ -36,9 +46,14 @@ If you are using Windows XP, go to the subdirectory System32.
 c. Change the “Files of type” to: “ActiveX Controls (*.ocx)”
 d. You should see:
 
+
+![image_138_200](images/image_138_200.png)
+
 e. Click on “MSCOMCTL.OCX”
 f. Click on “Open”
 g. Make sure the check-box for Common Controls 6.0 is checked in the References
+
+
 window, then click “OK.”
 6. If you do not find MSCOMCTL.OCX in SysWOW64, you will need to add it.
 a. The CBDBPatch.rar file that you downloaded from the CBDB website contains a copy
