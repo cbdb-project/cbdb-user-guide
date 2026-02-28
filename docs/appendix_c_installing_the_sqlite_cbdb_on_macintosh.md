@@ -1,4 +1,4 @@
-### Appendix C: Installing the SQLite CBDB database on a Macintosh
+# Appendix C: Installing the SQLite CBDB database on a Macintosh
 
 For Apple users (or Linux users, who probably do not need these instructions), there is a
 stand-alone version of the CBDB database using the SQLite format.

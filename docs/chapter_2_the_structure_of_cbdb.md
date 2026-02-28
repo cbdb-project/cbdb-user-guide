@@ -1,4 +1,4 @@
-## Chapter 2. The Structure of CBDB
+# Chapter 2. The Structure of CBDB
 
 ### A. An Overview of the Entities in the Database
 

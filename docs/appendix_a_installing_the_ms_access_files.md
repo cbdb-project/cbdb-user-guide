@@ -1,4 +1,4 @@
-### Appendix A: Installing the MS Access Files
+# Appendix A: Installing the MS Access Files
 
 In order to keep the database files within the two gigabyte limit for Microsoft Access files, CBDB is divided into four files: three “Base” files with the tables of data, and a “User” file with the user interface. The User file draws on the tables in the Base files as “linked tables.”
 

@@ -1,6 +1,6 @@
-## Chapter 1. Relational Databases
+# Chapter 1. Relational Databases
 
-### A. Relational Database and the Organization of Complex Data
+## A. Relational Database and the Organization of Complex Data
 
 The social historian Robert Hartwell (1932-1996), who was concerned with the
 kinship and social networks of Song Dynasty officials, first conceived of using a
@@ -106,7 +106,7 @@ example above, people can have many different ways of being related to a place: 
 place at which they were formally registered, the place at which they actually lived, or the place
 where they were buried. We can group these relations into categories to give them structure.
 
-### B. Rules for Structuring Data in a Relational Database
+## B. Rules for Structuring Data in a Relational Database
 
 In databases, we try to record any particular datum only once. In the example above,
 the name Lü Benzhong 呂本中appears in only one record in CBDB, in his basic entry in the
@@ -145,7 +145,7 @@ These three rules—normalize data, create new tables for one-to-many relations,
 treat many-to-many like one-to-many—are important if you wish to add new data types to
 CBDB.
 
-### C. Relational Databases and the Interactions of Complex Data
+## C. Relational Databases and the Interactions of Complex Data
 
 CBDB models the interactions between people and the entities—the “things”—that shape
 their social world. Some of these entities are easily understood in their “thingness:” places are

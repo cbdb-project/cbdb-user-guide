@@ -1,4 +1,5 @@
-### Appendix D: Kinship Simplification Table
+# Appendix D: Kinship Simplification Table
+
 Simplifications that are applied in all Searches:
 
 | Kinship Term | Male/Female/Both | Simplified Kinship term |
