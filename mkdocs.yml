@@ -1,7 +1,7 @@
 site_name: CBDB User Guide
 site_description: The China Biographical Database User Guide
 site_url: https://cbdb-project.github.io/cbdb-user-guide/
-copyright: © China Biographical Database Project: Harvard University, Academia Sinica, Peking University
+copyright: "© China Biographical Database Project: Harvard University, Academia Sinica, Peking University"
 
 theme:
   name: material
