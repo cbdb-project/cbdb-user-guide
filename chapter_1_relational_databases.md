@@ -186,14 +186,13 @@ flowchart TB
     %% Connections
     Places --> PeoplePlaces
     SocialRelations --> PeopleSocial
+    Kinship --> PeopleKinship
+    Office --> PeopleOffice
 
     People --> PeoplePlaces
     People --> PeopleSocial
     People --> PeopleKinship
     People --> PeopleOffice
-
-    PeopleKinship --> Kinship
-    PeopleOffice --> Office
 ```
 
 Although there is no direct link between KINSHIP and OFFICE, we still can explore the
