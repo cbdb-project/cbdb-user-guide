@@ -1313,6 +1313,8 @@ information
 `ZZZ_STATUS_DATA`
 fills in person name and status description
 
+## Chapter 3. CBDB Tools for Analysis
+
 The China Biographical Database contains large amounts of information, but the information
 is of little value unless there are ways to analyze it. At present, the Access version of CBDB
 has seven forms specifically designed to allow the user to query the database about important
@@ -1353,7 +1355,7 @@ all aspects of CBDB data. This process uses Access’ built-in Query Designer to
 NOTE: The explanations of the forms in this chapter provide examples of searches, but the
 results you get will differ from these because CBDB periodically updates the data in the tables.
 
-A. The Navigation Pane
+### A. The Navigation Pane
 
 As the name suggests, the Navigation Pane is the central console for using the forms
 developed for the Access version of the database. Clicking on the nine query command
@@ -1394,7 +1396,7 @@ the values for index place in all the tables that use the value.
 After changing the ranking of place affiliations, one can restore the CBDB default
 ranking and index place values by simply clicking on the “Reset to Default” command button.
 
-B. The Browser: Looking up Data on an Individual
+### B. The Browser: Looking up Data on an Individual
 
 The browser in CBDB provides a convenient way to explore basic information on individuals
 in the database. It draws on just the raw data for people in the database, so it has no significant
@@ -1484,7 +1486,7 @@ the Save to File command button.
 At present, the HTML file is in a very simple format (the displayed information here is just the
 beginning of the file):
 
-C. Using the Form “Query by Methods of Entry into Government
+### C. Using the Form “Query by Methods of Entry into Government”
 LookAtEntry is the simplest form. One opens it by clicking on “Query by Methods of Entry
 into Government” on the main page and clicks on the “Select Entry” button to choose a
 category:
@@ -1697,7 +1699,7 @@ the search.
 All the search forms support output to Neo4j but vary in the number of files created,
 depending on the nature of the data collected through the forms’ queries.
 
-D. Using the Form “Query Associations”
+### D. Using the Form “Query Associations”
 LookAtAssociations allows one to look at the people who have participated in particular
 associations or categories of associations. After opening the form, one clicks on “Select
 Association” to choose the type of association one wants to investigate.
@@ -1834,7 +1836,7 @@ turns out that the results are the same if one chooses either “Narrow” or �
 Like all other tables, LookAt Associations allows one to store the results of a query for later use
 in another form. One clicks on the “Store Person IDs” button.
 
-E. Using the Form “Query Offices Holding”
+### E. Using the Form “Query Offices Holding”
 The bureaucratic system of imperial China was complex, and it evolved over time. As a result,
 CBDB at present has over six thousand office codes and will certainly have many more as the
 database extends its coverage to all of pre-modern China. Thus a central challenge in offering
@@ -1973,7 +1975,7 @@ Index Address Type (English)
 Index Address Type (Chinese)
 XY count (number of people) for the Index Address
 
-F. Using the Form “Query Kinship”
+### F. Using the Form “Query Kinship”
 Queries involving kinship are more complex than queries examining categories of association
 or modes of attaining eligibility for office. Since the information on kinship for an individual
 usually contains just a few records, CBDB begins with those records and then looks at the
@@ -2165,7 +2167,7 @@ Red
 3
 4
 
-G. Using the Form “Query Social Networks”
+### G. Using the Form “Query Social Networks”
 LookAtNetworks is the most powerful querying interface developed for the Access version
 of CBDB. It allows the user to explore social networks defined both by kinship ties and by
 other forms of social relations. It allows the user to select a person or to import a list of people
@@ -2351,7 +2353,7 @@ Red
 = nodes at a summed distance of 5 or more
 One also can export a set of CSV (comma-separated values) files for use with Neo4j.
 
-H. Using the Form “Query Pair-wise Associations”
+### H. Using the Form “Query Pair-wise Associations”
 At times one wants to consider whether there were any social links between two individuals or
 among members of a group of people identified through criteria other than those of kinship or
 social network. One could use LookAtNetworks to generate the social network of one
@@ -2439,7 +2441,7 @@ one mysterious line to Su Shi)
 The output files aggregate the associations between people, and the width of the lines reflects
 the number of associations between nodes.
 
-I. Using the Form “Query Place Associations”
+### I. Using the Form “Query Place Associations”
 The forms discussed above produce information about the relationship between people and
 places in the contexts of kinship and social relations, office holding, and entry into
 government. It may be useful to see how people and place come together in a more synoptic
@@ -2514,7 +2516,7 @@ selected.
 If there is a need to save the data in GIS form, this functionality can be added in future
 versions of the software.
 
-J. Using the Form “Query Status”
+### J. Using the Form “Query Status”
 LookAtStatus is a recent addition to the forms for exploring the CBDB data. It allows users
 to examine CBDB information on social distinctions recorded for members of the database.
 As explained in Chapter 2, status records ways in which individuals gained reputations in
@@ -2557,7 +2559,7 @@ The form provides output to GIS data files as well as to Neo4j files, which capt
 person-status relationship (that is, people are connected as nodes to status types as nodes rather
 than as people connected to other people).
 
-K. Using the Form “Query Texts and Roles”
+### K. Using the Form “Query Texts and Roles”
 The form LookatTextRoles enables users to investigate people who have roles in the
 production of premodern Chinese texts. CBDB uses the classification of texts used in the Siku
 quanshu. The roles connecting people to texts in CBDB are:
@@ -2601,7 +2603,7 @@ the Save to GIS button.
 Output to a set of Neo4j files by clicking on Save to Neo4j gives one a way to further
 explore the bipartite relationship between people and texts using Neo4j.
 
-L. Using the form “Looking up Data on a Group of People
+### L. Using the form “Looking up Data on a Group of People”
 As shown in the description of the other forms, CBDB allows the user to identify groups of
 people according to specified characteristics. The form LookAtGroupData allows the user
 then to quickly get additional data on these groups of people.
@@ -2642,6 +2644,8 @@ form creates a separate file for each type of information.
 If the user has imported a list of IDs, this list can be saved by clicking on the Store Person
 IDs button.
 
+## Chapter 4. Advanced Query Techniques
+
 The Access version of CBDB permits a variety of increasingly complex and powerful
 approaches to analyzing the data. The first level of advanced query simply is to use the output
 from one form as the input for a second search. The next step, taken when one has become
@@ -2651,8 +2655,7 @@ Design form to create free-form queries. As one’s command of the concepts of S
 chapter considers one example of using the output from CBDB forms as input for other
 queries and then introduces the basic ideas of SQL and illustrates them through an example
 that requires two steps in query design.
-A. Kinship Networks for Examination Graduates in Putian, Fujian during
-the Song
+### A. Kinship Networks for Examination Graduates in Putian, Fujian during the Song
 One question in the study of social history during the Song dynasty is whether local elites
 remained stable and controlled access to the cultural resources needed to gain entrance to
 official status or whether there was in fact social mobility where marginal families managed to
@@ -2701,7 +2704,7 @@ network) has grown to include not only a Fang 方, Chen 陳, and Lin 林 clan, b
 members of Zheng 鄭 and Gu 顧 clans. The Song 宋 surname largely has disappeared. In the
 diagrams, the white nodes are the men who passed the examinations, and the blue squares are
 their kin.
-B. Using the Access Query Designer
+### B. Using the Access Query Designer
 Another extremely powerful capacity built into Access is the ability to design SQL queries to
 look at the CBDB data from whatever angle you wish. There are a few concepts to master, but
 the Query Designer in Access allows end-users to begin to explore the data without any
@@ -2836,8 +2839,9 @@ c_kin_id (the ID of the kin of the main person in the record through who the ass
 exists, if any)
 c_personid (the person whom the record is about)
 
-Appendices
-Appendix A: Installing the MS Access Files
+## Appendices
+
+### Appendix A: Installing the MS Access Files
 In order to keep the database files within the two gigabyte limit for Microsoft Access files,
 CBDB is divided into four files: three “Base” files with the tables of data, and a “User” file
 with the user interface. The User file draws on the tables in the Base files as “linked tables.”
@@ -2863,7 +2867,7 @@ open a form that will ask for the date of the data release:
 Write the date into the form and click “OK.” The form will relink the tables.
 6. The User file is now ready to use.
 
-Appendix B: Updating the Visual Basic Environment (if necessary)
+### Appendix B: Updating the Visual Basic Environment (if necessary)
 Adding References
 CBDB uses a variety of Visual Basic resources that are not part of the default MS Access Visual
 Basic environment. If your effort to run a routine produces an error about an undefined VB
@@ -2922,7 +2926,7 @@ d. Now perform the steps listed in (1) - (5) on the first page.
 7. To exit the Visual Basic Editor, click on the menu item “File” and then on “Close and
 Return to Microsoft Access.”
 
-Appendix C: Installing the SQLite CBDB database on a Macintosh
+### Appendix C: Installing the SQLite CBDB database on a Macintosh
 For Apple users (or Linux users, who probably do not need these instructions), there is a
 stand-alone version of the CBDB database using the SQLite format.
 For any database file to be used in a Macintosh system, the operating system needs a
@@ -2942,7 +2946,7 @@ werner.de/sqliteodbc/ ).
 7. The SQLite version of CBDB should be ready to use with OpenOffice or whatever
 software interface you prefer.
 
-Appendix D: Kinship Simplification Table
+### Appendix D: Kinship Simplification Table
 Simplifications that are applied in all Searches:
 Kinship Term
 Male/Female/Both Simplified Kinship term
@@ -3167,7 +3171,7 @@ ZSM
 B
 Z
 
-Appendix E. Change Log for CBDB
+### Appendix E. Change Log for CBDB
 The Access version of CBDB was significantly reorganized with the AW release: the data and
 the querying interface are now completely separate and can be updated independently. For all
 more recent releases, changes in the data and in the interface are reported separately.
@@ -3671,4 +3675,3 @@ NOTE: Some of the built in queries do not function on 64 bit machines. This will
 corrected in the near future.
 1. Bug fixed for the "Enter Biographical Data 輸入傳記資料"
 2. Bug fixed in the "Look up Data on an Individual 按人查詢" buttons.
-
