@@ -16,7 +16,7 @@ data in response to simple queries (who came from a certain place?) and to far m
 complex queries (what were the social and kinship connections among all those who
 entered government through the civil service examination from a certain place within a
 certain span of years?). Users can query CBDB through an online database (follow the
-links on the CBDB website, https://cbdb.hsites.harvard.edu/. Users also can
+links on the CBDB website, [https://cbdb.hsites.harvard.edu/](https://cbdb.hsites.harvard.edu/). Users also can
 download the entire database, together with query forms and utilities for exporting data
 for network and spatial analysis, from the CBDB website and explore the database on
 any computer with Microsoft Access. We also offer a SQLite format database for
@@ -121,7 +121,6 @@ the project, all participants are recognized on the CBDB website.
 
 This User’s Guide explains the logic of CBDB as a relational database, the structure of
 its contents, the primary query interfaces for getting data from the database, and
-installation procedures for different operating systems. Please also consult Appendix D
+installation procedures for different operating systems. Please also consult Appendix E
 of the User’s Guide for a summary of the most recent changes to the database and to
 the user interface.
-
