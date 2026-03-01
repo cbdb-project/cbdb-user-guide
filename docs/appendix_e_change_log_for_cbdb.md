@@ -27,25 +27,28 @@ SQL Server. Advanced users should consider downloading and installing MS SQL
 Server Management Studio, which gives on direct access to the SQL Server CBDB
 database.
 
-## Build 20211110
+### Build 20211110
 
-### Design Change
+**Design Change**
+
 In LookAtOffice, selecting an office now provides more information about the dynasty
 of the selected office.
 
-## Build 20210826
+### Build 20210826
 
-### Design Change
+**Design Change**
+
 In the Browser for individuals, using pinyin now has three options:
 (1) lower case: it looks for the string anywhere in the name;
 (2) upper case: it looks for the string only at the beginnings of words (“Hao” will select
-both Zhang Hao and Hao Jing;
-(3) string beginning with “!:” it looks only at the beginning of the surname (just “Hao
+both Zhang Hao and Hao Jing);
+(3) string beginning with “`!:`” it looks only at the beginning of the surname (just “Hao
 Jing”)
 
-## Build 20210609
+### Build 20210609
 
-### Bug Fixes
+**Bug Fixes**
+
 1. Added additional fields to ZZ_SCRATCH_BIOG_MAIN (these had been deleted
 in recreating the SQL Server database from the Access database. I have added the fields
 to the table in the SupplementalTablesSQL_Server.mdb file in the Migration subfolder.
@@ -55,18 +58,20 @@ functionality by `ZZZ_BIOG_MAIN`
 4. Because Access does not allow sorting of SQL Server tables opened as recordsets,
 replaced all such recordset with sorted queries of the tables.
 
-## Build 20210603
+### Build 20210603
 
-### Design Change
+**Design Change**
+
 1. Created a filter-by-office-title function for selecting offices
 2. In order to filter by office title, I added c_dy, c_dynasty, and c_dynasty_chn both to
 ZZ_OFFICE_CODE and to Z_SCRATCH_DUMMY_OC.
 
-### Bug Fixes
+**Bug Fixes**
+
 1. Cleared the scratch table for status codes when clicking on the highest tree level to
 fix a duplicate-value bug.
 
-## Build 20210601
+### Build 20210601
 
 This is the initial version created by using the new CBDB dataset in Access. Since
 some scratch tables are unique to the SQL Server version, I have created an additional
@@ -117,6 +122,7 @@ added.
 ### Design Changes
 1. Made the changes necessary for users to export dynasty information from
 LookAtKinship:
+
     a. Added c_dy, c_dynasty, c_dynasty_chn, c_kin_dy, c_kin_dynasty, and
     c_kin_dynasty_chn to ZZ_SCRATCH_KIN, ZZ_SCRATCH_KINNET,
     ZZ_SCRATCH_KINNET_EDGE, ZZ_SCRATCH_GEPHI_NODE, and
@@ -124,11 +130,12 @@ LookAtKinship:
     b. Added the new fields to the forms frmZZ_SCRATCH_KIN and
     frmZZ_SCRATCH_KINNET
     c. Revised the code for exporting to UCINet and Gephi
+
 2. Made the changes necessary for users to export dynasty information from
 LookAtNetworks by revising the code for exporting to UCINet and Gephi
 3. Created the form LookAtGroupData.
-    a. Created tables Z_SCRATCH_DUMMY_OF,
-    Z_SCRATCH_DUMMY_ENTRY, Z_SCRATCH_DUMMY_BA
+
+    a. Created tables Z_SCRATCH_DUMMY_OF, Z_SCRATCH_DUMMY_ENTRY, Z_SCRATCH_DUMMY_BA
     b. Added c_sequence, etc. to ZZ_SCRATCH_ENTRY
     c. Created the (sub)forms:
         ZZ_SCRATCH_GROUP_STATUS
@@ -137,7 +144,7 @@ LookAtNetworks by revising the code for exporting to UCINet and Gephi
         ZZ_SCRATCH_GROUP_TEXT
         ZZ_SCRATCH_GROUP_PLACE
     d. Added fields to `ZZZ_BIOG_ADDR_DATA`
-    Created the table `ZZ_SCRATCH_BIOG_ADDR_DATA`
+        Created the table `ZZ_SCRATCH_BIOG_ADDR_DATA`
     e. Added a routine to rebuild `ZZZ_BIOG_ADDR_DATA` to DATA3
 
 ## Build 20220425

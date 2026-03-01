@@ -13,37 +13,42 @@ CBDB 程式碼已重寫為由 SQL Server 端執行所有查詢，再把結果回
 
 若使用者在 MS Access Query Builder 自行撰寫查詢，可能會遇到 Access SQL 與 SQL Server SQL 不一致帶來的問題。進階使用者可考慮安裝 MS SQL Server Management Studio，以直接操作 SQL Server 版 CBDB 資料庫。
 
-## Build 20211110
+### Build 20211110
 
-### 設計變更
+**設計變更**
+
 在 LookAtOffice 中，選取官職後會顯示更多該官職所屬朝代資訊。
 
-## Build 20210826
+### Build 20210826
 
-### 設計變更
+**設計變更**
+
 在人物 Browser 中，拼音查詢改為三種模式：
 (1) 全小寫：在姓名任意位置比對字串；
 (2) 首字母大寫：僅在詞首比對（例如「Hao」會找出 Zhang Hao 與 Hao Jing）；
-(3) 以「!:」開頭：只比對姓氏開頭（例如僅匹配「Hao Jing」）。
+(3) 以「`!:`」開頭：只比對姓氏開頭（例如僅匹配「Hao Jing」）。
 
-## Build 20210609
+### Build 20210609
 
-### 錯誤修正
+**錯誤修正**
+
 1. 在 `ZZ_SCRATCH_BIOG_MAIN` 新增額外欄位（由 Access 版遷移 SQL Server 時曾遺失）。已將欄位加入 Migration 子資料夾中的 `SupplementalTablesSQL_Server.mdb`。
 2. 移除所有 `ZZZ_ALL_BIOG_ADDR` 參照；其功能已由 `ZZZ_BIOG_MAIN` 取代。
 3. 在 `ZZ_SCRATCH_KINNET_EDGE` 新增欄位 `c_kin_rel_count`。
 4. 因 Access 不支援對以 recordset 開啟的 SQL Server 表進行排序，已改為對資料表使用排序查詢。
 
-## Build 20210603
+### Build 20210603
 
-### 設計變更
+**設計變更**
+
 1. 新增依官名篩選官職功能。
 2. 為支援官名篩選，於 `ZZ_OFFICE_CODE` 與 `Z_SCRATCH_DUMMY_OC` 新增 `c_dy`、`c_dynasty`、`c_dynasty_chn`。
 
-### 錯誤修正
+**錯誤修正**
+
 1. 點擊最高樹層時會清空 status codes 暫存表，以修正重複值 bug。
 
-## Build 20210601
+### Build 20210601
 
 此為使用新 CBDB dataset 在 Access 建立的初始版本。因部分暫存表為 SQL Server 版專用，另建立 `SupplementalTablesSQL_Server.mdb`，遷移時需一併納入。
 
