@@ -12,6 +12,36 @@ theme:
     - toc.integrate
 
 plugins:
+  - i18n:
+      docs_structure: folder
+      fallback_to_default: true
+      reconfigure_material: true
+      reconfigure_search: true
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+        - locale: zh_TW
+          name: 繁體中文（台灣）
+          build: true
+          nav_translations:
+            Home: 首頁
+            Main Guide: 主手冊
+            Preface: 前言
+            Introduction: 導論
+            Chapter 1: 第 1 章
+            Chapter 2: 第 2 章
+            Structure of CBDB: CBDB 結構
+            Summary of Tables in CBDB: CBDB 資料表總覽
+            Chapter 3: 第 3 章
+            Chapter 4: 第 4 章
+            Appendices: 附錄
+            Appendix A: 附錄 A
+            Appendix B: 附錄 B
+            Appendix C: 附錄 C
+            Appendix D: 附錄 D
+            Appendix E: 附錄 E
   - search
 
 extra:
