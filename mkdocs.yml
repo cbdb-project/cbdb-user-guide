@@ -22,7 +22,7 @@ plugins:
           default: true
           name: English
           build: true
-        - locale: zh_TW
+        - locale: zh-TW
           name: 繁體中文（台灣）
           build: true
           nav_translations:
