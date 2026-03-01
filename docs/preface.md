@@ -16,7 +16,7 @@ data in response to simple queries (who came from a certain place?) and to far m
 complex queries (what were the social and kinship connections among all those who
 entered government through the civil service examination from a certain place within a
 certain span of years?). Users can query CBDB through an online database (follow the
-links on the CBDB website, https://projects.iq.harvard.edu/cbdb. Users also can
+links on the CBDB website, https://cbdb.hsites.harvard.edu/. Users also can
 download the entire database, together with query forms and utilities for exporting data
 for network and spatial analysis, from the CBDB website and explore the database on
 any computer with Microsoft Access. We also offer a SQLite format database for
