@@ -54,6 +54,7 @@ extra_javascript:
 
 markdown_extensions:
   - fenced_code
+  - attr_list
   - footnotes
   - toc:
       permalink: true

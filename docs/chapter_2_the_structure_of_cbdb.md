@@ -1,6 +1,6 @@
 # Chapter 2. The Structure of CBDB
 
-### A. An Overview of the Entities in the Database
+### A. An Overview of the Entities in the Database {: #a-overview }
 
 Database design uses tables to give concrete form to more abstract objects which we simply call
 “entities.” Since the goal of a database is to capture the relational information about entities, it
@@ -42,7 +42,7 @@ subordinate administrative units)
 10. Bureaucratic Organization (the changes in bureaucracy and reporting
 responsibilities over time)
 
-### B. Details of Entities
+### B. Details of Entities {: #b-details }
 NOTE: The database allows one to record the source of information, including the pages in the
 source from which the information comes, and to add additional notes as seems appropriate.
 Every item in the database that records information on an individual has the attributes of source,

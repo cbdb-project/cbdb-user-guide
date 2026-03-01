@@ -40,7 +40,7 @@ all aspects of CBDB data. This process uses Access’ built-in Query Designer to
 NOTE: The explanations of the forms in this chapter provide examples of searches, but the
 results you get will differ from these because CBDB periodically updates the data in the tables.
 
-## A. The Navigation Pane
+## A. The Navigation Pane {: #a-nav }
 
 ![image_034_039](images/image_034_039.png)
 
@@ -96,7 +96,7 @@ the values for index place in all the tables that use the value.
 After changing the ranking of place affiliations, one can restore the CBDB default
 ranking and index place values by simply clicking on the “Reset to Default” command button.
 
-## B. The Browser: Looking up Data on an Individual
+## B. The Browser: Looking up Data on an Individual {: #b-browser }
 
 The browser in CBDB provides a convenient way to explore basic information on individuals
 in the database. It draws on just the raw data for people in the database, so it has no significant
@@ -211,7 +211,7 @@ beginning of the file):
 ![image_043_053](images/image_043_053.png)
 
 
-## C. Using the Form “Query by Methods of Entry into Government”
+## C. Using the Form “Query by Methods of Entry into Government” {: #c-entry }
 
 LookAtEntry is the simplest form. One opens it by clicking on “Query by Methods of Entry
 into Government” on the main page and clicks on the “Select Entry” button to choose a
@@ -481,7 +481,7 @@ the search.
 All the search forms support output to Neo4j but vary in the number of files created,
 depending on the nature of the data collected through the forms’ queries.
 
-## D. Using the Form “Query Associations”
+## D. Using the Form “Query Associations” {: #d-associations }
 
 LookAtAssociations allows one to look at the people who have participated in particular associations or categories of associations. After opening the form, one clicks on “Select Association” to choose the type of association one wants to investigate.
 
@@ -616,7 +616,7 @@ in another form. One clicks on the “Store Person IDs” button.
 
 ![image_065_092](images/image_065_092.png)
 
-## E. Using the Form “Query Offices Holding”
+## E. Using the Form “Query Offices Holding” {: #e-office }
 
 The bureaucratic system of imperial China was complex, and it evolved over time. As a result,
 CBDB at present has over six thousand office codes and will certainly have many more as the
@@ -807,7 +807,7 @@ The table “People in Office” contains the usual information about people:
 * Index Address Type (Chinese)
 * XY count (number of people) for the Index Address
 
-## F. Using the Form “Query Kinship”
+## F. Using the Form “Query Kinship” {: #f-kinship }
 
 Queries involving kinship are more complex than queries examining categories of association
 or modes of attaining eligibility for office. Since the information on kinship for an individual
@@ -1007,7 +1007,7 @@ indicate degree of distance from the target person:
     Red = nodes at a summed kinship distance of 5 or more
 
 
-## G. Using the Form “Query Social Networks”
+## G. Using the Form “Query Social Networks” {: #g-networks }
 
 LookAtNetworks is the most powerful querying interface developed for the Access version
 of CBDB. It allows the user to explore social networks defined both by kinship ties and by
@@ -1247,7 +1247,7 @@ from the target person:
 
 One also can export a set of CSV (comma-separated values) files for use with Neo4j.
 
-## H. Using the Form “Query Pair-wise Associations”
+## H. Using the Form “Query Pair-wise Associations” {: #h-pairs }
 
 At times one wants to consider whether there were any social links between two individuals or
 among members of a group of people identified through criteria other than those of kinship or
@@ -1376,7 +1376,7 @@ indicate degree of distance from the target person and the type of connections:
 The output files aggregate the associations between people, and the width of the lines reflects
 the number of associations between nodes.
 
-## I. Using the Form “Query Place Associations”
+## I. Using the Form “Query Place Associations” {: #i-place }
 
 The forms discussed above produce information about the relationship between people and
 places in the contexts of kinship and social relations, office holding, and entry into
@@ -1479,7 +1479,7 @@ selected.
 If there is a need to save the data in GIS form, this functionality can be added in future
 versions of the software.
 
-## J. Using the Form “Query Status”
+## J. Using the Form “Query Status” {: #j-status }
 
 LookAtStatus is a recent addition to the forms for exploring the CBDB data. It allows users
 to examine CBDB information on social distinctions recorded for members of the database.
@@ -1530,7 +1530,7 @@ The form provides output to GIS data files as well as to Neo4j files, which capt
 person-status relationship (that is, people are connected as nodes to status types as nodes rather
 than as people connected to other people).
 
-## K. Using the Form “Query Texts and Roles”
+## K. Using the Form “Query Texts and Roles” {: #k-texts }
 
 The form LookatTextRoles enables users to investigate people who have roles in the
 production of premodern Chinese texts. CBDB uses the classification of texts used in the Siku
@@ -1579,7 +1579,7 @@ the Save to GIS button.
 Output to a set of Neo4j files by clicking on Save to Neo4j gives one a way to further
 explore the bipartite relationship between people and texts using Neo4j.
 
-## L. Using the form “Looking up Data on a Group of People”
+## L. Using the form “Looking up Data on a Group of People” {: #l-group }
 
 As shown in the description of the other forms, CBDB allows the user to identify groups of
 people according to specified characteristics. The form LookAtGroupData allows the user

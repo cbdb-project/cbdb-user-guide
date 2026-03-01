@@ -10,7 +10,7 @@ chapter considers one example of using the output from CBDB forms as input for o
 queries and then introduces the basic ideas of SQL and illustrates them through an example
 that requires two steps in query design.
 
-## A. Kinship Networks for Examination Graduates in Putian, Fujian during the Song
+## A. Kinship Networks for Examination Graduates in Putian, Fujian during the Song {: #a-putian }
 
 One question in the study of social history during the Song dynasty is whether local elites
 remained stable and controlled access to the cultural resources needed to gain entrance to
@@ -69,7 +69,7 @@ members of Zheng 鄭 and Gu 顧 clans. The Song 宋 surname largely has disappea
 diagrams, the white nodes are the men who passed the examinations, and the blue squares are their kin.
 
 
-## B. Using the Access Query Designer
+## B. Using the Access Query Designer {: #b-designer }
 
 Another extremely powerful capacity built into Access is the ability to design SQL queries to
 look at the CBDB data from whatever angle you wish. There are a few concepts to master, but
