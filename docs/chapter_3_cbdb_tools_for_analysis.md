@@ -432,13 +432,12 @@ There is one additional approach to searching by name that handles the problem o
 place name might change and thus be excluded from a list using names. During the Later Jin (936-
 947), for example, Kaifeng was called by its old name, Bianzhou. CBDB allows one to pick
 one address (or a filtered or imported list of addresses) and, based on its longitude and latitude,
-
-![image_057_080](images/image_057_080.png)
-
 to find all the administrative units throughout the specified time period that were close to that
 unit. If one imports the list of address codes for Kaifeng above and checks the Use the XY
 Reference checkbox as well as the Include Subordinate Units checkbox, one finds 159
 people.
+
+![image_057_080](images/image_057_080.png)
 
 Saving Results
 
