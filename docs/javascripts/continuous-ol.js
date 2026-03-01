@@ -7,14 +7,8 @@ document$.subscribe(function () {
   var content = document.querySelector('.md-content__inner');
   if (!content) return;
 
-  var headings = content.querySelectorAll('h3');
-  var startHeading = null;
-  for (var i = 0; i < headings.length; i++) {
-    if (headings[i].textContent.trim().startsWith('A. An Overview of the Entities in the Database')) {
-      startHeading = headings[i];
-      break;
-    }
-  }
+  // Match the shared explicit anchor in both English/Chinese docs.
+  var startHeading = content.querySelector('h3#a-overview');
   if (!startHeading) return;
 
   var next = startHeading.nextElementSibling;
