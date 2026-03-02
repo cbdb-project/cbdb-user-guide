@@ -1,5 +1,4 @@
-// Keep visual numbering continuous for split ordered lists in Chapter 2 overview,
-// without modifying source Markdown authored content.
+// Keep visual numbering continuous for split ordered lists without modifying Markdown source.
 document$.subscribe(function () {
   var path = window.location.pathname;
   var content = document.querySelector('.md-content__inner');
@@ -30,5 +29,12 @@ document$.subscribe(function () {
     // Continue numbering for the section list (1..6) split by intervening tables.
     var summaryHeading = content.querySelector('h2');
     applyContinuousOl(summaryHeading, 'H2');
+    return;
+  }
+
+  if (path.includes('/chapter_3_cbdb_tools_for_analysis/')) {
+    // Continue numbering for section A list (1..4) split by inserted images/paragraphs.
+    var navHeading = content.querySelector('h2#a-nav');
+    applyContinuousOl(navHeading, 'H2');
   }
 });
