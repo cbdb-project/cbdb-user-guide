@@ -113,9 +113,9 @@ the upper right of the form.
 
 ![image_038_045](images/image_038_045.png)
 
-Searching the Database 
+### Searching the Database
 
-By Name
+### By Name
 
 Since `BIOG_MAIN` has over 535,000 people, just scrolling through the window on the left is
 not the most effective way to locate an individual. Therefore, the browser has two search
@@ -125,7 +125,7 @@ Shi’s 蘇軾 style name, Dongpo 東坡, rather than his full name, one can sea
 see how many people share those two characters in any of their names. Of course, one can
 directly search by “Su Shi” or “蘇軾” as well.
 
-Searching by Pinyin
+### Searching by Pinyin
 
 1. A basic search by pinyin (i.e., “Su Shi”) looks for the search string anywhere in the name, but
 the search can be narrowed or broadened.
@@ -137,7 +137,7 @@ will produce “Zhao Fang,” “Shao Yong,” and “Chao Buzhi,” etc., as we
 
 ![image_039_046](images/image_039_046.png)
 
-By Name + Office
+### By Name + Office
 
 If a text provides only a surname and a title, the browser allows one to search by those as well.
 
@@ -159,7 +159,7 @@ match the specified criteria, these results are transferred to the Browser:
 
 ![image_040_049](images/image_040_049.png)
 
-Exploring Results
+### Exploring Results
 
 The browser itself is fairly self-explanatory. Each tab provides the basic data in CBDB for the
 individual in the main categories: addresses, alternative names, writings, postings, mode(s) of
@@ -195,7 +195,7 @@ Clicking on the link takes one to Su Shi’s entry:
 ![image_042_052](images/image_042_052.png)
 
 
-Saving Results
+### Saving Results
 
 A. Having located a person, one can use the Store Person ID button to save the person’s ID to
 be reused in Query Kinship, Query Social Networks, and Query Pair-wise Associations.
@@ -225,7 +225,7 @@ English:
 
 ![image_044_056](images/image_044_056.png)
 
-Selecting the Modes of Entry
+### Selecting the Modes of Entry
 
 Clicking on the Select Entry button opens a form with a list of options. Since there are many
 different ways to attain eligibility for office, CBDB uses a collapsible tree to simplify the
@@ -274,9 +274,9 @@ imported list, and one can run the query using the list:
 
 ![image_048_065](images/image_048_065.png)
 
-Setting Search Parameters
+### Setting Search Parameters
 
-Setting Time Parameters
+### Setting Time Parameters
 
 After one finds the method(s) of entry and clicks Select, one returns to the LookAtEntry
 form, and can now choose the year range (1) to run the query (2):
@@ -354,7 +354,7 @@ the small box in the upper left-hand corner. Then save to the clipboard with Ctr
 
 One then can paste the table into any program that accepts the format.
 
-Setting Place Parameters
+### Setting Place Parameters
 
 If one wishes to explore the mode of entry for people from a particular region, one uses the
 Select Place button in the upper right part of the form:
@@ -439,7 +439,7 @@ people.
 
 ![image_057_080](images/image_057_080.png)
 
-Saving Results
+### Saving Results
 
 If one has created a query that produces a list of people who one wants to reuse in other
 queries—for example, if one wants to look at the kinship networks for the officials from
@@ -593,7 +593,7 @@ CBDB allows files for both GIS programs and for Pajek to be saved in different t
 
 ![image_063_090](images/image_063_090.png)
 
-Search by Place
+### Search by Place
 
 Like the LookAtEntry form, LookAtAssociations allows one to look at associations for
 people from a particular place or from a particular list of places.
@@ -628,7 +628,7 @@ analytic forms. One clicks on the Select Office button on the top left to begin.
 
 ![image_066_093](images/image_066_093.png)
 
-Selecting the Offices
+### Selecting the Offices
 
 The “Select Office” form displays a tree of office categories. The first node, “Bureaucratic Structure” shows the organizational hierarchy organized by dynasty. One can view—and select—the offices at any level of structure. The first form shows all the offices associated with the Supply Commissioner at the circuit level.
 
@@ -644,7 +644,7 @@ A Tang office containing the character 鹽 (“salt”)
 
 The filter allows one to select related offices across dynastic boundaries. One can select individual offices related to salt, or one can select all offices.
 
-Cross-dynastic Office Selection
+### Cross-dynastic Office Selection
 
 One can use the filter for office names to find a set of offices that crosses dynastic
 boundaries and, therefore, allows one to make cross-dynastic comparisons. For example, one can search for all the Grand Empress Dowagers:
@@ -656,7 +656,7 @@ Empress Dowager:
 
 ![image_068_097](images/image_068_097.png)
 
-Saving, Editing and Importing Lists of Offices
+### Saving, Editing and Importing Lists of Offices
 
 Because of the complexity of office structure—and especially structures across dynastic boundaries, CBDB provides a way to build reusable lists of offices that one might want to investigate. One begins by selecting an initial set of offices: for example, the Song dynasty offices in the Vice Grand Councilor’s Office:
 
@@ -687,7 +687,7 @@ The form then displays “[[Imported List]],” and one can run a query using th
 
 ![image_071_104](images/image_071_104.png)
 
-Querying Office
+### Querying Office
 
 The form below shows a query selecting all postings to offices associated with the Vice Grand
 Councilor in CBDB and does not use either index years or dynasties. Because at present office
@@ -739,7 +739,7 @@ office in Wuzhou during the Song:
 
 ![image_075_112](images/image_075_112.png)
 
-Exporting to GIS
+### Exporting to GIS
 
 Because one might want to look at the spatial distribution of either the postings or the people
 who held the posts, the LookAtOffice form provides ways to save both to files that can be
@@ -1038,7 +1038,7 @@ reveals that even within the network of one person there were rival networks. On
 these relationships in the query results table, and one can delete any records one does not wish
 to export for further analysis.
 
-Basic Query Functions
+### Basic Query Functions
 
 Running a query begins with selecting the elements to investigate.
 
@@ -1217,7 +1217,7 @@ networks who contribute most of the relations in the social network. Thus, it pe
 to return to the larger set of unrestricted relations among 3,897 people and use the tools of
 social network analysis to sort through the data.
 
-Requerying
+### Requerying
 
 Some users have discovered that it is useful to reuse the people identified in one query in
 LookAtNetworks to serve as the basis for additional queries in the same form. For example,
@@ -1228,7 +1228,7 @@ This loads the current results as a list of person IDs. One then restricts the n
 relationships to writing and reruns the query. This has the added virtue that the list of people
 is now available for use in other forms as well.)
 
-Outputting Results
+### Outputting Results
 
 LookAtNetworks provides ways to output the results of a query to three different SNA
 programs: UCINet, Pajek, and Gephi. Because Pajek supports Chinese characters, CBDB
@@ -1277,7 +1277,7 @@ two-node intermediaries to select the option.
 connecting people, but kinship also can be important, and the form allows one to examine the
 role of kinship relations in the social network.
 
-One Node Intermediary Searches
+### One Node Intermediary Searches
 
 For example, if one explores the links between Su Shi 蘇軾and Cheng Yi 程頤, allowing only
 people directly linked to both of them finds 214 associations among 21 people.
@@ -1318,7 +1318,7 @@ other, then one discovers one additional connection but, in this case, no additi
 
 ![image_100_146](images/image_100_146.png)
 
-Two Node Intermediary Searches
+### Two Node Intermediary Searches
 
 If one broadens the search to allow two intermediary links to connect the target people, the
 network becomes more complicated: The program reveals 1404 relations among 123 people
@@ -1326,7 +1326,7 @@ with index years between 1000 and 1100:
 
 ![image_100_147](images/image_100_147.png)
 
-Searches Using Lists
+### Searches Using Lists
 
 If one wants to look for connections within a larger group of people chosen by other criteria,
 
@@ -1350,7 +1350,7 @@ produces 1,588 associations among 187 people:
 
 ![image_102_150](images/image_102_150.png)
 
-Output to SNA and GIS Programs
+### Output to SNA and GIS Programs
 
 Like the other forms, LookAtAssociationPairs can generate files for use with Pajek and with
 GIS visualization programs. The output tables for Associations and People are the same as
