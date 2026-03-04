@@ -165,39 +165,8 @@ database, then allows users to explore the interactions between these entities i
 groups of individuals. For example, consider the following set of entities and their relations
 with the basic entity PEOPLE:
 
-```mermaid
-flowchart TB
 
-    %% Top layer
-    Places[Places]
-    SocialRelations[Social Relations]
-
-    %% Middle relationship layer
-    PeoplePlaces[People-Places]
-    PeopleSocial[People-Social Relations]
-
-    %% Core entity
-    People[People]
-
-    %% Lower relationship layer
-    PeopleKinship[People-Kinship]
-    PeopleOffice[People-Office]
-
-    %% Bottom layer
-    Kinship[Kinship]
-    Office[Office]
-
-    %% Connections
-    Places --> PeoplePlaces
-    SocialRelations --> PeopleSocial
-    Kinship --> PeopleKinship
-    Office --> PeopleOffice
-
-    People --> PeoplePlaces
-    People --> PeopleSocial
-    People --> PeopleKinship
-    People --> PeopleOffice
-```
+![CBDB entity relationship diagram](images/chapter_1_relational_entities.svg)
 
 Although there is no direct link between KINSHIP and OFFICE, we still can explore the
 relation between them through the data we have accumulated about people. We can ask

@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 560" width="720" height="560" font-family="Arial, sans-serif" font-size="14">
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#444"/>
+    </marker>
+  </defs>
+
+  <!--
+    CENTER: People          (360, 280)
+    
+    Inner 4 (relation tables, X arms):
+      People-Places         (180, 160)   top-left
+      People-Social Rel     (540, 160)   top-right
+      People-Kinship        (180, 400)   bottom-left
+      People-Office         (540, 400)   bottom-right
+
+    Outer 4 (entities, further corners):
+      Places                ( 60,  60)   top-left
+      Social Relations      (620,  60)   top-right
+      Kinship               ( 60, 490)   bottom-left
+      Office                (620, 490)   bottom-right
+
+    All boxes: width=160, height=40  (center coords above)
+  -->
+
+  <!-- ===== ARROWS ===== -->
+
+  <!-- Places (60,60) -> People-Places (180,160) -->
+  <line x1="108" y1="88" x2="142" y2="142" stroke="#444" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- Social Relations (620,60) -> People-Social Relations (540,160) -->
+  <line x1="594" y1="88" x2="568" y2="142" stroke="#444" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- People (360,280) -> People-Places (180,160) -->
+  <line x1="318" y1="262" x2="228" y2="178" stroke="#444" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- People (360,280) -> People-Social Relations (540,160) -->
+  <line x1="402" y1="262" x2="492" y2="178" stroke="#444" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- People (360,280) -> People-Kinship (180,400) -->
+  <line x1="318" y1="298" x2="228" y2="382" stroke="#444" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- People (360,280) -> People-Office (540,400) -->
+  <line x1="402" y1="298" x2="492" y2="382" stroke="#444" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- Kinship (60,490) -> People-Kinship (180,400) -->
+  <line x1="108" y1="472" x2="142" y2="418" stroke="#444" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- Office (620,490) -> People-Office (540,400) -->
+  <line x1="594" y1="472" x2="568" y2="418" stroke="#444" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- ===== YELLOW ENTITIES (outer corners) ===== -->
+
+  <!-- Places: top-left -->
+  <rect x="20" y="40" width="160" height="40" rx="8" fill="#FFFACD" stroke="#BBBB00" stroke-width="1.8"/>
+  <text x="100" y="65" text-anchor="middle" fill="#333">Places</text>
+
+  <!-- Social Relations: top-right -->
+  <rect x="540" y="40" width="180" height="40" rx="8" fill="#FFFACD" stroke="#BBBB00" stroke-width="1.8"/>
+  <text x="630" y="65" text-anchor="middle" fill="#333">Social Relations</text>
+
+  <!-- Kinship: bottom-left -->
+  <rect x="20" y="470" width="160" height="40" rx="8" fill="#FFFACD" stroke="#BBBB00" stroke-width="1.8"/>
+  <text x="100" y="495" text-anchor="middle" fill="#333">Kinship</text>
+
+  <!-- Office: bottom-right -->
+  <rect x="540" y="470" width="160" height="40" rx="8" fill="#FFFACD" stroke="#BBBB00" stroke-width="1.8"/>
+  <text x="620" y="495" text-anchor="middle" fill="#333">Office</text>
+
+  <!-- ===== CYAN RELATION TABLES (inner X arms) ===== -->
+
+  <!-- People-Places: top-left inner -->
+  <rect x="100" y="140" width="160" height="40" rx="8" fill="#AAEAEE" stroke="#009999" stroke-width="1.8"/>
+  <text x="180" y="165" text-anchor="middle" fill="#333">People-Places</text>
+
+  <!-- People-Social Relations: top-right inner -->
+  <rect x="460" y="140" width="200" height="40" rx="8" fill="#AAEAEE" stroke="#009999" stroke-width="1.8"/>
+  <text x="560" y="165" text-anchor="middle" fill="#333">People-Social Relations</text>
+
+  <!-- People-Kinship: bottom-left inner -->
+  <rect x="100" y="380" width="160" height="40" rx="8" fill="#AAEAEE" stroke="#009999" stroke-width="1.8"/>
+  <text x="180" y="405" text-anchor="middle" fill="#333">People-Kinship</text>
+
+  <!-- People-Office: bottom-right inner -->
+  <rect x="460" y="380" width="160" height="40" rx="8" fill="#AAEAEE" stroke="#009999" stroke-width="1.8"/>
+  <text x="540" y="405" text-anchor="middle" fill="#333">People-Office</text>
+
+  <!-- ===== YELLOW CENTER ===== -->
+
+  <!-- People: center -->
+  <rect x="280" y="260" width="160" height="40" rx="8" fill="#FFFACD" stroke="#BBBB00" stroke-width="1.8"/>
+  <text x="360" y="285" text-anchor="middle" fill="#333">People</text>
+
+</svg>

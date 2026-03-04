@@ -77,39 +77,7 @@ flowchart TB
 
 CBDB 的核心是在建模人物與各種塑造其社會世界的實體（「事物」）之間的互動。有些實體容易理解其「物性」：地點是具體空間實體，而官僚制度在中國前近代社會中也具有明確結構。親屬關係則較抽象一些。人類學早已指出，社會中的親屬關係是一種結構化系統：某些親屬連結特別強，社會運作亦常圍繞這些連結展開。換言之，人與人不只是單純相關，他們的關係是該社會親屬系統的一部分，並透過此系統獲得意義。把「社會關係」視為一種「事物」會更抽象，但原理相同：若要與他人建立社會連結，社會本身會規範何種關係適切且重要、何種則否。在一個社會所重視的交往系統中，「社會資本」可衡量個體在這張關係網中的定位。CBDB 對親屬與社會關係所建立的分類，正反映我們在前近代中國人物資訊中觀察到、且具有區辨意義的關係系統。作為關聯式資料庫，CBDB 因而能讓使用者探究群體人物生命中這些實體之間的互動。以下是以 PEOPLE 為基礎實體時的實體與關係示意：
 
-```mermaid
-flowchart TB
-
-    %% Top layer
-    Places[Places]
-    SocialRelations[Social Relations]
-
-    %% Middle relationship layer
-    PeoplePlaces[People-Places]
-    PeopleSocial[People-Social Relations]
-
-    %% Core entity
-    People[People]
-
-    %% Lower relationship layer
-    PeopleKinship[People-Kinship]
-    PeopleOffice[People-Office]
-
-    %% Bottom layer
-    Kinship[Kinship]
-    Office[Office]
-
-    %% Connections
-    Places --> PeoplePlaces
-    SocialRelations --> PeopleSocial
-    Kinship --> PeopleKinship
-    Office --> PeopleOffice
-
-    People --> PeoplePlaces
-    People --> PeopleSocial
-    People --> PeopleKinship
-    People --> PeopleOffice
-```
+![CBDB 實體關係示意圖](images/chapter_1_relational_entities.svg)
 
 雖然 KINSHIP 與 OFFICE 之間沒有直接連線，我們仍可透過人物資料間接探究兩者關係。例如可問：「醫官職位是否具世襲傾向？也就是醫官是否常是醫官之子姪？醫官家族是否彼此通婚？」又或者：中階武官中，轉任文職者是否更傾向迎娶文官之女？
 
