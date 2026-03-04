@@ -117,7 +117,7 @@ by Methods of Entry has been fixed.
 added.
 2. LookAtGroupData, a form to quick collect data on groups of people, has been added.
 
-## Build 20220627
+### Build 20220627
 
 ### Design Changes
 1. Made the changes necessary for users to export dynasty information from
@@ -147,7 +147,7 @@ LookAtNetworks by revising the code for exporting to UCINet and Gephi
         Created the table `ZZ_SCRATCH_BIOG_ADDR_DATA`
     e. Added a routine to rebuild `ZZZ_BIOG_ADDR_DATA` to DATA3
 
-## Build 20220425
+### Build 20220425
 
 1. A “Simplify Kinship Terms” option has been added to Query Kinship.
 2. A “Store Person ID” button has been added to the Browser, so that once the user has
@@ -155,7 +155,7 @@ selected a person, that person can be recalled for use in Query Kinship, Query S
 Networks, and Query Pair-wise Association by simply clicking on the “Recall
 Person IDs” command button.
 
-## Build 20220315
+### Build 20220315
 
 1. Information on sources for records has been added to all the forms.
 
@@ -167,7 +167,7 @@ titles, and status now support the multi-select option. The user can click on it
 list to select those that are of interest.
 2. The user can now filter office titles by name when selecting office. This feature replaces the earlier search function. Because the filtering produces a list of offices from different dynasties, the form now includes information about the dynasty associate with each office name.
 
-## Build 20211102
+### Build 20211102
 
 ### Design Change
 1. In LookAtOffice, selecting an office now provides more information about the
@@ -175,36 +175,36 @@ dynasty of the selected office.
 2. In the Browser for individuals, one can now search by Surname + Office Title in
 either Chinese or in pinyin.
 
-## Build 20210826
+### Build 20210826
 
-### Design Change
+#### Design Change
 In the Browser for individuals, using pinyin now has three options:
 (1) lower case: it looks for the string anywhere in the name;
 (2) upper case: it looks for the string only at the beginnings of words (“Hao” will select both Zhang Hao and Hao Jing;
 (3) string beginning with “!:” it looks only at the beginning of the surname (just “Hao
 Jing”)
 
-## Build 20210609
+### Build 20210609
 
-### Bug Fixes
+#### Bug Fixes
 1. Removed all references to `ZZZ_ALL_BIOG_ADDR`, which has been replaced in
 functionality by `ZZZ_BIOG_MAIN`
 2. Added the field c_kin_rel_count to ZZ_SCRATCH_KINNET_EDGE.
 
-## Build 20210606
+### Build 20210606
 
-### Bug Fixes
+#### Bug Fixes
 1. Changed all references to TEXT_DATA to `BIOG_TEXT_DATA` in the Admin
 Version of BD (the Used BC version had already been corrected).
 
-## 20210603 (Initial build for BD)
+### 20210603 (Initial build for BD)
 
-### Design Change
+#### Design Change
 1. Created a filter-by-office-title function for selecting offices
 2. In order to filter by office title, I added c_dy, c_dynasty, and c_dynasty_chn both to
 ZZ_OFFICE_CODE and to Z_SCRATCH_DUMMY_OC.
 
-### Bug Fixes
+#### Bug Fixes
 1. Cleared the scratch table for status codes when clicking on the highest tree level to
 fix a duplicate-value bug.
 
@@ -301,9 +301,9 @@ administrative units.
 ## CBDB Data Release 20220312
 
 ### Changes
-1. [To be Added]
+1. To be added.
 
-## Build 20220315
+### Build 20220315
 
 1. Source information was added to `ZZZ_NONKIN_BIOG_ADDR`
 
