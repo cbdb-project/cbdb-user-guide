@@ -84,7 +84,7 @@ Browser 目前可為選定人物動態建立親屬網絡。
 1. 新增 LookAtTexts（檢視人物在文本生產中的角色）。
 2. 新增 LookAtGroupData（快速彙整群體人物資料）。
 
-## Build 20220627
+### Build 20220627
 
 ### 設計變更
 1. 為支援 LookAtKinship 匯出朝代資訊：
@@ -104,12 +104,12 @@ Browser 目前可為選定人物動態建立親屬網絡。
     d. 在 `ZZZ_BIOG_ADDR_DATA` 增加欄位，並建立 `ZZ_SCRATCH_BIOG_ADDR_DATA`。
     e. 新增將 `ZZZ_BIOG_ADDR_DATA` 重建到 DATA3 的流程。
 
-## Build 20220425
+### Build 20220425
 
 1. Query Kinship 新增 `Simplify Kinship Terms` 選項。
 2. Browser 新增 `Store Person ID`。選定人物後，可透過 `Recall Person IDs` 在 Query Kinship、Query Social Networks、Query Pair-wise Association 直接叫回。
 
-## Build 20220315
+### Build 20220315
 
 1. 所有表單新增來源資訊顯示。
 
@@ -119,38 +119,38 @@ Browser 目前可為選定人物動態建立親屬網絡。
 1. 關係、入仕方式、官名、status 代碼選擇表單均支援多選。
 2. 選官時可依名稱篩選官職，取代舊搜尋功能。因篩選會列出跨朝代官名，表單同步顯示各官名所屬朝代資訊。
 
-## Build 20211102
+### Build 20211102
 
 ### 設計變更
 1. LookAtOffice 選官後會顯示更多朝代資訊。
 2. 人物 Browser 新增可用「姓氏 + 官銜」搜尋，支援中文與拼音。
 
-## Build 20210826
+### Build 20210826
 
-### 設計變更
+#### 設計變更
 人物 Browser 拼音查詢三種模式：
 (1) 全小寫：任意位置比對；
 (2) 首字母大寫：詞首比對（`Hao` 可找出 Zhang Hao 與 Hao Jing）；
 (3) 以 `!:` 開頭：只比對姓氏開頭（如 Hao Jing）。
 
-## Build 20210609
+### Build 20210609
 
-### 錯誤修正
+#### 錯誤修正
 1. 移除所有 `ZZZ_ALL_BIOG_ADDR` 參照，改由 `ZZZ_BIOG_MAIN` 取代。
 2. 在 `ZZ_SCRATCH_KINNET_EDGE` 新增欄位 `c_kin_rel_count`。
 
-## Build 20210606
+### Build 20210606
 
-### 錯誤修正
+#### 錯誤修正
 1. BD 管理版中所有 `TEXT_DATA` 參照改為 `BIOG_TEXT_DATA`（使用者 BC 版已先修正）。
 
-## 20210603（BD 初始建置）
+### 20210603（BD 初始建置）
 
-### 設計變更
+#### 設計變更
 1. 新增依官名篩選官職。
 2. 為此在 `ZZ_OFFICE_CODE` 與 `Z_SCRATCH_DUMMY_OC` 新增 `c_dy`、`c_dynasty`、`c_dynasty_chn`。
 
-### 錯誤修正
+#### 錯誤修正
 1. 點擊最高樹層時清空 status codes 暫存表，以修正重複值 bug。
 
 ## CBDB Interface Version BC
@@ -205,7 +205,7 @@ Browser 目前可為選定人物動態建立親屬網絡。
 ### 變更
 1. [待補]
 
-## Build 20220315
+### Build 20220315
 
 1. 在 `ZZZ_NONKIN_BIOG_ADDR` 加入來源資訊。
 
