@@ -39,9 +39,6 @@ plugins:
             Appendices: 附錄
             Appendix A: 附錄 A
             Appendix B: 附錄 B
-            Appendix C: 附錄 C
-            Appendix D: 附錄 D
-            Appendix E: 附錄 E
   - search
 
 extra:
@@ -78,8 +75,5 @@ nav:
       - Chapter 3: chapter_3_cbdb_tools_for_analysis.md
       - Chapter 4: chapter_4_advanced_query_techniques.md
   - Appendices:
-      - Appendix A: appendix_a_installing_the_ms_access_files.md
-      - Appendix B: appendix_b_updating_the_visual_basic_environment.md
-      - Appendix C: appendix_c_installing_the_sqlite_cbdb_on_macintosh.md
-      - Appendix D: appendix_d_kinship_simplification_table.md
-      - Appendix E: appendix_e_change_log_for_cbdb.md
+      - Appendix A: appendix_a_installing_the_cbdb_desktop_app.md
+      - Appendix B: appendix_b_change_log_for_cbdb.md

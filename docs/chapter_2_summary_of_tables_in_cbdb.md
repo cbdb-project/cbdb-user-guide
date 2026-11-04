@@ -9,7 +9,6 @@ interaction of people with these aspects of their world in the secondary tables.
 | Table Name | Description |
 |------------|-------------|
 | `ADDR_CODES` | the units in the administrative geography of China |
-| `ADDRESSES` | a convenient reference table that displays the hierarchy |
 | `ASSOC_CODES` | the non-kinship social relations that connected people |
 | `BIOG_MAIN` | the people of pre-modern China |
 | `ENTRY_CODES` | the means by which people entered into institutions |
@@ -32,11 +31,13 @@ interaction of people with these aspects of their world in the secondary tables.
 | `BIOG_TEXT_DATA` | the relations of people to texts |
 | `ENTRY_DATA` | the initiating relations between people and institutions |
 | `KIN_DATA` | the kinship relations connecting people |
+| `MERGED_PEOPLE_DATA` | a list of the person IDs merged into other person IDs |
 | `OFFICE_TYPE_TREE` | the hierarchical structure of bureaucratic organizations |
-| `POSTED_TO_ADDR` | the relations between people, office, and place |
+| `POSTED_TO_ADDR_DATA` | the relations between people, office, and place |
 | `POSTING_DATA` | the container table for postings: people linked to office |
 | `POSTED_TO_OFFICE_DATA` | the details of people’s connection to office |
 | `STATUS_DATA` | data on a person’s place in the system of social distinctions |
+| `TEXT_INSTANCE_DATA` | data on editions and instances of editions of texts |
 
 3. Relationship Type Information
 
@@ -89,27 +90,48 @@ interaction of people with these aspects of their world in the secondary tables.
 | `OFFICE_CODE_TYPE_REL` | the relationship of specific offices to the office hierarchy |
 | `OFFICE_CATEGORIES` | the categories of offices: rank, honorary, etc. |
 | `STATUS_CODE_TYPE_REL` | the relationship of specific status codes to the larger categories of social distinction |
-| `TEXT_BIBLCAT_CODE_TYPE_REL` |  |
+| `TEXT_BIBLCAT_CODE_TYPE_REL` | grouping of bibliographic categories into larger categories |
 
-6. “Denormalized” Tables
-
-Because the data tables for the relations between basic entities (group 2 above) are in
-normalized form that uses codes that refer to other tables for the entities, relations, and
-historical information, they are difficult to use for queries (See Chapter 4). In order to
-simplify the process of writing queries, CBDB provides a set of tables where the codes have
-been supplemented by the values (mostly text strings like the names of people, places, official
-positions, etc.) to which the codes refer. The main tables are listed below:
+6. Synthetic Tables
 
 | Table Name | Description |
 |------------|-------------|
-| `ZZZ_ALT_NAME_DATA` | fills in alternate name type |
-| `ZZZ_BIOG_ADDR_DATA` | fills in address and address type |
-| `ZZZ_BIOG_MAIN` | fills in nianhao and ethnicity |
-| `ZZZ_BIOG_NAME_OFFICE` | links surnames to posted office names (used in searching) |
-| `ZZZ_BIOG_TEXT_DATA` | fills in the person’s name, the person’s role, and the text data |
-| `ZZZ_ENTRY_DATA` | fills in the person’s name, entry type, etc. |
-| `ZZZ_KIN_BIOG_ADDR` | the table for kinship that also provides the index place |
-| `ZZZ_NONKIN_BIOG_ADDR` | the table for associations that also provides the index place |
-| `ZZZ_POSTED_TO_ADDR_DATA` | fills in person name, office name, and address information |
-| `ZZZ_POSTED_TO_OFFICE_DATA` | fills in person name and office information |
-| `ZZZ_STATUS_DATA` | fills in person name and status description |
+| `ZZZ_ADDRESSES` | a useful table showing the hierarchical position of administrative units. This table replaces `ADDRESSES` |
+| `ZZZ_BELONGS_TO` | This table is primarily for use in queries. It lists all the subunits that belong to any particular address code. |
+| `ZZZ_NAMES` | This table is used for name searches and combines the names from `BIOG_MAIN` and from `ALTNAME_DATA` |
+| `ZZZ_DISTANCE` | This table pre-calculates the “great circle distance” between kin and associates for whom we have index addresses. |
+
+7. “Denormalized” Views (Queries)
+
+The data tables for the relations between basic entities (group 2 above) are in normalized
+form that uses codes that refer to other tables for the entities, relations, and historical
+information. (Codes that derive their values from other tables are called **foreign keys**.) The
+relational tables are therefore difficult to use for queries (See Chapter 4).
+
+In order to simplify the process of writing queries, CBDB provides a set of pre-written, stored
+queries (which other database systems call “views”) where the codes have been supplemented
+by the values to which the codes refer (mostly text strings like the names of people, places,
+official positions, etc.). Most of these views are kept simple (and therefore faster) because they
+are used in the **Browser** and omit information about the person not needed by the
+sub-forms in the Browser. These are marked with “[B].” The views are listed below:
+
+| View Name | Description |
+|-----------|-------------|
+| `View_AltnameData` [B] | fills in alternate name type |
+| `View_AssociationData` [B] | fills in information about associations (person’s name, associate’s name, description of association) |
+| `View_BiogAddrData` [B] | fills in place name, the relationship to place, and the x-y coordinates |
+| `View_BiogInstAddrData` [B] | fills in the institution name and its address(es) |
+| (`View_BiogInstData`) | (this query is used by `View_BiogInstAddrData`) |
+| `View_BiogSourceData` [B] | fills in the names of the source as well as the hypertext link for the source, if there is one |
+| `View_BiogTextData` [B] | fills in the person’s role and the text data |
+| `View_EntryData` [B] | fills in the person’s name, entry type, etc. Although used in the browser, this is a more complete query |
+| `View_EventAddrData` [B] | fills in the event and address data |
+| `View_EventData` [B] | fills in the event data |
+| `View_KinAddrData` | this is the query for kinship, but it also provides the index place data for the person and the kin |
+| `View_PeopleAddr` | fills in the index address information for people; this is a more limited (and therefore faster) version of `View_PeopleData` |
+| `View_PeopleData` [B] | fills in index address, index year information, dynasty, nianhao, ethnicity, choronym, etc. |
+| `View_PossessionsAddrData` [B] | fills in the possessions and the address associated with the possession, if any |
+| (`View_PossessionsData`) | (used by `View_PossessionsAddrData`, which is more complete) |
+| `View_PostingAddrData` [B] | fills in just the address information for postings from the `POSTED_TO_ADDR_DATA` table |
+| `View_PostingOfficeData` [B] | fills in the office information for postings |
+| `View_StatusData` [B] | fills in the status description |

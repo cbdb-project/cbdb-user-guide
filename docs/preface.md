@@ -2,9 +2,9 @@
 
 Michael A. Fuller
 
-Revised Version 3.6
+Desktop Edition, Version 1.0
 
-July 26, 2024
+October 21, 2026
 
 © China Biographical Database Project: Harvard University, Academia Sinica, Peking University
 
@@ -121,6 +121,6 @@ the project, all participants are recognized on the CBDB website.
 
 This User’s Guide explains the logic of CBDB as a relational database, the structure of
 its contents, the primary query interfaces for getting data from the database, and
-installation procedures for different operating systems. Please also consult Appendix E
+installation procedures for different operating systems. Please also consult Appendix B
 of the User’s Guide for a summary of the most recent changes to the database and to
 the user interface.
