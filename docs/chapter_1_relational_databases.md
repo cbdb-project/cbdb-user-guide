@@ -46,12 +46,12 @@ tables filled with data divided into fields:
 
 | ID | Name                     | Dates        |
 |----|--------------------------|-------------|
-| 1  | Lü Benzhong 吕本中       | 1084–1145   |
+| 1  | Lü Benzhong 呂本中       | 1084–1145   |
 | 2  | An Dun 安惇              | 1042–1101   |
-| 3  | Chao Buzhi 晁补之        | 1053–1110   |
-| 4  | Chen Jian (5) 陈荐       | fl. 1069    |
+| 3  | Chao Buzhi 晁補之        | 1053–1110   |
+| 4  | Chen Jian (5) 陳薦       | fl. 1069    |
 
-**PEOPLE PLACES**
+**PEOPLE-PLACES**
 
 | Person ID | Place ID | Relation Type ID |
 |-----------|----------|------------------|
@@ -63,9 +63,9 @@ tables filled with data divided into fields:
 
 | ID | Place Name        |
 |----|------------------|
-| 1  | Jinhua 金华      |
-| 2  | Shouzhou 寿州    |
-| 3  | Kaifeng 开封     |
+| 1  | Jinhua 金華      |
+| 2  | Shouzhou 壽州    |
+| 3  | Kaifeng 開封     |
 
 **PEOPLE-PLACE TYPES**
 
@@ -175,7 +175,8 @@ or nephews of medical officers, and did the families of medical officers marry t
 one another?” What about men who held mid-level military ranks: were those who moved
 into civil posts likely to marry daughters of men who held civil posts?
 
-(TODO: Add Chart)
+![Querying the Relationship between OFFICE and KINSHIP](images/chapter_1_office_kinship.png)
+
 **Querying the Relationship between OFFICE and KINSHIP**
 
 We can ask many, many questions about the relation of OFFICE and KINSHIP. Were there
@@ -187,13 +188,15 @@ they establish empire-wide networks? Did these patterns change from the early to
 Northern Song and then again from the late Northern Song to the late Southern Song?
 
 
-(TODO: Add Chart)
+![Querying the Relationship of PLACE and SOCIAL RELATIONS](images/chapter_1_place_social.png)
+
 **Querying the Relationship of PLACE and SOCIAL RELATIONS**
 
 Finally, we can look at the interaction of multiple factors like the role of PLACE in the
 relationship between KINSHIP and OFFICE:
 
-(TODO: Add Chart)
+![Querying the Role of PLACE in KINSHIP-OFFICE Relations](images/chapter_1_place_kinship_office.png)
+
 **Querying the Role of PLACE in KINSHIP-OFFICE Relations**
 
 Were officials from Fujian more likely to develop local kinship networks than were official

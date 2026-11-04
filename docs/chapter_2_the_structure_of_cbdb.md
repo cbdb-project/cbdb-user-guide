@@ -50,6 +50,29 @@ pages, and notes. Therefore I will not note these in the discussions below.
 
 1. People
 
+    CBDB draws information about people from the rich textual sources of pre-modern
+    China as well as from modern scholarly compilations of data. The early sources include
+    funerary inscriptions (墓誌銘 muzhiming), dynastic histories, local gazetteers, and
+    literary collections (文集 wenji).
+
+    Because this information comes from disparate sources, one of the great challenges in
+    collecting data on people is disambiguation, that is, determining whether the same name
+    in different texts refers to one person or two (or more) different people. If the texts
+    provide a good deal of information on the persons named in the text, the task of
+    comparing these data to help decide whether the names refer to the same person is
+    relatively easy. When there is little additional information in the text, however, there
+    often is no clear way to decide. In such cases, CBDB treats the two texts as referring to
+    separate people and assigns two IDs.
+
+    If later research provides good evidence that the two people with the shared name are in
+    fact the same person, then the editors of CBDB will merge the two IDs and all the data
+    recorded for these two IDs. Because some applications have been using CBDB data for
+    years at this point, the merging of IDs can create problems in maintaining the accuracy
+    and stability of their prior results. To deal with this problem, CBDB maintains a table
+    `MERGED_PEOPLE_DATA` to track the merging of IDs, recording both the merged ID
+    (that disappears from the `BIOG_MAIN` table that stores basic data on people) as well as
+    the ID into which the data has been consolidated.
+
     a. Basic Data: name, male or female, date of birth, and date of death.
 
     Precise dates of birth and death often are not available, and all we have is a period of years
@@ -84,8 +107,8 @@ pages, and notes. Therefore I will not note these in the discussions below.
     time. The index year is an artificial value used in analyses. In earlier versions of the
     database, index year was based on when the person would have turned 60 sui.
     However, starting with the 2021 dataset, the index year has been based on the known
-    or projected year of birth. The rules for calculating the value are based on the following
-    assumptions.
+    or projected year of birth. The rules for calculating the value are complex and based on the following
+    assumptions:
 
     **Assumptions**
 
@@ -95,7 +118,7 @@ pages, and notes. Therefore I will not note these in the discussions below.
     | A2 | A wife was 3 years younger than her husband. |
     | A3 | The first child was born when the father was age 30 and the mother age 27 (per A2). |
     | A4 | Male children were born 2 years apart. |
-    | A5 | A man died at age 63 and a woman at age 55. |
+    | A5 | A man died at age 64 and a woman at age 53. |
 
     **Rules Based on a Person’s Birth/Death Dates**
 
@@ -103,7 +126,8 @@ pages, and notes. Therefore I will not note these in the discussions below.
     |---|---|
     | Rule 1 | Ego’s index year = ego’s birth year. |
     | Rule 2 | If we know ego’s death year and age at death: ego’s index year = ego’s death year − age at death. |
-    | Rule 3 | If we know only ego’s death year (per A5): ego’s index year = death year − 63 (men), death year − 55 (women). |
+    | Rule 3 | If we know just ego’s death year (per A5): ego’s index year = death year − 64 (for men). |
+    | Rule 3W | If we know just ego’s death year (per A5): ego’s index year = death year − 53 (for women). |
     | Rule 4W | Ego’s index year = husband’s birth year + 3. (If the woman was a concubine/second wife, Rule 9W precedes Rule 4W.) |
 
     **Rules Based on Degree Dates**
@@ -279,7 +303,7 @@ pages, and notes. Therefore I will not note these in the discussions below.
 
         10. The ID of the place of the association
         11. The sequence of an association, if one does not know the actual date
-        12. The date of the association (year, month, and day, if known)
+        12. The first year and last year of the association
 
         Contextual Information
 
@@ -314,9 +338,11 @@ pages, and notes. Therefore I will not note these in the discussions below.
     within the structure of social distinction) is a simple entity:
 
         Status code
-        Status description
-        Status category and subcategory 1
-        Status category and subcategory 2
+        Status description (English and Chinese)
+
+    Because CBDB has created a long list of status codes (at present 285), the database has
+    added an additional layer (the `STATUS_TYPES` table) to aggregate the profusion of codes
+    into analytically useful larger categories (through the `STATUS_CODE_TYPE_REL` table).
 
     Since social distinctions change over time, CBDB will continue to add to its current list as
     it draws upon sources for earlier and later periods.
@@ -349,7 +375,8 @@ pages, and notes. Therefore I will not note these in the discussions below.
         Entry relation type code (for kin)
         Entry associate type code (for non-kin)
         Entry associate ID (used for both kin and non-kin)
-        Entry test date (both Western and nianhao + year (if known))
+        Entry event date (both Western and nianhao + year (if known))
+        Entry event dynasty (sometimes only the dynasty is known)
         Entry test ranking
         Entry address ID
 
@@ -432,13 +459,18 @@ pages, and notes. Therefore I will not note these in the discussions below.
     administrative hierarchies: this information is preserved in a “belongs-to” table that serves
     the same function as the “part-of” table in CHGIS. Since an address ID changes only
     when the unit changes shape or name, it does not change ID simply when it becomes part of
-    a different higher level administrative unit. Thus there are two tables:
+    a different higher level administrative unit. In the most recent version of CBDB, the “administrative type” text field in the table
+    `ADDR_CODES` has been replaced by a code that represents what type of administrative unit
+    the place is. This replacement of a text string by a code is an example of normalizing the
+    data: it turned out that the text strings used different ways (including misspellings) to
+    refer to the same categories. Using codes to refer to categories eliminates these
+    discrepancies. Thus there are three tables:
 
     **Address Code**
 
         Address code
         Address name
-        Administrative type
+        Administrative category code
         X coordinate
         Y coordinate
         Address first year
@@ -451,7 +483,14 @@ pages, and notes. Therefore I will not note these in the discussions below.
         Belongs-to first year
         Belongs-to last year
 
-    From these two tables CBDB generates a convenient Addresses table that is used in the
+    **Administrative Category Codes**
+
+        Administrative category code
+        Administrative category description (Chinese characters)
+        Administrative category (pinyin)
+        Administrative category translation
+
+    From the first two tables CBDB generates a convenient Addresses table that is used in the
     online database and can be consulted in the stand-alone version to provide information
     about the role of administrative units in the bureaucratic structure. Its structure is:
 
@@ -515,7 +554,7 @@ pages, and notes. Therefore I will not note these in the discussions below.
 
     However, this hierarchy of codes to use in assigning the index place may not be the most
     suitable for particular research projects. Thus, CBDB allows the user to change this order.
-    See Appendix X for discussion.
+    See the discussion of this process in Chapter 3, Section N, “Changing the Index Address Ranking.”
 
 9. Texts
 
@@ -525,7 +564,14 @@ pages, and notes. Therefore I will not note these in the discussions below.
     compendium of earlier writings and a work in its own right, and since the paleographic
     materials also were written by authors who are of interest to the database, these distinctions
     for pre-modern texts of any sort are neither clear nor useful. CBDB accordingly treats all
-    three types as TEXTS. Texts have the attributes one can expect:
+    three types as TEXTS.
+
+    Biographies often mention titles of texts (e.g., who wrote what) without offering detailed
+    bibliographical data, and in many cases no physical copies of the text have survived. CBDB
+    therefore records the most general identification of such works. It assigns each work a
+    unique ID, even when only a title is known.
+
+    Texts have the attributes one can expect:
 
         title
         category of writing (inscription or manuscript/printed)
@@ -534,7 +580,28 @@ pages, and notes. Therefore I will not note these in the discussions below.
         current publisher
         current publication location
 
-    People can relate to the text in a variety of roles:
+    Historical texts have additional complexities that CBDB attempts to capture. CBDB tracks
+    what we might call the concrete manifestations of texts. Each such manifestation—conceived
+    of as something as tangible as a physical copy with specific bibliographical or bibliometric
+    characteristics—is treated as an **“instance.”** Any difference in the total juan number,
+    publisher, publication date, format, or other bibliographical/bibliometric detail results in a
+    separate instance. Different instances may derive from the same edition and therefore share
+    substantially the same content. For this reason, CBDB also tracks editions. In CBDB an
+    “edition” occupies an intermediate level between the abstract identity of a “text” and the
+    concrete manifestation of an “instance.” Editions typically involve meaningful differences in
+    content, whereas instances usually differ only in material or bibliographical details. Thus, a
+    single text may have multiple editions, and each edition may in turn have multiple instances.
+    For example, the Lunyu jijie yishu 論語集解義疏 (Collected Explanations of the Analects with
+    Elucidations of the Meanings) exists in at least two editions—the Zhibuzuzhai 知不足齋 and
+    Huaidetang 懷德堂 editions—each of which has produced multiple instances (e.g., the
+    Zhibuzuzhai edition was copied into the Siku quanshu and published as part of Zhibuzuzhai
+    Collectanea).
+
+    Although CBDB has developed approaches to record the complexity of information about
+    text, CBDB is a prosopographical database: it is more concerned to track the relations people
+    create through their involvement in texts than in developing a complete bibliographic
+    database of all texts from pre-modern China. CBDB accordingly records the various roles
+    through which people can relate to text, e.g.,
 
         author
         publisher
@@ -543,17 +610,26 @@ pages, and notes. Therefore I will not note these in the discussions below.
         translator
         annotator
 
-    The tables for texts are:
+    In CBDB the tables for representing information about texts are:
 
     **Texts Codes**
 
         Text ID
-        Text Name
+        Text title
         Date of composition
         Current status: extant or not
         Current Publication Information (if extant)
 
-    **Text Data**
+    **Text Instances**
+
+        Text ID
+        Text Edition ID
+        Text Instance ID
+        Text instance title
+        Date of instance
+        Additional data about the instance
+
+    **Biographical Text Data**
 
         Text ID
         Person ID

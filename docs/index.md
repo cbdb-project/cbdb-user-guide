@@ -2,9 +2,9 @@
 
 Michael A. Fuller
 
-Revised Version 3.6
+Desktop Edition, Version 1.0
 
-July 26, 2024
+October 21, 2026
 
 © China Biographical Database Project: Harvard University, Academia Sinica, Peking University
 
@@ -22,22 +22,20 @@ July 26, 2024
 - [Chapter 3. CBDB Tools for Analysis](chapter_3_cbdb_tools_for_analysis.md)
     - [A. The Navigation Pane](chapter_3_cbdb_tools_for_analysis.md#a-nav)
     - [B. The Browser](chapter_3_cbdb_tools_for_analysis.md#b-browser)
-    - [C. Query by Method of Entry](chapter_3_cbdb_tools_for_analysis.md#c-entry)
-    - [D. Query Associations](chapter_3_cbdb_tools_for_analysis.md#d-associations)
-    - [E. Query Office Holding](chapter_3_cbdb_tools_for_analysis.md#e-office)
-    - [F. Query Kinship](chapter_3_cbdb_tools_for_analysis.md#f-kinship)
+    - [C. Query Methods of Entry into Government](chapter_3_cbdb_tools_for_analysis.md#c-entry)
+    - [D. Query Office Holding](chapter_3_cbdb_tools_for_analysis.md#d-office)
+    - [E. Query Kinship](chapter_3_cbdb_tools_for_analysis.md#e-kinship)
+    - [F. Query Associations](chapter_3_cbdb_tools_for_analysis.md#f-associations)
     - [G. Query Social Networks](chapter_3_cbdb_tools_for_analysis.md#g-networks)
-    - [H. Query Pair-wise Association](chapter_3_cbdb_tools_for_analysis.md#h-pairs)
-    - [I. Query Place Association](chapter_3_cbdb_tools_for_analysis.md#i-place)
+    - [H. Query Pair-wise Associations](chapter_3_cbdb_tools_for_analysis.md#h-pairs)
+    - [I. Query Place Associations](chapter_3_cbdb_tools_for_analysis.md#i-place)
     - [J. Query Status](chapter_3_cbdb_tools_for_analysis.md#j-status)
     - [K. Query Texts and Roles](chapter_3_cbdb_tools_for_analysis.md#k-texts)
-    - [L. Looking up Data on a Group of Individuals](chapter_3_cbdb_tools_for_analysis.md#l-group)
+    - [L. Looking up Data on a Group of People](chapter_3_cbdb_tools_for_analysis.md#l-group)
+    - [M. Using the Query Builder](chapter_3_cbdb_tools_for_analysis.md#m-builder)
+    - [N. Changing the Index Address Ranking](chapter_3_cbdb_tools_for_analysis.md#n-address)
 - [Chapter 4. Advanced Query Techniques](chapter_4_advanced_query_techniques.md)
-    - [A. Kinship Networks for Jinshi-degree Holders in Putian](chapter_4_advanced_query_techniques.md#a-putian)
-    - [B. Using the Access Query Designer](chapter_4_advanced_query_techniques.md#b-designer)
+    - [A. Kinship Networks for Examination Graduates in Putian](chapter_4_advanced_query_techniques.md#a-putian)
 - Appendices
-    - [A. Installing the MS Access Files](appendix_a_installing_the_ms_access_files.md)
-    - [B. Updating the Visual Basic Environment](appendix_b_updating_the_visual_basic_environment.md)
-    - [C. Installing the SQLite CBDB Database on a Mac](appendix_c_installing_the_sqlite_cbdb_on_macintosh.md)
-    - [D. Kinship Simplification Table](appendix_d_kinship_simplification_table.md)
-    - [E. Change Log for CBDB](appendix_e_change_log_for_cbdb.md)
+    - [A. Installing the CBDB Desktop App](appendix_a_installing_the_cbdb_desktop_app.md)
+    - [B. Change Log for CBDB](appendix_b_change_log_for_cbdb.md)

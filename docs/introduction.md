@@ -68,3 +68,4 @@ into three parts: general information about relational databases, the structure 
 in particular (the types of data it contains), and the interface for looking at the data in
 CBDB.
 
+Please note that while the CBDB interface has been in Microsoft Access for the past twenty years, this User’s Guide is for a new stand-alone application that runs on your browser.

@@ -2,9 +2,9 @@
 
 Michael A. Fuller
 
-修訂版 3.6
+桌面版，版本 1.0
 
-2024 年 7 月 26 日
+2026 年 10 月 21 日
 
 © China Biographical Database Project: Harvard University, Academia Sinica, Peking University
 
@@ -36,8 +36,5 @@ Michael A. Fuller
     - [A. 宋代福建莆田進士群體的親屬網絡](chapter_4_advanced_query_techniques.md#a-putian)
     - [B. 使用 Access 查詢設計器](chapter_4_advanced_query_techniques.md#b-designer)
 - 附錄
-    - [A. 安裝 MS Access 檔案](appendix_a_installing_the_ms_access_files.md)
-    - [B. 更新 Visual Basic 環境](appendix_b_updating_the_visual_basic_environment.md)
-    - [C. 在 Mac 上安裝 SQLite 版 CBDB](appendix_c_installing_the_sqlite_cbdb_on_macintosh.md)
-    - [D. 親屬關係簡化表](appendix_d_kinship_simplification_table.md)
-    - [E. CBDB 版本變更記錄](appendix_e_change_log_for_cbdb.md)
+    - [A. 安裝 CBDB 桌面版應用程式](appendix_a_installing_the_cbdb_desktop_app.md)
+    - [B. CBDB 版本變更記錄](appendix_b_change_log_for_cbdb.md)
